@@ -10,6 +10,7 @@ import android.view.View;
 import com.knight.arch.api.ApiClient;
 import com.knight.arch.model.AllPersonlInfos;
 import com.knight.arch.ui.RankingFragment;
+import com.orhanobut.logger.Logger;
 
 
 import retrofit.Callback;

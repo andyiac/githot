@@ -12,7 +12,7 @@ import com.orhanobut.logger.Logger;
  * @web http://blog.andyiac.com/
  */
 public class ClientApplication extends Application {
-    private static final String LOGGER_TAG = "ArchitectureDemo";
+    private static final String LOGGER_TAG = "<<===TAG===>>";
 
     public void onCreate() {
         super.onCreate();
@@ -21,12 +21,11 @@ public class ClientApplication extends Application {
     }
 
     private void initLogger() {
-        Logger
-                .init(LOGGER_TAG)               // default PRETTYLOGGER or use just init()
+        Logger.init(LOGGER_TAG)               // default PRETTYLOGGER or use just init()
                 .setMethodCount(3)            // default 2
-                .hideThreadInfo()             // default shown
-                .setLogLevel(LogLevel.NONE)  // default LogLevel.FULL
-                .setMethodOffset(2);           // default 0
+                .setLogLevel(LogLevel.FULL)   // default LogLevel.FULL
+                .setMethodOffset(2);          // default 0
+//              .hideThreadInfo()             // default shown
     }
 
     private void initStetho() {
