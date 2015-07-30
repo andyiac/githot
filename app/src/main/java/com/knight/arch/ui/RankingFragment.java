@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import com.knight.arch.R;
 import com.knight.arch.api.ApiClient;
 import com.knight.arch.model.AllPersonlInfos;
-import com.knight.arch.utils.L;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -21,7 +20,7 @@ import retrofit.client.Response;
  * @author andyiac
  * @web http://blog.andyiac.com/
  */
-public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class RankingFragment extends Fragment {
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -43,17 +42,20 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                fetchData();
             }
         });
     }
 
-
-    public void onTestClick(View view) {
+    private void fetchData() {
         ApiClient.getTestDemoApiClient().getData2(new Callback<AllPersonlInfos>() {
             @Override
             public void success(AllPersonlInfos personInfos, Response response) {
                 Log.e("TAG_success", personInfos.getData().get(1).getUsername());
+                if (swipeRefreshLayout.isRefreshing()) {
+
+                    swipeRefreshLayout.setRefreshing(false);
+                }
             }
 
             @Override
@@ -61,10 +63,5 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
                 Log.e("TAG_failure", error.toString());
             }
         });
-    }
-
-    @Override
-    public void onRefresh() {
-        L.i("====================");
     }
 }
