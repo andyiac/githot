@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.knight.arch.api.ApiClient;
 import com.knight.arch.model.AllPersonlInfos;
+import com.knight.arch.ui.RankingFragment;
 
 
 import retrofit.Callback;
@@ -21,22 +22,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initView();
+    }
+
+    private void initView() {
+        RankingFragment rankingFragment = new RankingFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.id_frame_container, rankingFragment).commit();
     }
 
 
-    public void onTestClick(View view) {
-        ApiClient.getTestDemoApiClient().getData2(new Callback<AllPersonlInfos>() {
-            @Override
-            public void success(AllPersonlInfos personInfos, Response response) {
-                Log.e("TAG_success", personInfos.getData().get(1).getUsername());
-            }
 
-            @Override
-            public void failure(RetrofitError error) {
-                Log.e("TAG_failure", error.toString());
-            }
-        });
-    }
 
 
     //=============================================================================

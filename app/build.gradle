@@ -17,8 +17,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    packagingOptions{
-        exclude'META-INF/LICENSE.txt'
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
 }
@@ -31,4 +31,5 @@ dependencies {
     compile 'com.facebook.stetho:stetho:1.1.1'
     compile 'com.facebook.stetho:stetho-okhttp:1.1.1'
     compile 'com.orhanobut:logger:1.10'
+    compile 'com.android.support:recyclerview-v7:22.2.1'
 }
