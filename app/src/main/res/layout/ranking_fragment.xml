@@ -1,29 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <EditText
-        android:id="@+id/editText"
+    <!-- <android.support.v7.widget.RecyclerView
+         android:id="@+id/recycler"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:scrollbarStyle="outsideOverlay"
+         android:scrollbars="vertical" />
+     -->
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="hello world" />
-    <!--
+        android:layout_height="match_parent"
+        android:footerDividersEnabled="false" />
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/refresher"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+</android.support.v4.widget.SwipeRefreshLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbarStyle="outsideOverlay"
-                android:scrollbars="vertical" />
-        </android.support.v4.widget.SwipeRefreshLayout>
-    -->
-
-</LinearLayout>

@@ -12,7 +12,7 @@ import com.orhanobut.logger.Logger;
  * @web http://blog.andyiac.com/
  */
 public class ClientApplication extends Application {
-    private static final String LOGGER_TAG = "<<===TAG===>>";
+    private static final String LOGGER_TAG = "<<=TAG=>>";
 
     public void onCreate() {
         super.onCreate();

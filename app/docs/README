@@ -11,6 +11,6 @@
 # okHttp/retrofit
     使用chrome调试网络数据库
 
-
-
+# RecyclerView
+    SwipeRefreshLayout 内部需要有可以滑动的视图，否则报错
 

@@ -23,12 +23,29 @@ import retrofit.client.Response;
  */
 public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        L.i("====================");
         View view = inflater.inflate(R.layout.ranking_fragment, container, false);
+        initView(view);
         return view;
+    }
+
+    private void initView(View view) {
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+
+        //设置卷内的颜色
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+        });
     }
 
 
