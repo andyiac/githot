@@ -1,16 +1,26 @@
 package com.knight.arch.ui;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.knight.arch.R;
+import com.knight.arch.adapter.ListAdapterHolder;
 import com.knight.arch.api.ApiClient;
 import com.knight.arch.model.AllPersonlInfos;
+import com.knight.arch.model.PersonInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -22,7 +32,14 @@ import retrofit.client.Response;
  */
 public class RankingFragment extends Fragment {
 
+    private FragmentActivity mActivity;
+
     private SwipeRefreshLayout swipeRefreshLayout;
+
+    private RecyclerView mRecyclerView;
+    private ListAdapterHolder adapter;
+
+    private List<PersonInfo> mPersonInfos = new ArrayList<PersonInfo>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,6 +47,29 @@ public class RankingFragment extends Fragment {
         initView(view);
         return view;
     }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        adapter.SetOnItemClickListener(new ListAdapterHolder.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(View v, int position) {
+                // do something with position
+            }
+        });
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        mActivity = (FragmentActivity) activity;
+        super.onAttach(activity);
+    }
+
 
     private void initView(View view) {
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
@@ -45,15 +85,20 @@ public class RankingFragment extends Fragment {
                 fetchData();
             }
         });
+
+
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.id_recycler_view);
+        adapter = new ListAdapterHolder(mActivity, mPersonInfos);
+
     }
 
     private void fetchData() {
         ApiClient.getTestDemoApiClient().getData2(new Callback<AllPersonlInfos>() {
             @Override
             public void success(AllPersonlInfos personInfos, Response response) {
-                Log.e("TAG_success", personInfos.getData().get(1).getUsername());
+                mPersonInfos.addAll(personInfos.getData());
+                adapter.notifyDataSetChanged();
                 if (swipeRefreshLayout.isRefreshing()) {
-
                     swipeRefreshLayout.setRefreshing(false);
                 }
             }
@@ -61,6 +106,10 @@ public class RankingFragment extends Fragment {
             @Override
             public void failure(RetrofitError error) {
                 Log.e("TAG_failure", error.toString());
+                if (swipeRefreshLayout.isRefreshing()) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+
             }
         });
     }

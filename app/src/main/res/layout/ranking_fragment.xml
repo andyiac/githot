@@ -5,18 +5,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- <android.support.v7.widget.RecyclerView
-         android:id="@+id/recycler"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:scrollbarStyle="outsideOverlay"
-         android:scrollbars="vertical" />
-     -->
-    <ListView
-        android:id="@+id/listView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/id_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:footerDividersEnabled="false" />
-
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical" />
+    <!-- <ListView
+         android:id="@+id/listView"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:footerDividersEnabled="false" />
+ -->
 </android.support.v4.widget.SwipeRefreshLayout>
 

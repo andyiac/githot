@@ -7,7 +7,7 @@ package com.knight.arch.model;
  */
 public class PersonInfo {
     private String Rank;
-    private String ravatar;
+    private String Gravatar;
     private String username;
     private String name;
     private String location;
@@ -16,20 +16,20 @@ public class PersonInfo {
     private String followers;
     private String created;
 
+    public String getGravatar() {
+        return Gravatar;
+    }
+
+    public void setGravatar(String gravatar) {
+        Gravatar = gravatar;
+    }
+
     public String getRank() {
         return Rank;
     }
 
     public void setRank(String rank) {
         Rank = rank;
-    }
-
-    public String getRavatar() {
-        return ravatar;
-    }
-
-    public void setRavatar(String ravatar) {
-        this.ravatar = ravatar;
     }
 
     public String getUsername() {
