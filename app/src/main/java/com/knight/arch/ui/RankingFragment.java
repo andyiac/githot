@@ -8,13 +8,9 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.knight.arch.R;
 import com.knight.arch.adapter.ListAdapterHolder;
@@ -44,6 +40,8 @@ public class RankingFragment extends Fragment {
     private ListAdapterHolder adapter;
 
     private List<PersonInfo> mPersonInfos = new ArrayList<PersonInfo>();
+    private int lastVisibleItem;
+    private LinearLayoutManager mLinearLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,7 +55,8 @@ public class RankingFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mLinearLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter.SetOnItemClickListener(new ListAdapterHolder.OnItemClickListener() {
 
@@ -74,7 +73,6 @@ public class RankingFragment extends Fragment {
         super.onAttach(activity);
     }
 
-
     private void initView(View view) {
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
 
@@ -84,33 +82,41 @@ public class RankingFragment extends Fragment {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-
+        //下拉刷新
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                fetchData();
-            }
-        });
+                mPersonInfos.clear();
+                adapter.notifyDataSetChanged();
 
-        swipeRefreshLayout.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                L.i("==swipeRefreshLayout=onDrag===");
-                return false;
+                fetchData();
             }
         });
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.id_recycler_view);
         adapter = new ListAdapterHolder(mActivity, mPersonInfos);
 
-        mRecyclerView.setOnDragListener(new View.OnDragListener() {
+        //下拉刷新
+        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public boolean onDrag(View v, DragEvent event) {
-                L.i("===onDrag===");
-                return false;
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter.getItemCount()) {
+                    swipeRefreshLayout.setRefreshing(true);
+                    L.i("========onScrollStateChanged load more==========");
+                    fetchData();
+                }
             }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                lastVisibleItem = mLinearLayoutManager.findLastVisibleItemPosition();
+            }
+
         });
     }
+
 
     private void fetchData() {
         ApiClient.getTestDemoApiClient().getData2(new Callback<AllPersonlInfos>() {
@@ -125,7 +131,8 @@ public class RankingFragment extends Fragment {
 
             @Override
             public void failure(RetrofitError error) {
-                Log.e("TAG_failure", error.toString());
+                L.e(error.toString());
+
                 if (swipeRefreshLayout.isRefreshing()) {
                     swipeRefreshLayout.setRefreshing(false);
                 }
