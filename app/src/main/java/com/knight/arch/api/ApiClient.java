@@ -53,10 +53,6 @@ public class ApiClient {
         void getStreams(@Query("limit") int limit, @Query("offset") int offset, Callback<List<AllPersonlInfos>> callback);
 
         @GET("/getdata")
-        void getData(Callback<List<AllPersonlInfos>> callback);
-
-        @GET("/getdata")
         void getData2(Callback<AllPersonlInfos> callback);
-
     }
 }

@@ -9,15 +9,19 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.knight.arch.R;
 import com.knight.arch.adapter.ListAdapterHolder;
 import com.knight.arch.api.ApiClient;
 import com.knight.arch.model.AllPersonlInfos;
 import com.knight.arch.model.PersonInfo;
+import com.knight.arch.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +83,8 @@ public class RankingFragment extends Fragment {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -86,10 +92,24 @@ public class RankingFragment extends Fragment {
             }
         });
 
+        swipeRefreshLayout.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                L.i("==swipeRefreshLayout=onDrag===");
+                return false;
+            }
+        });
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.id_recycler_view);
         adapter = new ListAdapterHolder(mActivity, mPersonInfos);
 
+        mRecyclerView.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                L.i("===onDrag===");
+                return false;
+            }
+        });
     }
 
     private void fetchData() {
@@ -109,7 +129,6 @@ public class RankingFragment extends Fragment {
                 if (swipeRefreshLayout.isRefreshing()) {
                     swipeRefreshLayout.setRefreshing(false);
                 }
-
             }
         });
     }
