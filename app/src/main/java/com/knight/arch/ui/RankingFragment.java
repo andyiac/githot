@@ -47,6 +47,7 @@ public class RankingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.ranking_fragment, container, false);
         initView(view);
+        fetchData();
         return view;
     }
 
@@ -97,15 +98,16 @@ public class RankingFragment extends Fragment {
         adapter = new ListAdapterHolder(mActivity, mPersonInfos);
 
         //下拉刷新
-        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter.getItemCount()) {
-                    swipeRefreshLayout.setRefreshing(true);
+                    setRefreshing(true);
                     L.i("========onScrollStateChanged load more==========");
                     fetchData();
                 }
+
             }
 
             @Override
@@ -114,29 +116,37 @@ public class RankingFragment extends Fragment {
                 lastVisibleItem = mLinearLayoutManager.findLastVisibleItemPosition();
             }
 
+
         });
     }
 
 
     private void fetchData() {
+        setRefreshing(true);
         ApiClient.getTestDemoApiClient().getData2(new Callback<AllPersonlInfos>() {
             @Override
             public void success(AllPersonlInfos personInfos, Response response) {
                 mPersonInfos.addAll(personInfos.getData());
                 adapter.notifyDataSetChanged();
-                if (swipeRefreshLayout.isRefreshing()) {
-                    swipeRefreshLayout.setRefreshing(false);
-                }
+                setRefreshing(false);
             }
 
             @Override
             public void failure(RetrofitError error) {
                 L.e(error.toString());
-
-                if (swipeRefreshLayout.isRefreshing()) {
-                    swipeRefreshLayout.setRefreshing(false);
-                }
+                setRefreshing(false);
             }
         });
+    }
+
+    public void setRefreshing(boolean refreshing) {
+        if (swipeRefreshLayout == null) {
+            return;
+        }
+        if (!refreshing) {
+            swipeRefreshLayout.setRefreshing(false);
+        } else {
+            swipeRefreshLayout.setRefreshing(true);
+        }
     }
 }

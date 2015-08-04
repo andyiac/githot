@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="@color/background_material_light"
+    android:background="@drawable/shape_card_background_default"
     android:orientation="vertical"
     android:padding="5dp">
 
