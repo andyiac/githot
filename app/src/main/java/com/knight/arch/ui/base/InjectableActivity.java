@@ -28,4 +28,13 @@ public abstract class InjectableActivity extends BaseActivity implements Injecto
         super.onDestroy();
         objectGraph = null;
     }
+
+    public void inject(Object target) {
+        objectGraph.inject(target);
+    }
+
+    public ObjectGraph plus(Object[] modules) {
+        return objectGraph.plus(modules);
+    }
+
 }

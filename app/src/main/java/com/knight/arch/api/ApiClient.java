@@ -2,6 +2,8 @@ package com.knight.arch.api;
 
 import com.facebook.stetho.okhttp.StethoInterceptor;
 import com.knight.arch.model.AllPersonlInfos;
+import com.knight.arch.model.Pagination;
+import com.knight.arch.model.PersonInfo;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 import retrofit.http.GET;
 import retrofit.http.Query;
+import rx.Observable;
 
 /**
  * Created by summer on 15-7-30.
@@ -54,5 +57,8 @@ public class ApiClient {
 
         @GET("/getdata")
         void getData2(Callback<AllPersonlInfos> callback);
+
+        @GET("/getdata")
+        Observable<Pagination<PersonInfo>> getDataRxJava();
     }
 }

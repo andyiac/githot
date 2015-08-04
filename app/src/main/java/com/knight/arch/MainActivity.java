@@ -1,13 +1,18 @@
 package com.knight.arch;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.knight.arch.module.HomeModule;
+import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.fragment.RankingFragment;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Arrays;
+import java.util.List;
+
+
+public class MainActivity extends InjectableActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,4 +49,11 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public List<Object> getModules() {
+        return Arrays.<Object>asList(new HomeModule(this));
+    }
+
+
 }

@@ -1,11 +1,14 @@
 package com.knight.arch.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by summer on 15-7-30.
  *
  * @web http://blog.andyiac.com/
  */
-public class PersonInfo {
+public class PersonInfo implements Parcelable {
     private String Rank;
     private String Gravatar;
     private String username;
@@ -15,6 +18,19 @@ public class PersonInfo {
     private String repos;
     private String followers;
     private String created;
+
+
+    public static final Creator<PersonInfo> CREATOR = new Creator<PersonInfo>() {
+        @Override
+        public PersonInfo createFromParcel(Parcel in) {
+            return new PersonInfo(in);
+        }
+
+        @Override
+        public PersonInfo[] newArray(int size) {
+            return new PersonInfo[size];
+        }
+    };
 
     public String getGravatar() {
         return Gravatar;
@@ -86,5 +102,35 @@ public class PersonInfo {
 
     public void setCreated(String created) {
         this.created = created;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(Rank);
+        dest.writeString(Gravatar);
+        dest.writeString(username);
+        dest.writeString(name);
+        dest.writeString(location);
+        dest.writeString(language);
+        dest.writeString(repos);
+        dest.writeString(followers);
+        dest.writeString(created);
+    }
+
+    protected PersonInfo(Parcel in) {
+        Rank = in.readString();
+        Gravatar = in.readString();
+        username = in.readString();
+        name = in.readString();
+        location = in.readString();
+        language = in.readString();
+        repos = in.readString();
+        followers = in.readString();
+        created = in.readString();
     }
 }

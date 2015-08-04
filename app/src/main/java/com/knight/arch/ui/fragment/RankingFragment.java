@@ -15,22 +15,31 @@ import android.view.ViewGroup;
 import com.knight.arch.R;
 import com.knight.arch.adapter.ListAdapterHolder;
 import com.knight.arch.api.ApiClient;
+import com.knight.arch.api.ApiService;
 import com.knight.arch.model.AllPersonlInfos;
+import com.knight.arch.model.Pagination;
 import com.knight.arch.model.PersonInfo;
+import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import rx.Observer;
+import rx.android.app.AppObservable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 
 /**
  * @author andyiac
  * @web http://blog.andyiac.com/
  */
-public class RankingFragment extends Fragment {
+public class RankingFragment extends InjectableFragment {
 
     private FragmentActivity mActivity;
 
@@ -43,11 +52,15 @@ public class RankingFragment extends Fragment {
     private int lastVisibleItem;
     private LinearLayoutManager mLinearLayoutManager;
 
+    @Inject
+    ApiService apiService;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.ranking_fragment, container, false);
         initView(view);
-        fetchData();
+        //fetchData();
+        fetchDataRx();
         return view;
     }
 
@@ -90,7 +103,8 @@ public class RankingFragment extends Fragment {
                 mPersonInfos.clear();
                 adapter.notifyDataSetChanged();
 
-                fetchData();
+//                fetchData();
+                fetchDataRx();
             }
         });
 
@@ -105,7 +119,8 @@ public class RankingFragment extends Fragment {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter.getItemCount()) {
                     setRefreshing(true);
                     L.i("========onScrollStateChanged load more==========");
-                    fetchData();
+//                    fetchData();
+                    fetchDataRx();
                 }
 
             }
@@ -138,6 +153,41 @@ public class RankingFragment extends Fragment {
             }
         });
     }
+
+
+    // fetch data with Rxjava
+    private void fetchDataRx() {
+
+        AppObservable.bindFragment(this, apiService.getDataRxJava())
+                .map(new Func1<Pagination<PersonInfo>, Pagination<PersonInfo>>() {
+                    @Override
+                    public Pagination<PersonInfo> call(Pagination<PersonInfo> personInfoPagination) {
+
+                        return personInfoPagination;
+                    }
+                }).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    Observer<Pagination<PersonInfo>> observer = new Observer<Pagination<PersonInfo>>() {
+        @Override
+        public void onCompleted() {
+            L.i("on onCompleted");
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            L.e("onError");
+        }
+
+        @Override
+        public void onNext(Pagination<PersonInfo> personInfoPagination) {
+            mPersonInfos.addAll(personInfoPagination.getData());
+            adapter.notifyDataSetChanged();
+            setRefreshing(false);
+        }
+    };
 
     public void setRefreshing(boolean refreshing) {
         if (swipeRefreshLayout == null) {

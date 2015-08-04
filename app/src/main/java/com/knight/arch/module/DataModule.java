@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.knight.arch.BuildConfig;
 import com.knight.arch.R;
 import com.knight.arch.api.ApiClient;
+import com.knight.arch.api.ApiService;
 import com.knight.arch.utils.L;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.OkHttpClient;
@@ -108,7 +109,7 @@ public class DataModule {
                 .setClient(new OkClient(okHttpClient))
                 .setConverter(new GsonConverter(gson))
                 .setLogLevel(RestAdapter.LogLevel.BASIC)
-                .setEndpoint("http://radio.sky31.com/api")
+                .setEndpoint("http://mock-api.com/TyTabSFqXNyqMpNw.mock")
                 .build();
     }
 
@@ -136,9 +137,15 @@ public class DataModule {
         };
     }
 
+//    @Provides
+//    @Singleton
+//    ApiClient.TestDemoApiInterface provideApiService(RestAdapter restAdapter) {
+//        return restAdapter.create(ApiClient.TestDemoApiInterface.class);
+//    }
+
     @Provides
     @Singleton
-    ApiClient.TestDemoApiInterface provideApiClient(RestAdapter restAdapter) {
-        return restAdapter.create(ApiClient.TestDemoApiInterface.class);
+    ApiService provideApiService(RestAdapter restAdapter) {
+        return restAdapter.create(ApiService.class);
     }
 }
