@@ -3,4 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="network_error">check your network</string>
+    <string name="http_error">error in http request</string>
+    <string name="conversion_error">error in data parse</string>
+    <string name="unexpected_error">unexpected error</string>
 </resources>

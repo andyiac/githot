@@ -3,21 +3,37 @@ package com.knight.arch;
 import android.app.Application;
 
 import com.facebook.stetho.Stetho;
+import com.knight.arch.module.AppModule;
+import com.knight.arch.module.Injector;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
+
+import java.util.Arrays;
+import java.util.List;
+
+import dagger.ObjectGraph;
 
 /**
  * Created by summer on 15-7-29.
  *
  * @web http://blog.andyiac.com/
  */
-public class ClientApplication extends Application {
+public class ClientApplication extends Application implements Injector {
     private static final String LOGGER_TAG = "<<=TAG=>>";
+
+    private ObjectGraph objectGraph;
 
     public void onCreate() {
         super.onCreate();
         initStetho();
         initLogger();
+
+        initDagger();
+    }
+
+    private void initDagger() {
+        objectGraph = ObjectGraph.create(getModules().toArray());
+        objectGraph.inject(this);
     }
 
     private void initLogger() {
@@ -34,5 +50,19 @@ public class ClientApplication extends Application {
                         .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
                         .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
                         .build());
+    }
+
+    public List<Object> getModules() {
+        return Arrays.<Object>asList(new AppModule(this));
+    }
+
+    @Override
+    public void inject(Object target) {
+        this.objectGraph.inject(target);
+    }
+
+    @Override
+    public ObjectGraph plus(Object[] modules) {
+        return objectGraph.plus(modules);
     }
 }
