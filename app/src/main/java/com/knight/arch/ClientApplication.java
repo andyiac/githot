@@ -65,4 +65,8 @@ public class ClientApplication extends Application implements Injector {
     public ObjectGraph plus(Object[] modules) {
         return objectGraph.plus(modules);
     }
+
+    public ObjectGraph plus(Injector injector) {
+        return this.objectGraph.plus(injector.getModules().toArray());
+    }
 }

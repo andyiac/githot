@@ -1,0 +1,44 @@
+package com.knight.arch.ui.base;
+
+import android.annotation.TargetApi;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.knight.arch.R;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
+
+/**
+ * @author andyiac
+ * @date 15-8-4
+ * @web http://blog.andyiac.com/
+ */
+public class BaseActivity extends AppCompatActivity {
+
+
+    SystemBarTintManager tintManager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+        if (Build.VERSION.SDK_INT <= 19) {
+            tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintEnabled(true);
+            tintManager.setNavigationBarTintEnabled(true);
+            tintManager.setStatusBarTintColor(getResources().getColor(R.color.primary_dark));
+        }
+
+    }
+
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void setStatusColor(int color) {
+        if (Build.VERSION.SDK_INT > 19) {
+            getWindow().setStatusBarColor(color);
+        } else {
+            tintManager.setStatusBarTintColor(color);
+        }
+    }
+}

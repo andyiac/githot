@@ -2,20 +2,10 @@ package com.knight.arch;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.knight.arch.api.ApiClient;
-import com.knight.arch.model.AllPersonlInfos;
-import com.knight.arch.ui.RankingFragment;
-import com.orhanobut.logger.Logger;
-
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import com.knight.arch.ui.fragment.RankingFragment;
 
 public class MainActivity extends AppCompatActivity {
 
