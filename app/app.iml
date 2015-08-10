@@ -74,6 +74,10 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.6.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.6.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.6.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.6.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.orhanobut/logger/1.10/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jacoco" />
@@ -92,27 +96,33 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="logger-1.10" level="project" />
     <orderEntry type="library" exported="" name="rxandroid-0.24.0" level="project" />
+    <orderEntry type="library" exported="" name="fbcore-0.6.0" level="project" />
     <orderEntry type="library" exported="" name="guava-15.0" level="project" />
     <orderEntry type="library" exported="" name="rxjava-1.0.8" level="project" />
-    <orderEntry type="library" exported="" name="systembartint-1.0.4" level="project" />
     <orderEntry type="library" exported="" name="okio-1.2.0" level="project" />
     <orderEntry type="library" exported="" name="dagger-1.2.2" level="project" />
+    <orderEntry type="library" exported="" name="dagger-compiler-1.2.2" level="project" />
+    <orderEntry type="library" exported="" name="picasso-2.3.2" level="project" />
+    <orderEntry type="library" exported="" name="jsr305-2.0.1" level="project" />
+    <orderEntry type="library" exported="" name="fastjson-1.2.6" level="project" />
+    <orderEntry type="library" exported="" name="library-2.4.0" level="project" />
+    <orderEntry type="library" exported="" name="logger-1.10" level="project" />
+    <orderEntry type="library" exported="" name="drawee-0.6.0" level="project" />
+    <orderEntry type="library" exported="" name="systembartint-1.0.4" level="project" />
     <orderEntry type="library" exported="" name="okhttp-2.2.0" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="stetho-okhttp-1.1.1" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="stetho-1.1.1" level="project" />
-    <orderEntry type="library" exported="" name="dagger-compiler-1.2.2" level="project" />
     <orderEntry type="library" exported="" name="retrofit-1.9.0" level="project" />
     <orderEntry type="library" exported="" name="litepal-1.2.0-src" level="project" />
-    <orderEntry type="library" exported="" name="picasso-2.3.2" level="project" />
     <orderEntry type="library" exported="" name="gson-2.3.1" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.2.1" level="project" />
-    <orderEntry type="library" exported="" name="jsr305-2.0.1" level="project" />
+    <orderEntry type="library" exported="" name="imagepipeline-0.6.0" level="project" />
+    <orderEntry type="library" exported="" name="fresco-0.6.0" level="project" />
     <orderEntry type="library" exported="" name="javax.inject-1" level="project" />
-    <orderEntry type="library" exported="" name="fastjson-1.2.6" level="project" />
+    <orderEntry type="library" exported="" name="bolts-android-1.1.4" level="project" />
     <orderEntry type="library" exported="" name="commons-cli-1.2" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="javawriter-2.5.0" level="project" />

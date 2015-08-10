@@ -47,6 +47,9 @@ public class RankingFragment extends InjectableFragment {
     private RecyclerView mRecyclerView;
     private ListAdapterHolder adapter;
     private List<PersonInfo> mPersonInfos = new ArrayList<PersonInfo>();
+    private int lastVisibleItem;
+    private LinearLayoutManager mLinearLayoutManager;
+
     Observer<Pagination<PersonInfo>> observer = new Observer<Pagination<PersonInfo>>() {
         @Override
         public void onCompleted() {
@@ -66,8 +69,7 @@ public class RankingFragment extends InjectableFragment {
             setRefreshing(false);
         }
     };
-    private int lastVisibleItem;
-    private LinearLayoutManager mLinearLayoutManager;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -179,6 +181,12 @@ public class RankingFragment extends InjectableFragment {
                     }
                 }).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
+    }
+
+    private void getDataRx2(){
+        apiService.getDataRxJava()
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(allPersonlInfos-> allPersonlInfos.getData())
     }
 
     public void setRefreshing(boolean refreshing) {

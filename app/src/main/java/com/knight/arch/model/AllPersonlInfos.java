@@ -8,7 +8,7 @@ import java.util.List;
  * @web http://blog.andyiac.com/
  */
 public class AllPersonlInfos {
-    private List<PersonInfo> data;
+    public List<PersonInfo> data;
 
     public List<PersonInfo> getData() {
         return data;
