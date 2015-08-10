@@ -6,7 +6,6 @@ import android.net.Uri;
 import com.google.gson.Gson;
 import com.knight.arch.BuildConfig;
 import com.knight.arch.R;
-import com.knight.arch.api.ApiClient;
 import com.knight.arch.api.ApiService;
 import com.knight.arch.utils.L;
 import com.squareup.okhttp.Cache;
@@ -136,12 +135,6 @@ public class DataModule {
             }
         };
     }
-
-//    @Provides
-//    @Singleton
-//    ApiClient.TestDemoApiInterface provideApiService(RestAdapter restAdapter) {
-//        return restAdapter.create(ApiClient.TestDemoApiInterface.class);
-//    }
 
     @Provides
     @Singleton

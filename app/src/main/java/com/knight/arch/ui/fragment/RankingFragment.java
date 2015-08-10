@@ -2,7 +2,6 @@ package com.knight.arch.ui.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -41,19 +40,34 @@ import rx.functions.Func1;
  */
 public class RankingFragment extends InjectableFragment {
 
-    private FragmentActivity mActivity;
-
-    private SwipeRefreshLayout swipeRefreshLayout;
-
-    private RecyclerView mRecyclerView;
-    private ListAdapterHolder adapter;
-
-    private List<PersonInfo> mPersonInfos = new ArrayList<PersonInfo>();
-    private int lastVisibleItem;
-    private LinearLayoutManager mLinearLayoutManager;
-
     @Inject
     ApiService apiService;
+    private FragmentActivity mActivity;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private RecyclerView mRecyclerView;
+    private ListAdapterHolder adapter;
+    private List<PersonInfo> mPersonInfos = new ArrayList<PersonInfo>();
+    Observer<Pagination<PersonInfo>> observer = new Observer<Pagination<PersonInfo>>() {
+        @Override
+        public void onCompleted() {
+            L.i("on onCompleted");
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            L.e("onError");
+        }
+
+        @Override
+        public void onNext(Pagination<PersonInfo> personInfoPagination) {
+            mPersonInfos.addAll(personInfoPagination.getData());
+            adapter.notifyDataSetChanged();
+            setRefreshing(false);
+        }
+    };
+    private int lastVisibleItem;
+    private LinearLayoutManager mLinearLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -135,7 +149,6 @@ public class RankingFragment extends InjectableFragment {
         });
     }
 
-
     private void fetchData() {
         setRefreshing(true);
         ApiClient.getTestDemoApiClient().getData2(new Callback<AllPersonlInfos>() {
@@ -154,7 +167,6 @@ public class RankingFragment extends InjectableFragment {
         });
     }
 
-
     // fetch data with Rxjava
     private void fetchDataRx() {
 
@@ -168,26 +180,6 @@ public class RankingFragment extends InjectableFragment {
                 }).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
     }
-
-    Observer<Pagination<PersonInfo>> observer = new Observer<Pagination<PersonInfo>>() {
-        @Override
-        public void onCompleted() {
-            L.i("on onCompleted");
-
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            L.e("onError");
-        }
-
-        @Override
-        public void onNext(Pagination<PersonInfo> personInfoPagination) {
-            mPersonInfos.addAll(personInfoPagination.getData());
-            adapter.notifyDataSetChanged();
-            setRefreshing(false);
-        }
-    };
 
     public void setRefreshing(boolean refreshing) {
         if (swipeRefreshLayout == null) {

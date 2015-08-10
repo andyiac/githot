@@ -10,9 +10,10 @@ import rx.Observable;
  * @author andyiac
  * @date 15-8-4
  * @web http://blog.andyiac.com/
+ * <p/>
+ * RxJava Style
  */
 public interface ApiService {
     @GET("/getdata")
     Observable<Pagination<PersonInfo>> getDataRxJava();
-
 }
