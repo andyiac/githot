@@ -1,8 +1,8 @@
 package com.knight.arch.api;
 
 import com.facebook.stetho.okhttp.StethoInterceptor;
-import com.knight.arch.model.AllPersonlInfos;
-import com.knight.arch.model.Pagination;
+import com.knight.arch.data.AllPersonlInfos;
+import com.knight.arch.data.Pagination;
 import com.knight.arch.model.PersonInfo;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -22,10 +22,10 @@ import rx.Observable;
  * @web http://blog.andyiac.com/
  */
 public class ApiClient {
-    private static TestDemoApiInterface testDemoApiInterface;
-    private static final String BASE_URL = "http://mock-api.com/TyTabSFqXNyqMpNw.mock";
     static final int CONNECT_TIMEOUT_MILLIS = 15 * 1000; // 15s
     static final int READ_TIMEOUT_MILLIS = 20 * 1000; // 20s
+    private static final String BASE_URL = "http://mock-api.com/TyTabSFqXNyqMpNw.mock";
+    private static TestDemoApiInterface testDemoApiInterface;
 
     /**
      * 用于Stethoscope调试的ttpClient

@@ -15,8 +15,8 @@ import com.knight.arch.R;
 import com.knight.arch.adapter.ListAdapterHolder;
 import com.knight.arch.api.ApiClient;
 import com.knight.arch.api.ApiService;
-import com.knight.arch.model.AllPersonlInfos;
-import com.knight.arch.model.Pagination;
+import com.knight.arch.data.AllPersonlInfos;
+import com.knight.arch.data.Pagination;
 import com.knight.arch.model.PersonInfo;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.utils.L;
@@ -47,9 +47,6 @@ public class RankingFragment extends InjectableFragment {
     private RecyclerView mRecyclerView;
     private ListAdapterHolder adapter;
     private List<PersonInfo> mPersonInfos = new ArrayList<PersonInfo>();
-    private int lastVisibleItem;
-    private LinearLayoutManager mLinearLayoutManager;
-
     Observer<Pagination<PersonInfo>> observer = new Observer<Pagination<PersonInfo>>() {
         @Override
         public void onCompleted() {
@@ -69,7 +66,8 @@ public class RankingFragment extends InjectableFragment {
             setRefreshing(false);
         }
     };
-
+    private int lastVisibleItem;
+    private LinearLayoutManager mLinearLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -183,11 +181,13 @@ public class RankingFragment extends InjectableFragment {
                 .subscribe(observer);
     }
 
-    private void getDataRx2(){
-        apiService.getDataRxJava()
-                .observeOn(AndroidSchedulers.mainThread())
-                .map(allPersonlInfos-> allPersonlInfos.getData())
-    }
+//    private void getDataRx2(){
+//        apiService.getDataRxJava()
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .map(Pagination::getData)
+//                .flatMap(Observable::from);
+//
+//    }
 
     public void setRefreshing(boolean refreshing) {
         if (swipeRefreshLayout == null) {

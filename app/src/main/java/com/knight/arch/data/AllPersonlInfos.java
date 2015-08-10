@@ -1,4 +1,6 @@
-package com.knight.arch.model;
+package com.knight.arch.data;
+
+import com.knight.arch.model.PersonInfo;
 
 import java.util.List;
 

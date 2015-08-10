@@ -1,6 +1,6 @@
 package com.knight.arch.api;
 
-import com.knight.arch.model.Pagination;
+import com.knight.arch.data.Pagination;
 import com.knight.arch.model.PersonInfo;
 
 import retrofit.http.GET;

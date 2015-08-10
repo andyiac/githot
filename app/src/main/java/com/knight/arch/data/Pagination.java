@@ -1,4 +1,4 @@
-package com.knight.arch.model;
+package com.knight.arch.data;
 
 import android.os.Parcelable;
 
