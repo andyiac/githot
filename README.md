@@ -10,16 +10,20 @@ android app architecture template
 
 - EventBus
 
-- gradle 多渠道发布
+- gradle
+
+    multi channel release
 
 - okHttp/retrofit
-    使用chrome调试网络数据库(首次使用需要翻墙)
-    okHttp retrofit 可以添加拦截器()
+
+    use chrome debug database
+    add okHttp retrofit interceptor
 
 - RecyclerView
 
 - SwipeRefreshLayout
-    内部需要有可以滑动的视图，否则报错
+
 
 - Logger
-    默认中的log并没打开需要修改
+
+    need to modify default log config
