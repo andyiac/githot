@@ -56,7 +56,6 @@ public class RankingFragment extends InjectableFragment {
         @Override
         public void onCompleted() {
             L.i("on onCompleted");
-
         }
 
         @Override

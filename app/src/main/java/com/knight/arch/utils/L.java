@@ -3,8 +3,6 @@ package com.knight.arch.utils;
 import com.knight.arch.BuildConfig;
 import com.orhanobut.logger.Logger;
 
-import java.util.Objects;
-
 /**
  * Created by summer on 15-7-30.
  *
@@ -16,19 +14,19 @@ public class L {
         return BuildConfig.DEBUG;
     }
 
-    public static void i(String msg, Objects... args) {
+    public static void i(String msg) {
         if (isDebuggable())
-            Logger.i(msg, args);
+            Logger.i(msg);
     }
 
-    public static void d(String msg, Objects... args) {
+    public static void d(String msg) {
         if (isDebuggable())
-            Logger.d(msg, args);
+            Logger.d(msg);
     }
 
-    public static void e(String msg, Objects... args) {
+    public static void e(String msg) {
         if (isDebuggable())
-            Logger.e(msg, args);
+            Logger.e(msg);
     }
 
 
