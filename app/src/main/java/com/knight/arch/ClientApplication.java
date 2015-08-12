@@ -29,6 +29,13 @@ public class ClientApplication extends Application implements Injector {
         initLogger();
 
         initDagger();
+        initFresco();
+    }
+
+    //not use
+    private void initFresco() {
+        //Fresco.initialize(this, ImagePipelineConfigFactory.getImagePipelineConfig(this));
+        //  use Picasso first
     }
 
     private void initDagger() {

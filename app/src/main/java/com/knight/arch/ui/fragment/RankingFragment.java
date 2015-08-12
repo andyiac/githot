@@ -20,6 +20,7 @@ import com.knight.arch.data.Pagination;
 import com.knight.arch.model.PersonInfo;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.utils.L;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,11 +43,15 @@ public class RankingFragment extends InjectableFragment {
 
     @Inject
     ApiService apiService;
+
+    @Inject
+    Picasso picasso;
+
     private FragmentActivity mActivity;
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView mRecyclerView;
     private ListAdapterHolder adapter;
-    private List<PersonInfo> mPersonInfos = new ArrayList<PersonInfo>();
+    private List<PersonInfo> mPersonInfos = new ArrayList<>();
     Observer<Pagination<PersonInfo>> observer = new Observer<Pagination<PersonInfo>>() {
         @Override
         public void onCompleted() {
@@ -68,6 +73,9 @@ public class RankingFragment extends InjectableFragment {
     };
     private int lastVisibleItem;
     private LinearLayoutManager mLinearLayoutManager;
+
+    public RankingFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -123,7 +131,7 @@ public class RankingFragment extends InjectableFragment {
         });
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.id_recycler_view);
-        adapter = new ListAdapterHolder(mActivity, mPersonInfos);
+        adapter = new ListAdapterHolder(mActivity, mPersonInfos, picasso);
 
         //下拉刷新
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -181,13 +189,6 @@ public class RankingFragment extends InjectableFragment {
                 .subscribe(observer);
     }
 
-//    private void getDataRx2(){
-//        apiService.getDataRxJava()
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .map(Pagination::getData)
-//                .flatMap(Observable::from);
-//
-//    }
 
     public void setRefreshing(boolean refreshing) {
         if (swipeRefreshLayout == null) {

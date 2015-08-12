@@ -63,6 +63,15 @@ public class DataModule {
 
     @Provides
     @Singleton
+    OkHttpClient provideOkHttp(Cache cache) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setCache(cache);
+        okHttpClient.setConnectTimeout(30, TimeUnit.SECONDS);
+        return okHttpClient;
+    }
+
+    @Provides
+    @Singleton
     Cache provideHttpCache(@Named("Http") File httpCacheDir) {
         //100M;
         int cacheSize = 1024 * 1024 * 100;
@@ -77,14 +86,6 @@ public class DataModule {
         return null;
     }
 
-    @Provides
-    @Singleton
-    OkHttpClient provideOkHttp(Cache cache) {
-        OkHttpClient okHttpClient = new OkHttpClient();
-        okHttpClient.setCache(cache);
-        okHttpClient.setConnectTimeout(30, TimeUnit.SECONDS);
-        return okHttpClient;
-    }
 
     @Provides
     @Singleton

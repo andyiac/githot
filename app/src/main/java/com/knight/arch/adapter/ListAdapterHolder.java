@@ -22,22 +22,26 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.knight.arch.R;
 import com.knight.arch.model.PersonInfo;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class ListAdapterHolder extends RecyclerView.Adapter<ListAdapterHolder.ViewHolder> {
 
+    OnItemClickListener mItemClickListener;
     private FragmentActivity mActivity;
     private List<PersonInfo> mPersonInfos;//= new ArrayList<PersonInfo>();
-    OnItemClickListener mItemClickListener;
+    private Picasso picasso;
 
-    public ListAdapterHolder(FragmentActivity mActivity, List<PersonInfo> mPersonInfos) {
+    public ListAdapterHolder(FragmentActivity mActivity, List<PersonInfo> mPersonInfos, Picasso picasso) {
         this.mActivity = mActivity;
         this.mPersonInfos = mPersonInfos;
+        this.picasso = picasso;
     }
 
     @Override
@@ -50,7 +54,8 @@ public class ListAdapterHolder extends RecyclerView.Adapter<ListAdapterHolder.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.vRank.setText("Rank: " + mPersonInfos.get(position).getRank());
-        holder.vGravatar.setText("Gravatar: " + mPersonInfos.get(position).getGravatar());
+//        holder.vGravatar.setText("Gravatar: " + mPersonInfos.get(position).getGravatar());
+        picasso.load(mPersonInfos.get(position).getGravatar()).placeholder(R.drawable.holde_image).into(holder.vGravatar);
         holder.vUsername.setText("Username: " + mPersonInfos.get(position).getUsername());
         holder.vName.setText("Name: " + mPersonInfos.get(position).getName());
         holder.vLocation.setText("Rank: " + mPersonInfos.get(position).getLocation());
@@ -65,14 +70,23 @@ public class ListAdapterHolder extends RecyclerView.Adapter<ListAdapterHolder.Vi
         return mPersonInfos.size();
     }
 
+    public void SetOnItemClickListener(final OnItemClickListener mItemClickListener) {
+        this.mItemClickListener = mItemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView vRank, vGravatar, vUsername, vName, vLocation, vLanguage, vRepos, vFollowers, vCreated;
+        TextView vRank, vUsername, vName, vLocation, vLanguage, vRepos, vFollowers, vCreated;
+        ImageView vGravatar;
 
         public ViewHolder(View view) {
             super(view);
             vRank = (TextView) view.findViewById(R.id.list_rank);
-            vGravatar = (TextView) view.findViewById(R.id.list_gravatar);
+            vGravatar = (ImageView) view.findViewById(R.id.list_gravatar);
             vUsername = (TextView) view.findViewById(R.id.list_username);
             vName = (TextView) view.findViewById(R.id.list_name);
             vLocation = (TextView) view.findViewById(R.id.list_location);
@@ -90,14 +104,6 @@ public class ListAdapterHolder extends RecyclerView.Adapter<ListAdapterHolder.Vi
             }
         }
 
-    }
-
-    public interface OnItemClickListener {
-        public void onItemClick(View view, int position);
-    }
-
-    public void SetOnItemClickListener(final OnItemClickListener mItemClickListener) {
-        this.mItemClickListener = mItemClickListener;
     }
 
 }

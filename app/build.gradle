@@ -26,15 +26,18 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.1'
+
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.okhttp:okhttp:2.2.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
+
     compile 'com.facebook.stetho:stetho:1.1.1'
     compile 'com.facebook.stetho:stetho-okhttp:1.1.1'
+
     compile 'com.orhanobut:logger:1.10'
     compile 'com.android.support:recyclerview-v7:22.2.1'
     compile files('libs/litepal-1.2.0-src.jar')
     compile 'com.squareup.picasso:picasso:2.3.2'
-
 
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
     compile 'com.squareup.dagger:dagger:1.2.2'
