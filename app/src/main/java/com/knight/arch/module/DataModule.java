@@ -109,7 +109,8 @@ public class DataModule {
                 .setClient(new OkClient(okHttpClient))
                 .setConverter(new GsonConverter(gson))
                 .setLogLevel(RestAdapter.LogLevel.BASIC)
-                .setEndpoint("http://mock-api.com/TyTabSFqXNyqMpNw.mock")
+//                .setEndpoint("http://mock-api.com/TyTabSFqXNyqMpNw.mock")
+                .setEndpoint("http://123.59.50.76")
                 .build();
     }
 

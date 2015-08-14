@@ -3,23 +3,14 @@ package com.knight.arch.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by summer on 15-7-30.
  *
  * @web http://blog.andyiac.com/
  */
 public class PersonInfo implements Parcelable {
-    private String Rank;
-    private String Gravatar;
-    private String username;
-    private String name;
-    private String location;
-    private String language;
-    private String repos;
-    private String followers;
-    private String created;
-
-
     public static final Creator<PersonInfo> CREATOR = new Creator<PersonInfo>() {
         @Override
         public PersonInfo createFromParcel(Parcel in) {
@@ -31,6 +22,29 @@ public class PersonInfo implements Parcelable {
             return new PersonInfo[size];
         }
     };
+    @SerializedName("rank")
+    private String Rank;
+    @SerializedName("gravatar")
+    private String Gravatar;
+    private String username;
+    private String name;
+    private String location;
+    private String language;
+    private String repos;
+    private String followers;
+    private String created;
+
+    protected PersonInfo(Parcel in) {
+        Rank = in.readString();
+        Gravatar = in.readString();
+        username = in.readString();
+        name = in.readString();
+        location = in.readString();
+        language = in.readString();
+        repos = in.readString();
+        followers = in.readString();
+        created = in.readString();
+    }
 
     public String getGravatar() {
         return Gravatar;
@@ -120,17 +134,5 @@ public class PersonInfo implements Parcelable {
         dest.writeString(repos);
         dest.writeString(followers);
         dest.writeString(created);
-    }
-
-    protected PersonInfo(Parcel in) {
-        Rank = in.readString();
-        Gravatar = in.readString();
-        username = in.readString();
-        name = in.readString();
-        location = in.readString();
-        language = in.readString();
-        repos = in.readString();
-        followers = in.readString();
-        created = in.readString();
     }
 }
