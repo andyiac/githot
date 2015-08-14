@@ -11,6 +11,7 @@ import com.google.gson.annotations.SerializedName;
  * @web http://blog.andyiac.com/
  */
 public class PersonInfo implements Parcelable {
+
     public static final Creator<PersonInfo> CREATOR = new Creator<PersonInfo>() {
         @Override
         public PersonInfo createFromParcel(Parcel in) {
