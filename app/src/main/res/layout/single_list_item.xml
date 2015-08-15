@@ -17,11 +17,11 @@
 
         <ImageView
             android:id="@+id/list_gravatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/ic_crop_original"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:gravity="center"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:src="@mipmap/ic_crop_original" />
 
     </LinearLayout>
 
