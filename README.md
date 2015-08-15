@@ -1,6 +1,9 @@
 
 android app architecture template
 
+demo client of [githubrank(china)](http://githubrank.com)
+
+
 # screenshots
 
 ![](http://7xj8qk.com2.z0.glb.qiniucdn.com/1709354444.jpg?imageView/2/w/300)
