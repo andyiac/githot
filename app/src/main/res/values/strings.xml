@@ -7,4 +7,7 @@
     <string name="http_error">error in http request</string>
     <string name="conversion_error">error in data parse</string>
     <string name="unexpected_error">unexpected error</string>
+    <string name="pref_check_version">检查版本</string>
+    <string name="pref_build_time">构建时间</string>
+    <string name="title_activity_settings">设置</string>
 </resources>

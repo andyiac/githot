@@ -1,6 +1,6 @@
 package com.knight.arch.module;
 
-import com.knight.arch.MainActivity;
+import com.knight.arch.ui.MainActivity;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.fragment.RankingFragment;
 

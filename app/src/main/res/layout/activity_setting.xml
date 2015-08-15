@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <!--
+        <include layout="@layout/toolbar" />
+    -->
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.knight.arch.ui.fragment.SettingsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@android:layout/list_content" />
+    <!--    <include layout="@layout/toolbar_shadow"
+            android:layout_marginTop="?actionBarSize"
+            android:layout_height="@dimen/shadow_height"
+            android:layout_width="match_parent" />-->
+</FrameLayout>

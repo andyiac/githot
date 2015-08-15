@@ -1,9 +1,11 @@
-package com.knight.arch;
+package com.knight.arch.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.knight.arch.R;
 import com.knight.arch.module.HomeModule;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.fragment.RankingFragment;
@@ -14,12 +16,18 @@ import java.util.List;
 
 public class MainActivity extends InjectableActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         initView();
     }
+
+    @Override
+    protected int provideContentViewId() {
+        return R.layout.activity_main;
+    }
+
 
     private void initView() {
         RankingFragment rankingFragment = new RankingFragment();
@@ -44,6 +52,8 @@ public class MainActivity extends InjectableActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
 

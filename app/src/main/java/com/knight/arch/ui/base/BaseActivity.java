@@ -13,15 +13,18 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
  * @date 15-8-4
  * @web http://blog.andyiac.com/
  */
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
 
     SystemBarTintManager tintManager;
+
+    protected abstract int provideContentViewId();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(provideContentViewId());
 
         if (Build.VERSION.SDK_INT <= 19) {
             tintManager = new SystemBarTintManager(this);
