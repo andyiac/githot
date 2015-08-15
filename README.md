@@ -1,6 +1,9 @@
 
 android app architecture template
 
+# screenshots
+
+![](http://7xj8qk.com2.z0.glb.qiniucdn.com/1709354444.jpg)
 # Open source projects
 
 - RxJava
