@@ -77,13 +77,19 @@ public class RankingFragment extends InjectableFragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //fetchData();
+        fetchDataRx();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.ranking_fragment, container, false);
         initView(view);
-        //fetchData();
-        fetchDataRx();
         return view;
     }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -124,7 +130,6 @@ public class RankingFragment extends InjectableFragment {
                 mPersonInfos.clear();
                 adapter.notifyDataSetChanged();
 
-//                fetchData();
                 fetchDataRx();
             }
         });
@@ -176,7 +181,7 @@ public class RankingFragment extends InjectableFragment {
 
     // fetch data with Rxjava
     private void fetchDataRx() {
-
+        setRefreshing(true);
         AppObservable.bindFragment(this, apiService.getDataRxJava())
                 .map(new Func1<Pagination<PersonInfo>, Pagination<PersonInfo>>() {
                     @Override

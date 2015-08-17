@@ -18,20 +18,13 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/abc_btn_check_material"
-            android:title="SimpleDraweeView" />
+            android:title="User" />
         <item
             android:id="@+id/nav_viewpager"
-            android:icon="@drawable/abc_btn_check_material"
-            android:title="PhotoView" />
+            android:title="Organizations" />
         <item
             android:id="@+id/nav_subsamplingScale"
-            android:icon="@drawable/abc_btn_check_material"
-            android:title="SubsamplingScaleImage" />
-        <item
-            android:id="@+id/nav_gifview"
-            android:icon="@drawable/abc_btn_check_material"
-            android:title="CustomGifView" />
+            android:title="Repositories" />
     </group>
 
     <!--  <item android:title="Sub items">

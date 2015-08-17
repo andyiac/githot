@@ -65,7 +65,6 @@ public class MainActivity extends InjectableActivity {
 
             }
         });
-
     }
 
 
@@ -113,9 +112,6 @@ public class MainActivity extends InjectableActivity {
                             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                             startActivity(intent);
                         } else if (menuItem.getItemId() == R.id.nav_subsamplingScale) {
-                            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                            startActivity(intent);
-                        } else if (menuItem.getItemId() == R.id.nav_gifview) {
                             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                             startActivity(intent);
                         } else if (menuItem.getItemId() == R.id.nav_home) {
