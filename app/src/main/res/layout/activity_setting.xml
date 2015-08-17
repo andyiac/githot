@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
-    <!--
-        <include layout="@layout/toolbar" />
-    -->
+    android:orientation="vertical">
+
+    <!--    <include layout="@layout/toolbar" />-->
+
     <fragment
         android:id="@+id/settings"
         android:name="com.knight.arch.ui.fragment.SettingsFragment"

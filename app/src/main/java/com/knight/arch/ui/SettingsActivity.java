@@ -1,5 +1,8 @@
 package com.knight.arch.ui;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import com.knight.arch.R;
 import com.knight.arch.module.SettingsModule;
 import com.knight.arch.ui.base.InjectableActivity;
@@ -22,5 +25,18 @@ public class SettingsActivity extends InjectableActivity {
     @Override
     protected int provideContentViewId() {
         return R.layout.activity_setting;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
