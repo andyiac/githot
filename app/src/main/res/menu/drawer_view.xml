@@ -15,7 +15,7 @@
   -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group>
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/abc_btn_check_material"
@@ -34,17 +34,17 @@
             android:title="CustomGifView" />
     </group>
 
-    <item android:title="Sub items">
-        <menu>
-            <item
-                android:id="@+id/nav_sub_item1"
-                android:icon="@drawable/abc_btn_check_material"
-                android:title="Sub item 1" />
-            <item
-                android:id="@+id/nav_sub_item2"
-                android:icon="@drawable/abc_btn_check_material"
-                android:title="Sub item 2" />
-        </menu>
-    </item>
+    <!--  <item android:title="Sub items">
+          <menu>
+              <item
+                  android:id="@+id/nav_sub_item1"
+                  android:icon="@drawable/abc_btn_check_material"
+                  android:title="Sub item 1" />
+              <item
+                  android:id="@+id/nav_sub_item2"
+                  android:icon="@drawable/abc_btn_check_material"
+                  android:title="Sub item 2" />
+          </menu>
+      </item>-->
 
 </menu>
