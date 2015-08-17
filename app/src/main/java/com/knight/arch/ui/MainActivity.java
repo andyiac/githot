@@ -2,6 +2,7 @@ package com.knight.arch.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,6 +17,7 @@ import java.util.List;
 
 public class MainActivity extends InjectableActivity {
 
+    private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class MainActivity extends InjectableActivity {
     private void initView() {
         RankingFragment rankingFragment = new RankingFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.id_frame_container, rankingFragment).commit();
+
     }
 
 

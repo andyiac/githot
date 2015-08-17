@@ -20,3 +20,5 @@
     默认中的log并没打开需要修改
 
 
+# todo upload
+https://github.com/aosp-exchange-group/share
