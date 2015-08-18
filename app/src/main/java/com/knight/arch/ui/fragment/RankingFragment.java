@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.knight.arch.R;
 import com.knight.arch.adapter.ListAdapterHolder;
@@ -56,11 +57,14 @@ public class RankingFragment extends InjectableFragment {
         @Override
         public void onCompleted() {
             L.i("on onCompleted");
+            setRefreshing(false);
         }
 
         @Override
         public void onError(Throwable e) {
             L.e("onError");
+            setRefreshing(false);
+            Toast.makeText(getActivity(), "服务器开了小差稍后重试", Toast.LENGTH_SHORT).show();
         }
 
         @Override
