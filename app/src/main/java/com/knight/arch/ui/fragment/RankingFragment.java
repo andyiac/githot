@@ -14,13 +14,9 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
-import com.knight.arch.adapter.ListAdapterHolder;
-import com.knight.arch.api.ApiClient;
+import com.knight.arch.adapter.GitHubUserRankListAdapterHolder;
 import com.knight.arch.api.ApiService;
-import com.knight.arch.data.AllPersonlInfos;
-import com.knight.arch.data.Pagination;
 import com.knight.arch.data.Users;
-import com.knight.arch.model.PersonInfo;
 import com.knight.arch.model.User;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.utils.L;
@@ -31,9 +27,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 import rx.Observer;
 import rx.android.app.AppObservable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -53,6 +46,9 @@ public class RankingFragment extends InjectableFragment {
 
     private FragmentActivity mActivity;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private RecyclerView mRecyclerView;
+    private GitHubUserRankListAdapterHolder adapter;
+    private List<User> mUsers = new ArrayList<>();
     Observer<Users<User>> userObserver = new Observer<Users<User>>() {
         @Override
         public void onCompleted() {
@@ -68,36 +64,14 @@ public class RankingFragment extends InjectableFragment {
 
         @Override
         public void onNext(Users<User> userUsers) {
-
-
-        }
-    };
-    private RecyclerView mRecyclerView;
-    private ListAdapterHolder adapter;
-    private List<PersonInfo> mPersonInfos = new ArrayList<>();
-    Observer<Pagination<PersonInfo>> observer = new Observer<Pagination<PersonInfo>>() {
-        @Override
-        public void onCompleted() {
-            L.i("on onCompleted");
             setRefreshing(false);
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            L.e("onError");
-            setRefreshing(false);
-            Toast.makeText(getActivity(), "服务器开了小差稍后重试", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onNext(Pagination<PersonInfo> personInfoPagination) {
-            mPersonInfos.addAll(personInfoPagination.getData());
+            mUsers.addAll(userUsers.getItems());
             adapter.notifyDataSetChanged();
-            setRefreshing(false);
         }
     };
     private int lastVisibleItem;
     private LinearLayoutManager mLinearLayoutManager;
+
 
     public RankingFragment() {
     }
@@ -106,7 +80,6 @@ public class RankingFragment extends InjectableFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //fetchData();
-        //fetchDataRx();
         fetchUsersInfo("china", 1);
     }
 
@@ -126,7 +99,7 @@ public class RankingFragment extends InjectableFragment {
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        adapter.SetOnItemClickListener(new ListAdapterHolder.OnItemClickListener() {
+        adapter.SetOnItemClickListener(new GitHubUserRankListAdapterHolder.OnItemClickListener() {
 
             @Override
             public void onItemClick(View v, int position) {
@@ -154,16 +127,15 @@ public class RankingFragment extends InjectableFragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPersonInfos.clear();
+                mUsers.clear();
                 adapter.notifyDataSetChanged();
 
-                //fetchDataRx();
                 fetchUsersInfo("china", 1);
             }
         });
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.id_recycler_view);
-        adapter = new ListAdapterHolder(mActivity, mPersonInfos, picasso);
+        adapter = new GitHubUserRankListAdapterHolder(mActivity, mUsers, picasso);
 
         //下拉刷新
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -173,8 +145,6 @@ public class RankingFragment extends InjectableFragment {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter.getItemCount()) {
                     setRefreshing(true);
                     L.i("========onScrollStateChanged load more==========");
-//                    fetchData();
-                    // fetchDataRx();
                     fetchUsersInfo("china", 1);
 
                 }
@@ -191,37 +161,6 @@ public class RankingFragment extends InjectableFragment {
         });
     }
 
-    private void fetchData() {
-        setRefreshing(true);
-        ApiClient.getTestDemoApiClient().getData2(new Callback<AllPersonlInfos>() {
-            @Override
-            public void success(AllPersonlInfos personInfos, Response response) {
-                mPersonInfos.addAll(personInfos.getData());
-                adapter.notifyDataSetChanged();
-                setRefreshing(false);
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                L.e(error.toString());
-                setRefreshing(false);
-            }
-        });
-    }
-
-    // fetch data with Rxjava
-    private void fetchDataRx() {
-        setRefreshing(true);
-        AppObservable.bindFragment(this, apiService.getDataRxJava())
-                .map(new Func1<Pagination<PersonInfo>, Pagination<PersonInfo>>() {
-                    @Override
-                    public Pagination<PersonInfo> call(Pagination<PersonInfo> personInfoPagination) {
-
-                        return personInfoPagination;
-                    }
-                }).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
-    }
 
     // fetch data from github api
     private void fetchUsersInfo(String location, int page_id) {
@@ -233,7 +172,7 @@ public class RankingFragment extends InjectableFragment {
                     @Override
                     public Users<User> call(Users<User> userUsers) {
                         L.json(JSON.toJSONString(userUsers));
-                        return null;
+                        return userUsers;
                     }
                 }).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(userObserver);

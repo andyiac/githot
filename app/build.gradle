@@ -50,4 +50,6 @@ dependencies {
 
     compile 'com.facebook.fresco:fresco:0.6.0+'
 
+    compile 'com.pkmmte.view:circularimageview:1.1'
+
 }

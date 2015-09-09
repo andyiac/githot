@@ -20,10 +20,6 @@ public interface ApiService {
     @GET("/getdata")
     Observable<Pagination<PersonInfo>> getDataRxJava();
 
-//    @GET("/search/users?q=location:{location}&page={id}")
-//    Observable<Users<User>> getUsersRxJava(@Path("location") String location, @Path("id") int pageId);
-
     @GET("/search/users")
     Observable<Users<User>> getUsersRxJava(@Query("q") String query, @Query("page") int pageId);
-
 }
