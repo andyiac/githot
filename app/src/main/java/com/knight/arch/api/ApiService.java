@@ -1,9 +1,12 @@
 package com.knight.arch.api;
 
 import com.knight.arch.data.Pagination;
+import com.knight.arch.data.Users;
 import com.knight.arch.model.PersonInfo;
+import com.knight.arch.model.User;
 
 import retrofit.http.GET;
+import retrofit.http.Query;
 import rx.Observable;
 
 /**
@@ -16,4 +19,11 @@ import rx.Observable;
 public interface ApiService {
     @GET("/getdata")
     Observable<Pagination<PersonInfo>> getDataRxJava();
+
+//    @GET("/search/users?q=location:{location}&page={id}")
+//    Observable<Users<User>> getUsersRxJava(@Path("location") String location, @Path("id") int pageId);
+
+    @GET("/search/users")
+    Observable<Users<User>> getUsersRxJava(@Query("q") String query, @Query("page") int pageId);
+
 }

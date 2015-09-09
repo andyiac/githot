@@ -12,13 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
 import com.knight.arch.adapter.ListAdapterHolder;
 import com.knight.arch.api.ApiClient;
 import com.knight.arch.api.ApiService;
 import com.knight.arch.data.AllPersonlInfos;
 import com.knight.arch.data.Pagination;
+import com.knight.arch.data.Users;
 import com.knight.arch.model.PersonInfo;
+import com.knight.arch.model.User;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.utils.L;
 import com.squareup.picasso.Picasso;
@@ -50,6 +53,25 @@ public class RankingFragment extends InjectableFragment {
 
     private FragmentActivity mActivity;
     private SwipeRefreshLayout swipeRefreshLayout;
+    Observer<Users<User>> userObserver = new Observer<Users<User>>() {
+        @Override
+        public void onCompleted() {
+            setRefreshing(false);
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            L.e("" + e);
+            setRefreshing(false);
+            Toast.makeText(getActivity(), "服务器开了小差稍后重试", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onNext(Users<User> userUsers) {
+
+
+        }
+    };
     private RecyclerView mRecyclerView;
     private ListAdapterHolder adapter;
     private List<PersonInfo> mPersonInfos = new ArrayList<>();
@@ -84,7 +106,8 @@ public class RankingFragment extends InjectableFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //fetchData();
-        fetchDataRx();
+        //fetchDataRx();
+        fetchUsersInfo("china", 1);
     }
 
     @Override
@@ -134,7 +157,8 @@ public class RankingFragment extends InjectableFragment {
                 mPersonInfos.clear();
                 adapter.notifyDataSetChanged();
 
-                fetchDataRx();
+                //fetchDataRx();
+                fetchUsersInfo("china", 1);
             }
         });
 
@@ -150,7 +174,9 @@ public class RankingFragment extends InjectableFragment {
                     setRefreshing(true);
                     L.i("========onScrollStateChanged load more==========");
 //                    fetchData();
-                    fetchDataRx();
+                    // fetchDataRx();
+                    fetchUsersInfo("china", 1);
+
                 }
 
             }
@@ -197,6 +223,21 @@ public class RankingFragment extends InjectableFragment {
                 .subscribe(observer);
     }
 
+    // fetch data from github api
+    private void fetchUsersInfo(String location, int page_id) {
+        setRefreshing(true);
+        String query = "location:" + location;
+
+        AppObservable.bindFragment(this, apiService.getUsersRxJava(query, page_id))
+                .map(new Func1<Users<User>, Users<User>>() {
+                    @Override
+                    public Users<User> call(Users<User> userUsers) {
+                        L.json(JSON.toJSONString(userUsers));
+                        return null;
+                    }
+                }).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(userObserver);
+    }
 
     public void setRefreshing(boolean refreshing) {
         if (swipeRefreshLayout == null) {
