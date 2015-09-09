@@ -49,6 +49,10 @@ public class RankingFragment extends InjectableFragment {
     private RecyclerView mRecyclerView;
     private GitHubUserRankListAdapterHolder adapter;
     private List<User> mUsers = new ArrayList<>();
+    private int lastVisibleItem;
+    private int page = 1;
+    private LinearLayoutManager mLinearLayoutManager;
+
     Observer<Users<User>> userObserver = new Observer<Users<User>>() {
         @Override
         public void onCompleted() {
@@ -69,9 +73,6 @@ public class RankingFragment extends InjectableFragment {
             adapter.notifyDataSetChanged();
         }
     };
-    private int lastVisibleItem;
-    private LinearLayoutManager mLinearLayoutManager;
-
 
     public RankingFragment() {
     }
@@ -130,23 +131,24 @@ public class RankingFragment extends InjectableFragment {
                 mUsers.clear();
                 adapter.notifyDataSetChanged();
 
-                fetchUsersInfo("china", 1);
+                page = 1;
+                fetchUsersInfo("china", page);
             }
         });
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.id_recycler_view);
         adapter = new GitHubUserRankListAdapterHolder(mActivity, mUsers, picasso);
 
-        //下拉刷新
+        //上拉刷新
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter.getItemCount()) {
                     setRefreshing(true);
+                    page = page + 1;
                     L.i("========onScrollStateChanged load more==========");
-                    fetchUsersInfo("china", 1);
-
+                    fetchUsersInfo("china", page);
                 }
 
             }
@@ -156,11 +158,8 @@ public class RankingFragment extends InjectableFragment {
                 super.onScrolled(recyclerView, dx, dy);
                 lastVisibleItem = mLinearLayoutManager.findLastVisibleItemPosition();
             }
-
-
         });
     }
-
 
     // fetch data from github api
     private void fetchUsersInfo(String location, int page_id) {
