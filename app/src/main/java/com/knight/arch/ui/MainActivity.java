@@ -108,13 +108,13 @@ public class MainActivity extends InjectableActivity {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         mDrawerLayout.closeDrawers();
-                        if (menuItem.getItemId() == R.id.nav_viewpager) {
-                            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                        if (menuItem.getItemId() == R.id.nav_user_china) {
+                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
                             startActivity(intent);
-                        } else if (menuItem.getItemId() == R.id.nav_subsamplingScale) {
-                            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                        } else if (menuItem.getItemId() == R.id.nav_user) {
+                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
                             startActivity(intent);
-                        } else if (menuItem.getItemId() == R.id.nav_home) {
+                        } else if (menuItem.getItemId() == R.id.nav_repositories) {
                             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                             startActivity(intent);
                         }

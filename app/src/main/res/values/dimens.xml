@@ -3,4 +3,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="card_corner_radius">2dp</dimen>
+    <dimen name="user_ranking_divider_padding_start">72dp</dimen>
 </resources>

@@ -1,6 +1,9 @@
 package com.knight.arch.ui.fragment;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -18,7 +21,9 @@ import com.knight.arch.adapter.GitHubUserRankListAdapterHolder;
 import com.knight.arch.api.ApiService;
 import com.knight.arch.data.Users;
 import com.knight.arch.model.User;
+import com.knight.arch.ui.UserDetailsActivity;
 import com.knight.arch.ui.base.InjectableFragment;
+import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
 import com.squareup.picasso.Picasso;
 
@@ -100,11 +105,17 @@ public class RankingFragment extends InjectableFragment {
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        //        new DividerItemDecoration(getContext(), VERTICAL_LIST, dividerPaddingStart, safeIsRtl()));
+        float paddingStart = getActivity().getResources().getDimension(R.dimen.user_ranking_divider_padding_start);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST, paddingStart, safeIsRtl()));
         adapter.SetOnItemClickListener(new GitHubUserRankListAdapterHolder.OnItemClickListener() {
 
             @Override
             public void onItemClick(View v, int position) {
                 // do something with position
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), UserDetailsActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -146,6 +157,7 @@ public class RankingFragment extends InjectableFragment {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter.getItemCount()) {
                     setRefreshing(true);
+
                     page = page + 1;
                     L.i("========onScrollStateChanged load more==========");
                     fetchUsersInfo("china", page);
@@ -175,6 +187,16 @@ public class RankingFragment extends InjectableFragment {
                     }
                 }).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(userObserver);
+    }
+
+
+    private boolean safeIsRtl() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && isRtl();
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private boolean isRtl() {
+        return getView().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
     }
 
     public void setRefreshing(boolean refreshing) {

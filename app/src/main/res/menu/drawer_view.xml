@@ -17,13 +17,13 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:title="User" />
+            android:id="@+id/nav_user_china"
+            android:title="User(China)" />
         <item
-            android:id="@+id/nav_viewpager"
-            android:title="Organizations" />
+            android:id="@+id/nav_user"
+            android:title="User(all)" />
         <item
-            android:id="@+id/nav_subsamplingScale"
+            android:id="@+id/nav_repositories"
             android:title="Repositories" />
     </group>
 

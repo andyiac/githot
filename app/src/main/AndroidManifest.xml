@@ -29,7 +29,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
-
+        <activity
+            android:name=".ui.UserDetailsActivity"
+            android:label="@string/title_activity_user_details"
+            android:parentActivityName=".ui.MainActivity"
+            android:theme="@style/AppTheme.Design.ActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
