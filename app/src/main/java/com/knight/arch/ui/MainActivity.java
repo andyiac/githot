@@ -62,9 +62,9 @@ public class MainActivity extends InjectableActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
             }
         });
+        fab.setVisibility(View.GONE);
     }
 
 

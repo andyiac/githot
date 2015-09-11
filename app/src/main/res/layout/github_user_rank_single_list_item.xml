@@ -8,35 +8,24 @@
     android:orientation="horizontal"
     android:paddingBottom="15dp"
     android:paddingTop="15dp">
-    <!--    android:background="@drawable/shape_card_background_default"
-     -->
+    <!--    android:background="@drawable/shape_card_background_default" -->
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center">
 
-        <!--  <ImageView
-              android:id="@+id/id_user_rank_avatar"
-              android:layout_width="50dp"
-              android:layout_height="50dp"
-              android:gravity="center"
-              android:singleLine="true"
-              android:src="@mipmap/avatar" />-->
 
-
-        <com.pkmmte.view.CircularImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/id_user_rank_avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@android:color/transparent"
             android:gravity="center"
             android:singleLine="true"
-            app:border="true"
-            app:border_color="#EEEEEE"
-            app:border_width="2dp"
-            app:shadow="true" />
-
+            app:border_color="#ffc0c0c0"
+            app:border_width="2dp" />
 
     </LinearLayout>
 
@@ -57,9 +46,9 @@
                 android:id="@+id/id_user_rank_login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:hint="Jake Wharton"
                 android:singleLine="true"
-                android:layout_weight="1"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp" />
 
