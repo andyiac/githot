@@ -12,7 +12,8 @@
         android:theme="@style/AppTheme.Design">
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,8 +33,10 @@
         <activity
             android:name=".ui.UserDetailsActivity"
             android:label="@string/title_activity_user_details"
-            android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme.Design.ActionBar">
+            android:parentActivityName=".ui.MainActivity">
+            <!--
+                        android:theme="@style/AppTheme.Design.ActionBar"
+            -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
