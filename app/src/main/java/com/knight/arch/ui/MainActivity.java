@@ -184,6 +184,7 @@ public class MainActivity extends InjectableActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
+
             return mFragmentTitles.get(position);
         }
     }

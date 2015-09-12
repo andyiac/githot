@@ -81,6 +81,10 @@ public class RankingFragment extends InjectableFragment {
 
     public RankingFragment() {
     }
+    public RankingFragment(String qurey){
+
+
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
