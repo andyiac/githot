@@ -4,19 +4,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TableLayout;
 
+import com.facebook.stetho.common.StringUtil;
 import com.knight.arch.R;
 import com.knight.arch.module.HomeModule;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.fragment.RankingFragment;
+import com.knight.arch.utils.L;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -50,14 +59,29 @@ public class MainActivity extends InjectableActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-
         if (navigationView != null) {
             setupDrawerContent(navigationView);
         }
 
+/*
         RankingFragment rankingFragment = new RankingFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.id_frame_container, rankingFragment).commit();
 
+*/
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.main_activity_viewpager);
+        if (viewPager != null) {
+            setupViewPager(viewPager);
+        }
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.main_activity_tabs);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        if (viewPager != null) {
+            tabLayout.setupWithViewPager(viewPager);
+        }
+
+
+        // ====================== FAB is not use current =========================
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +89,18 @@ public class MainActivity extends InjectableActivity {
             }
         });
         fab.setVisibility(View.GONE);
+        // =======================================================================
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        Adapter adapter = new Adapter(getSupportFragmentManager());
+        adapter.addFragment(new RankingFragment(), "China all");
+        adapter.addFragment(new RankingFragment(), "Java");
+        adapter.addFragment(new RankingFragment(), "Object-C");
+        adapter.addFragment(new RankingFragment(), "Python");
+        adapter.addFragment(new RankingFragment(), "PHP");
+        adapter.addFragment(new RankingFragment(), "JavaScript");
+        viewPager.setAdapter(adapter);
     }
 
 
@@ -121,6 +157,35 @@ public class MainActivity extends InjectableActivity {
                         return true;
                     }
                 });
+    }
+
+    static class Adapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragments = new ArrayList<>();
+        private final List<String> mFragmentTitles = new ArrayList<>();
+
+        public Adapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragments.add(fragment);
+            mFragmentTitles.add(title);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitles.get(position);
+        }
     }
 
 }

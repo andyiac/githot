@@ -34,23 +34,23 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-        <!-- <android.support.design.widget.TabLayout
-             android:id="@+id/tabs"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content" />
- -->
+        <android.support.design.widget.TabLayout
+            style="@style/MyCustomTabLayout"
+            app:tabIndicatorHeight="4dp"
+            android:id="@+id/main_activity_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </android.support.design.widget.AppBarLayout>
 
-    <!--
             <android.support.v4.view.ViewPager
-                android:id="@+id/viewpager"
+                android:id="@+id/main_activity_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-                -->
 
+<!--
     <FrameLayout
         android:id="@+id/id_frame_container"
         android:layout_width="match_parent"
@@ -59,6 +59,7 @@
         android:layout_centerVertical="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+-->
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
