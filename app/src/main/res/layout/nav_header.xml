@@ -15,30 +15,50 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="192dp"
     android:background="?attr/colorPrimaryDark"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:layout_width="72.0dp"
-        android:layout_height="72.0dp"
-        android:layout_marginBottom="20.0dp"
-        android:src="@mipmap/ic_avatar_smooth" />
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="andyiac"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        <com.knight.arch.ui.misc.AspectRatioImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/drawer_header"
+            app:heightRatio="9"
+            app:widthRatio="16" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="https://github.com/andyiac"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:gravity="bottom"
+            android:orientation="vertical">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="72.0dp"
+                android:layout_height="72.0dp"
+                android:layout_marginBottom="20.0dp"
+                android:src="@mipmap/avatar_andyiac" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="andyiac"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="https://github.com/andyiac"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        </LinearLayout>
+    </FrameLayout>
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
 
 import com.knight.arch.R;
+import com.knight.arch.module.HotReposModule;
 import com.knight.arch.module.UserDetailsModule;
 import com.knight.arch.ui.base.InjectableActivity;
 
@@ -26,7 +27,7 @@ public class HotReposActivity extends InjectableActivity {
     @Override
     public List<Object> getModules() {
 
-        return Arrays.<Object>asList(new UserDetailsModule(this));
+        return Arrays.<Object>asList(new HotReposModule(this));
     }
 
 
