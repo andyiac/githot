@@ -184,19 +184,10 @@ public class RankingFragment extends InjectableFragment {
     private void fetchUsersInfo(String location, int page_id) {
         setRefreshing(true);
         String query = "location:" + location;
-        // "+followers:>500";
 
         if (mQuery != null) {
-            query = mQuery ;
-//            try {
-//                query = mQuery + "+followers:>500";
-//                query = URLEncoder.encode(query, "utf-8");
-//            } catch (UnsupportedEncodingException e) {
-//                e.printStackTrace();
-//            }
+            query = mQuery + "+followers:%3E500";
         }
-
-        L.d("query===>>" + query);
         AppObservable.bindFragment(this, apiService.getUsersRxJava(query, page_id))
                 .map(new Func1<Users<User>, Users<User>>() {
                     @Override

@@ -21,5 +21,7 @@ public interface ApiService {
     Observable<Pagination<PersonInfo>> getDataRxJava();
 
     @GET("/search/users")
-    Observable<Users<User>> getUsersRxJava(@Query("q") String query, @Query("page") int pageId);
+    Observable<Users<User>> getUsersRxJava(@Query(value = "q",encodeValue = false)  String query, @Query("page") int pageId);
+
+//     void list(@Query(value="foo", encodeValue=false) String foo);
 }
