@@ -19,10 +19,7 @@
         <item
             android:id="@+id/nav_user_china"
             android:title="Hot Users" />
-        <item
-            android:id="@+id/nav_user"
-            android:title="User(all)" />
-        <item
+       <item
             android:id="@+id/nav_repositories"
             android:title="Hot Repositories" />
     </group>

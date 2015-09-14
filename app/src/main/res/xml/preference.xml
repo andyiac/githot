@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="关于">
+    <PreferenceCategory android:title="About">
         <Preference
             android:summary="andyiac"
-            android:title="作者">
+            android:title="Author">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="http://blog.andyiac.com" />
@@ -12,9 +12,9 @@
 
         <Preference
             android:key="@string/pref_check_version"
-            android:title="检查版本" />
+            android:title="Check for update" />
         <Preference
             android:key="@string/pref_build_time"
-            android:title="构建时间" />
+            android:title="Build time" />
     </PreferenceCategory>
 </PreferenceScreen>

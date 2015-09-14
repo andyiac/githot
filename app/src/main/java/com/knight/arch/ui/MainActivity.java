@@ -86,6 +86,7 @@ public class MainActivity extends InjectableActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
             }
         });
         fab.setVisibility(View.GONE);
@@ -148,9 +149,6 @@ public class MainActivity extends InjectableActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         mDrawerLayout.closeDrawers();
                         if (menuItem.getItemId() == R.id.nav_user_china) {
-                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                            startActivity(intent);
-                        } else if (menuItem.getItemId() == R.id.nav_user) {
                             Intent intent = new Intent(MainActivity.this, MainActivity.class);
                             startActivity(intent);
                         } else if (menuItem.getItemId() == R.id.nav_repositories) {

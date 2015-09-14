@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GitHubRank</string>
+    <string name="app_name">GitHot</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -7,9 +7,9 @@
     <string name="http_error">error in http request</string>
     <string name="conversion_error">error in data parse</string>
     <string name="unexpected_error">unexpected error</string>
-    <string name="pref_check_version">检查版本</string>
-    <string name="pref_build_time">构建时间</string>
-    <string name="title_activity_settings">设置</string>
+    <string name="pref_check_version">Check for update</string>
+    <string name="pref_build_time">Build time</string>
+    <string name="title_activity_settings">Settings</string>
     <string name="title_activity_user_details">User</string>
 
 
