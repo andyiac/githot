@@ -152,7 +152,7 @@ public class MainActivity extends InjectableActivity {
                             Intent intent = new Intent(MainActivity.this, MainActivity.class);
                             startActivity(intent);
                         } else if (menuItem.getItemId() == R.id.nav_repositories) {
-                            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                            Intent intent = new Intent(MainActivity.this, HotReposActivity.class);
                             startActivity(intent);
                         }
                         return true;
