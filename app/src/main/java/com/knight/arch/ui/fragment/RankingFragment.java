@@ -27,6 +27,8 @@ import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
 import com.squareup.picasso.Picasso;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +58,7 @@ public class RankingFragment extends InjectableFragment {
     private List<User> mUsers = new ArrayList<>();
     private int lastVisibleItem;
     private int page = 1;
+    private String mQuery = null;
     private LinearLayoutManager mLinearLayoutManager;
 
     Observer<Users<User>> userObserver = new Observer<Users<User>>() {
@@ -81,9 +84,9 @@ public class RankingFragment extends InjectableFragment {
 
     public RankingFragment() {
     }
-    public RankingFragment(String qurey){
 
-
+    public RankingFragment(String query) {
+        this.mQuery = query;
     }
 
     @Override
@@ -181,7 +184,19 @@ public class RankingFragment extends InjectableFragment {
     private void fetchUsersInfo(String location, int page_id) {
         setRefreshing(true);
         String query = "location:" + location;
+        // "+followers:>500";
 
+        if (mQuery != null) {
+            query = mQuery ;
+//            try {
+//                query = mQuery + "+followers:>500";
+//                query = URLEncoder.encode(query, "utf-8");
+//            } catch (UnsupportedEncodingException e) {
+//                e.printStackTrace();
+//            }
+        }
+
+        L.d("query===>>" + query);
         AppObservable.bindFragment(this, apiService.getUsersRxJava(query, page_id))
                 .map(new Func1<Users<User>, Users<User>>() {
                     @Override

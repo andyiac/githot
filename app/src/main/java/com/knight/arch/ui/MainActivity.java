@@ -94,12 +94,15 @@ public class MainActivity extends InjectableActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new RankingFragment(), "China all");
-        adapter.addFragment(new RankingFragment(), "Java");
-        adapter.addFragment(new RankingFragment(), "Object-C");
-        adapter.addFragment(new RankingFragment(), "Python");
-        adapter.addFragment(new RankingFragment(), "PHP");
-        adapter.addFragment(new RankingFragment(), "JavaScript");
+        adapter.addFragment(new RankingFragment(), "China All");
+        adapter.addFragment(new RankingFragment("language:Java"), "Java");
+        adapter.addFragment(new RankingFragment("language:C"), "C");
+        adapter.addFragment(new RankingFragment("language:Objective-C"), "Objective-C");
+        adapter.addFragment(new RankingFragment("language:C#"), "C#");
+        adapter.addFragment(new RankingFragment("language:Python"), "Python");
+        adapter.addFragment(new RankingFragment("language:PHP"), "PHP");
+        adapter.addFragment(new RankingFragment("language:JavaScript"), "JavaScript");
+        adapter.addFragment(new RankingFragment("language:Ruby"), "Ruby");
         viewPager.setAdapter(adapter);
     }
 
