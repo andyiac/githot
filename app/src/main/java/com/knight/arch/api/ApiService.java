@@ -1,8 +1,8 @@
 package com.knight.arch.api;
 
-import com.knight.arch.data.Pagination;
+import com.knight.arch.data.Repositories;
 import com.knight.arch.data.Users;
-import com.knight.arch.model.PersonInfo;
+import com.knight.arch.model.Repository;
 import com.knight.arch.model.User;
 
 import retrofit.http.GET;
@@ -17,11 +17,10 @@ import rx.Observable;
  * RxJava Style
  */
 public interface ApiService {
-    @GET("/getdata")
-    Observable<Pagination<PersonInfo>> getDataRxJava();
 
     @GET("/search/users")
-    Observable<Users<User>> getUsersRxJava(@Query(value = "q",encodeValue = false)  String query, @Query("page") int pageId);
+    Observable<Users<User>> getUsersRxJava(@Query(value = "q", encodeValue = false) String query, @Query("page") int pageId);
 
-//     void list(@Query(value="foo", encodeValue=false) String foo);
+    @GET("/search/repositories")
+    Observable<Repositories<Repository>> getRepositories(@Query(value = "q", encodeValue = false) String query, @Query("page") int pageId);
 }

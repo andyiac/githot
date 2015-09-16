@@ -10,6 +10,9 @@ https://api.github.com/search/users?q=tom+repos:%3E42+followers:%3E1000
 https://api.github.com/search/users?q=location:china+followers:%3E500&page=1
 https://api.github.com/search/users?q=location%3Achina%2Bfollowers%3A%263E500&page=1
 https://api.github.com/search/users?q=language:javascript
+https://api.github.com/search/users?q=language:javascript&sort=stars
+https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc
+
 
 
 https://api.github.com/search/users?q=language:C+followers:%3E500&page=1
