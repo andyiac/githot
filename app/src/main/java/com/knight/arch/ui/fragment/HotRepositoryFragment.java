@@ -48,6 +48,12 @@ public class HotRepositoryFragment extends InjectableFragment {
     private RecyclerView mRecyclerView;
     private List<Repository> mRepos = new ArrayList<Repository>();
     private HotReposListAdapterHolder mAdapter;
+    private String mQuery;
+
+    public HotRepositoryFragment(String query) {
+        this.mQuery = query;
+    }
+
 
     Observer<Repositories<Repository>> repositoryObserver = new Observer<Repositories<Repository>>() {
         @Override
@@ -78,7 +84,7 @@ public class HotRepositoryFragment extends InjectableFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fetchData("language:Java", 1);
+        fetchData(mQuery, 1);
     }
 
     private void fetchData(String query, int page) {
@@ -123,7 +129,7 @@ public class HotRepositoryFragment extends InjectableFragment {
             public void onRefresh() {
                 mRepos.clear();
                 mAdapter.notifyDataSetChanged();
-                fetchData("language:java", 1);
+                fetchData(mQuery, 1);
             }
         });
 
@@ -141,7 +147,7 @@ public class HotRepositoryFragment extends InjectableFragment {
                     setRefreshing(true);
                     mPage = mPage + 1;
                     L.i("========onScrollStateChanged load more==========");
-                    fetchData("language:Java", mPage);
+                    fetchData(mQuery, mPage);
                 }
             }
 

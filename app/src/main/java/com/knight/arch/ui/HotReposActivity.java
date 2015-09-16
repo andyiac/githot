@@ -1,7 +1,11 @@
 package com.knight.arch.ui;
 
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
 import com.knight.arch.R;
@@ -9,6 +13,7 @@ import com.knight.arch.module.HotReposModule;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.fragment.HotRepositoryFragment;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,28 +31,71 @@ public class HotReposActivity extends InjectableActivity {
 
     @Override
     public List<Object> getModules() {
-
         return Arrays.<Object>asList(new HotReposModule(this));
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        initView();
-        initFragment();
-    }
-
-    private void initFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.id_hot_repos_container, new HotRepositoryFragment(), "hotfragment").commit();
+        initView();
     }
 
     private void initView() {
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.main_activity_viewpager);
+        if (viewPager != null) {
+            setupViewPager(viewPager);
+        }
 
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle("Test!!!");
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.main_activity_tabs);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        if (viewPager != null) {
+            tabLayout.setupWithViewPager(viewPager);
+        }
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        Adapter adapter = new Adapter(getSupportFragmentManager());
+        adapter.addFragment(new HotRepositoryFragment("language:Java"), "Java");
+        adapter.addFragment(new HotRepositoryFragment("language:C"), "C");
+        adapter.addFragment(new HotRepositoryFragment("language:Object-C"), "Object-C");
+        adapter.addFragment(new HotRepositoryFragment("language:C#"), "C#");
+        adapter.addFragment(new HotRepositoryFragment("language:Python"), "Python");
+        adapter.addFragment(new HotRepositoryFragment("language:PHP"), "PHP");
+        adapter.addFragment(new HotRepositoryFragment("language:JavaScript"), "JavaScript");
+        adapter.addFragment(new HotRepositoryFragment("language:Ruby"), "Ruby");
+        viewPager.setAdapter(adapter);
+    }
+
+
+    static class Adapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragments = new ArrayList<>();
+        private final List<String> mFragmentTitles = new ArrayList<>();
+
+        public Adapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragments.add(fragment);
+            mFragmentTitles.add(title);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+
+            return mFragmentTitles.get(position);
+        }
     }
 }
