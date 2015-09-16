@@ -35,7 +35,6 @@ public class HotReposActivity extends InjectableActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        initView();
-
         initFragment();
     }
 

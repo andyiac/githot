@@ -27,8 +27,6 @@ import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
 import com.squareup.picasso.Picasso;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
