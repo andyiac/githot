@@ -5,66 +5,78 @@
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
     android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:paddingBottom="15dp"
-    android:paddingTop="15dp">
+    android:orientation="horizontal">
     <!--    android:background="@drawable/shape_card_background_default" -->
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center">
 
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/id_user_rank_avatar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:singleLine="true"
-            app:border_color="#ffc0c0c0"
-            app:border_width="2dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="fill_parent"
-        android:layout_weight="4"
-        android:orientation="vertical">
-
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:id="@+id/ripple"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp">
 
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/id_user_rank_login"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Jake Wharton"
-                android:singleLine="true"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="16sp" />
+                android:gravity="center">
 
-            <TextView
-                android:id="@+id/id_user_rank_rankings"
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/id_user_rank_avatar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    app:border_color="#ffc0c0c0"
+                    app:border_width="2dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.4"
-                android:hint="1"
-                android:singleLine="true" />
+                android:layout_height="fill_parent"
+                android:layout_weight="4"
+                android:orientation="vertical">
 
 
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/id_user_rank_login"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Jake Wharton"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/id_user_rank_rankings"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"
+                        android:hint="1"
+                        android:singleLine="true" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
         </LinearLayout>
 
-
-    </LinearLayout>
-
+    </com.balysv.materialripple.MaterialRippleLayout>
 
 </LinearLayout>
