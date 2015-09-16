@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
@@ -26,8 +25,6 @@ import java.util.List;
  * @github https://github.com/andyiac
  */
 public class HotReposActivity extends InjectableActivity {
-
-    private DrawerLayout mDrawerLayout;
 
     @Override
     protected int provideContentViewId() {
@@ -72,7 +69,7 @@ public class HotReposActivity extends InjectableActivity {
         adapter.addFragment(new HotRepositoryFragment("language:Java"), "Java");
         adapter.addFragment(new HotRepositoryFragment("language:C"), "C");
         adapter.addFragment(new HotRepositoryFragment("language:Objective-C"), "Objective-C");
-        adapter.addFragment(new HotRepositoryFragment("language:C#"), "C#");
+        adapter.addFragment(new HotRepositoryFragment("language:csharp"), "C#");
         adapter.addFragment(new HotRepositoryFragment("language:Python"), "Python");
         adapter.addFragment(new HotRepositoryFragment("language:PHP"), "PHP");
         adapter.addFragment(new HotRepositoryFragment("language:JavaScript"), "JavaScript");
