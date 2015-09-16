@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="vertical">
     <!--    android:background="@drawable/shape_card_background_default" -->
 
 
@@ -18,24 +18,28 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/id_repos_name"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:hint="Jake Wharton"
+                android:paddingLeft="16dp"
                 android:singleLine="true"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/id_repos_rank"
+                android:id="@+id/id_repos_stars"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.4"
-                android:hint="1"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:hint="stars:1"
                 android:singleLine="true" />
 
 

@@ -51,7 +51,7 @@ public class HotReposListAdapterHolder extends RecyclerView.Adapter<HotReposList
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.tvName.setText(mRepos.get(position).getName());
-        holder.tvRank.setText("rank: " + String.valueOf(position + 1));
+        holder.tvStars.setText("stars: " + mRepos.get(position).getStargazers_count());
     }
 
     @Override
@@ -70,12 +70,12 @@ public class HotReposListAdapterHolder extends RecyclerView.Adapter<HotReposList
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView tvName, tvRank;
+        TextView tvName, tvStars;
 
         public ViewHolder(View view) {
             super(view);
             tvName = (TextView) view.findViewById(R.id.id_repos_name);
-            tvRank = (TextView) view.findViewById(R.id.id_repos_rank);
+            tvStars = (TextView) view.findViewById(R.id.id_repos_stars);
             view.setOnClickListener(this);
         }
 
