@@ -69,6 +69,7 @@ public class HotRepositoryFragment extends InjectableFragment {
         }
     };
     private LinearLayoutManager mLinearLayoutManager;
+    private int lastVisibleItem;
 
 
     @Override
@@ -109,6 +110,8 @@ public class HotRepositoryFragment extends InjectableFragment {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                mRepos.clear();
+                mAdapter.notifyDataSetChanged();
                 fetchData("language:java", 1);
             }
         });
@@ -119,6 +122,24 @@ public class HotRepositoryFragment extends InjectableFragment {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mAdapter = new HotReposListAdapterHolder(getActivity(), mRepos);
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount()) {
+                    setRefreshing(true);
+                    mPage = mPage + 1;
+                    L.i("========onScrollStateChanged load more==========");
+                    fetchData("language:Java", mPage);
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                lastVisibleItem = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
+            }
+        });
 
     }
 
