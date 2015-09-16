@@ -69,7 +69,7 @@ public class RankingFragment extends InjectableFragment {
         public void onError(Throwable e) {
             L.e("" + e);
             setRefreshing(false);
-            Toast.makeText(getActivity(), "服务器开了小差稍后重试", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "server unreachable try again later", Toast.LENGTH_SHORT).show();
         }
 
         @Override
