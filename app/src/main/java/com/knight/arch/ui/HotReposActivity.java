@@ -6,8 +6,8 @@ import android.support.v7.widget.Toolbar;
 
 import com.knight.arch.R;
 import com.knight.arch.module.HotReposModule;
-import com.knight.arch.module.UserDetailsModule;
 import com.knight.arch.ui.base.InjectableActivity;
+import com.knight.arch.ui.fragment.HotRepositoryFragment;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 public class HotReposActivity extends InjectableActivity {
     @Override
     protected int provideContentViewId() {
-        return R.layout.activity_user_details;
+        return R.layout.activity_hot_pepos;
     }
 
     @Override
@@ -34,7 +34,13 @@ public class HotReposActivity extends InjectableActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initView();
+//        initView();
+
+        initFragment();
+    }
+
+    private void initFragment() {
+        getSupportFragmentManager().beginTransaction().add(R.id.id_hot_repos_container, new HotRepositoryFragment(), "hotfragment").commit();
     }
 
     private void initView() {
