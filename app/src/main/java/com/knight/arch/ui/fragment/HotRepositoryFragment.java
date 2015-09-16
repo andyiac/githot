@@ -1,5 +1,7 @@
 package com.knight.arch.ui.fragment;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,6 +19,7 @@ import com.knight.arch.api.ApiService;
 import com.knight.arch.data.Repositories;
 import com.knight.arch.model.Repository;
 import com.knight.arch.ui.base.InjectableFragment;
+import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
 
 import java.util.ArrayList;
@@ -100,6 +103,14 @@ public class HotRepositoryFragment extends InjectableFragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        float paddingStart = getActivity().getResources().getDimension(R.dimen.repos_hot_divider_padding_start);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST, paddingStart, safeIsRtl()));
+
+    }
+
     private void initView(View view) {
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.id_hot_repos_swipe_refresh_layout);
         //设置卷内的颜色
@@ -143,6 +154,14 @@ public class HotRepositoryFragment extends InjectableFragment {
 
     }
 
+    private boolean safeIsRtl() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && isRtl();
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private boolean isRtl() {
+        return getView().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+    }
 
     public void setRefreshing(boolean refreshing) {
         if (mSwipeRefreshLayout == null) {
