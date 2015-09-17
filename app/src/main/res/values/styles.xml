@@ -4,6 +4,7 @@
     <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#4CAF50</item>
+
         <item name="colorPrimaryDark">#388E3C</item>
         <item name="colorAccent">#388E3C</item>
 

@@ -96,7 +96,7 @@ public class MainActivity extends InjectableActivity {
         adapter.addFragment(new RankingFragment("language:Java"), "Java");
         adapter.addFragment(new RankingFragment("language:C"), "C");
         adapter.addFragment(new RankingFragment("language:Objective-C"), "Objective-C");
-        adapter.addFragment(new RankingFragment("language:C#"), "C#");
+        adapter.addFragment(new RankingFragment("language:csharp"), "C#");
         adapter.addFragment(new RankingFragment("language:Python"), "Python");
         adapter.addFragment(new RankingFragment("language:PHP"), "PHP");
         adapter.addFragment(new RankingFragment("language:JavaScript"), "JavaScript");
