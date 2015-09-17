@@ -37,7 +37,7 @@
                 android:id="@+id/id_repos_stars"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.3"
+                android:layout_weight="0.5"
                 android:gravity="center"
                 android:hint="stars:1"
                 android:singleLine="true" />

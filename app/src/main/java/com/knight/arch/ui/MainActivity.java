@@ -16,14 +16,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TableLayout;
 
-import com.facebook.stetho.common.StringUtil;
 import com.knight.arch.R;
 import com.knight.arch.module.HomeModule;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.fragment.RankingFragment;
-import com.knight.arch.utils.L;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -185,7 +182,6 @@ public class MainActivity extends InjectableActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-
             return mFragmentTitles.get(position);
         }
     }

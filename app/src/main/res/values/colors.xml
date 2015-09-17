@@ -2,4 +2,5 @@
 <resources>
     <color name="primary_dark">#388E3C</color>
     <color name="status_bar">#ff1976d2</color>
+    <color name="primary_text">#000000</color>
 </resources>
