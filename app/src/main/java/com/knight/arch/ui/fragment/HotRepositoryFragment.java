@@ -71,6 +71,7 @@ public class HotRepositoryFragment extends InjectableFragment {
 
         @Override
         public void onNext(Repositories<Repository> repositoryRepositories) {
+            mPage = mPage + 1;
             setRefreshing(false);
             mRepos.addAll(repositoryRepositories.getItems());
             mAdapter.notifyDataSetChanged();
@@ -93,7 +94,8 @@ public class HotRepositoryFragment extends InjectableFragment {
                 .map(new Func1<Repositories<Repository>, Repositories<Repository>>() {
                     @Override
                     public Repositories<Repository> call(Repositories<Repository> repositoryRepositories) {
-                        L.i(JSON.toJSONString(repositoryRepositories));
+
+//                        L.i(JSON.toJSONString(repositoryRepositories));
 
                         return repositoryRepositories;
                     }
@@ -145,8 +147,8 @@ public class HotRepositoryFragment extends InjectableFragment {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount()) {
                     setRefreshing(true);
-                    mPage = mPage + 1;
-                    L.i("========onScrollStateChanged load more==========");
+
+                    L.i("========onScrollStateChanged load more====l==mPage====>>" + mPage);
                     fetchData(mQuery, mPage);
                 }
             }

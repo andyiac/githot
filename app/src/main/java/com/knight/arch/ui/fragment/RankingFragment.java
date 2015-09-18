@@ -55,7 +55,7 @@ public class RankingFragment extends InjectableFragment {
     private GitHubUserRankListAdapterHolder adapter;
     private List<User> mUsers = new ArrayList<>();
     private int lastVisibleItem;
-    private int page = 1;
+    private int mPage = 1;
     private String mQuery = null;
     private LinearLayoutManager mLinearLayoutManager;
 
@@ -74,6 +74,7 @@ public class RankingFragment extends InjectableFragment {
 
         @Override
         public void onNext(Users<User> userUsers) {
+            mPage = mPage +1;
             setRefreshing(false);
             mUsers.addAll(userUsers.getItems());
             adapter.notifyDataSetChanged();
@@ -147,8 +148,8 @@ public class RankingFragment extends InjectableFragment {
                 mUsers.clear();
                 adapter.notifyDataSetChanged();
 
-                page = 1;
-                fetchUsersInfo("china", page);
+                mPage = 1;
+                fetchUsersInfo("china", mPage);
             }
         });
 
@@ -163,9 +164,8 @@ public class RankingFragment extends InjectableFragment {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter.getItemCount()) {
                     setRefreshing(true);
 
-                    page = page + 1;
                     L.i("========onScrollStateChanged load more==========");
-                    fetchUsersInfo("china", page);
+                    fetchUsersInfo("china", mPage);
                 }
 
             }
