@@ -1,50 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+<com.balysv.materialripple.MaterialRippleLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ripple"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
-    android:gravity="center_vertical"
-    android:orientation="vertical">
-    <!--    android:background="@drawable/shape_card_background_default" -->
+    android:layout_height="match_parent"
+    android:paddingBottom="15dp"
+    android:paddingTop="15dp">
 
-
-    <com.balysv.materialripple.MaterialRippleLayout
-        android:id="@+id/ripple"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp">
+        android:layout_height="50dp"
+        android:gravity="center_vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/id_repos_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="Jake Wharton"
+            android:paddingLeft="16dp"
+            android:singleLine="true"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/id_repos_name"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:hint="Jake Wharton"
-                android:paddingLeft="16dp"
-                android:singleLine="true"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/id_repos_stars"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:hint="stars:1"
-                android:singleLine="true" />
+        <TextView
+            android:id="@+id/id_repos_stars"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:hint="stars:1"
+            android:singleLine="true" />
 
 
-        </LinearLayout>
+    </LinearLayout>
 
-    </com.balysv.materialripple.MaterialRippleLayout>
+</com.balysv.materialripple.MaterialRippleLayout>
 
-</LinearLayout>

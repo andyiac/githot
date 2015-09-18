@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import com.knight.arch.R;
 import com.knight.arch.model.Repository;
+import com.knight.arch.utils.L;
 
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class HotReposListAdapterHolder extends RecyclerView.Adapter<HotReposList
         return mRepos.size();
     }
 
-    public void SetOnItemClickListener(final OnItemClickListener mItemClickListener) {
+    public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
         this.mItemClickListener = mItemClickListener;
     }
 
@@ -82,6 +83,7 @@ public class HotReposListAdapterHolder extends RecyclerView.Adapter<HotReposList
         @Override
         public void onClick(View v) {
             if (mItemClickListener != null) {
+                L.i("==========click=====");
 //                mItemClickListener.onItemClick(v, getPosition());
                 mItemClickListener.onItemClick(v, getLayoutPosition());
             }
