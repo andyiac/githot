@@ -41,6 +41,7 @@
         </activity>
 
         <activity
+            android:launchMode="singleTop"
             android:name=".ui.HotReposActivity"
             android:label="@string/title_activity_repos"
             android:parentActivityName=".ui.MainActivity"

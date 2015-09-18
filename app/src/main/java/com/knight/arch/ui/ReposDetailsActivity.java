@@ -13,9 +13,7 @@ import com.knight.arch.ui.base.InjectableActivity;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by summer on 15-9-9.
- */
+
 public class ReposDetailsActivity extends InjectableActivity {
     @Override
     protected int provideContentViewId() {
