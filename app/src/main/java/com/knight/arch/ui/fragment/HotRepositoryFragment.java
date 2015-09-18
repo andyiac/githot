@@ -1,6 +1,7 @@
 package com.knight.arch.ui.fragment;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -18,6 +19,7 @@ import com.knight.arch.adapter.HotReposListAdapterHolder;
 import com.knight.arch.api.ApiService;
 import com.knight.arch.data.Repositories;
 import com.knight.arch.model.Repository;
+import com.knight.arch.ui.ReposDetailsActivity;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
@@ -165,6 +167,9 @@ public class HotRepositoryFragment extends InjectableFragment {
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(getActivity(), "item>>>" + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), ReposDetailsActivity.class);
+                startActivity(intent);
             }
         });
 
