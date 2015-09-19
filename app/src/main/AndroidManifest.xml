@@ -41,21 +41,19 @@
         </activity>
 
         <activity
-            android:launchMode="singleTop"
             android:name=".ui.HotReposActivity"
             android:label="@string/title_activity_repos"
-            android:parentActivityName=".ui.MainActivity"
-            >
+            android:launchMode="singleTop"
+            android:parentActivityName=".ui.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
 
-         <activity
+        <activity
             android:name=".ui.ReposDetailsActivity"
             android:label="@string/title_activity_repos_details"
-            android:parentActivityName=".ui.HotReposActivity"
-            >
+            android:parentActivityName=".ui.HotReposActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
