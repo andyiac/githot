@@ -1,5 +1,6 @@
 package com.knight.arch.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
@@ -40,6 +41,7 @@ import rx.functions.Func1;
  * @web http://blog.andyiac.com
  * @github https://github.com/andyiac
  */
+@SuppressLint("ValidFragment")
 public class HotRepositoryFragment extends InjectableFragment {
 
     @Inject

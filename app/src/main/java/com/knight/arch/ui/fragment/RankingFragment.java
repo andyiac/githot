@@ -1,5 +1,6 @@
 package com.knight.arch.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -41,6 +42,7 @@ import rx.functions.Func1;
  * @author andyiac
  * @web http://blog.andyiac.com/
  */
+@SuppressLint("ValidFragment")
 public class RankingFragment extends InjectableFragment {
 
     @Inject
