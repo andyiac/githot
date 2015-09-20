@@ -171,6 +171,7 @@ public class HotRepositoryFragment extends InjectableFragment {
                 Toast.makeText(getActivity(), "item>>>" + position, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), ReposDetailsActivity.class);
+                intent.putExtra("repos_data", mRepos.get(position));
                 startActivity(intent);
             }
         });
