@@ -53,11 +53,13 @@
         <activity
             android:name=".ui.ReposDetailsActivity"
             android:label="@string/title_activity_repos_details"
-            android:parentActivityName=".ui.HotReposActivity"
             android:theme="@style/AppTheme.Design.ActionBar">
+
+            <!--android:parentActivityName=".ui.HotReposActivity"
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
+            -->
         </activity>
 
 
