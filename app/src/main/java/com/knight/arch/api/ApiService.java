@@ -5,7 +5,10 @@ import com.knight.arch.data.Users;
 import com.knight.arch.model.Repository;
 import com.knight.arch.model.User;
 
+import java.util.List;
+
 import retrofit.http.GET;
+import retrofit.http.Path;
 import retrofit.http.Query;
 import rx.Observable;
 
@@ -23,4 +26,7 @@ public interface ApiService {
 
     @GET("/search/repositories")
     Observable<Repositories<Repository>> getRepositories(@Query(value = "q", encodeValue = false) String query, @Query("page") int pageId);
+
+    @GET("/users/{user}/repos")
+    Observable<List<Repository>> getUserRepositories(@Path("user") String user);
 }

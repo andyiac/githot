@@ -122,6 +122,7 @@ public class RankingFragment extends InjectableFragment {
                 // do something with position
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), UserDetailsActivity.class);
+                intent.putExtra("user_name",mUsers.get(position).getLogin());
                 startActivity(intent);
             }
         });
