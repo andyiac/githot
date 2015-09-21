@@ -83,8 +83,6 @@ public class HotReposDetailsListAdapterHolder extends RecyclerView.Adapter<HotRe
         @Override
         public void onClick(View v) {
             if (mItemClickListener != null) {
-                L.i("==========click=====");
-//                mItemClickListener.onItemClick(v, getPosition());
                 mItemClickListener.onItemClick(v, getLayoutPosition());
             }
         }

@@ -57,12 +57,14 @@ public class ReposDetailsActivity extends InjectableActivity {
 
     private void initData() {
         mReposData.add(new ReposKV("name", mRepository.getName()));
-        mReposData.add(new ReposKV("full_name", mRepository.getFull_name()));
         mReposData.add(new ReposKV("description", mRepository.getDescription()));
-        mReposData.add(new ReposKV("create_at", mRepository.getCreated_at()));
-        mReposData.add(new ReposKV("update_at", mRepository.getUpdated_at()));
-        mReposData.add(new ReposKV("stars", String.valueOf(mRepository.getStargazers_count())));
+        mReposData.add(new ReposKV("owner", mRepository.getOwner().getLogin()));
+        mReposData.add(new ReposKV("owner type", mRepository.getOwner().getType()));
+        mReposData.add(new ReposKV("full name", mRepository.getFull_name()));
         mReposData.add(new ReposKV("language", String.valueOf(mRepository.getLanguage())));
+        mReposData.add(new ReposKV("stars", String.valueOf(mRepository.getStargazers_count())));
+        mReposData.add(new ReposKV("create at", mRepository.getCreated_at()));
+        mReposData.add(new ReposKV("update at", mRepository.getUpdated_at()));
     }
 
     private void initView() {
@@ -73,7 +75,6 @@ public class ReposDetailsActivity extends InjectableActivity {
           CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
           collapsingToolbarLayout.setTitle(mRepository.getName());
 */
-
 
 
         adapter = new HotReposDetailsListAdapterHolder(this, mReposData);

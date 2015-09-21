@@ -168,7 +168,6 @@ public class HotRepositoryFragment extends InjectableFragment {
         mAdapter.setOnItemClickListener(new HotReposListAdapterHolder.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(getActivity(), "item>>>" + position, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), ReposDetailsActivity.class);
                 intent.putExtra("repos_data", mRepos.get(position));
