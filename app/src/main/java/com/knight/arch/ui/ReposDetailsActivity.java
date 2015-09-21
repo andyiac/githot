@@ -2,7 +2,6 @@ package com.knight.arch.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +13,7 @@ import com.knight.arch.data.ReposKV;
 import com.knight.arch.model.Repository;
 import com.knight.arch.module.ReposDetailsModule;
 import com.knight.arch.ui.base.InjectableActivity;
+import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
 
 import java.util.ArrayList;
@@ -66,12 +66,14 @@ public class ReposDetailsActivity extends InjectableActivity {
     }
 
     private void initView() {
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle(mRepository.getName());
+ /*       final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+          setSupportActionBar(toolbar);
+          getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+          CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+          collapsingToolbarLayout.setTitle(mRepository.getName());
+*/
+
 
 
         adapter = new HotReposDetailsListAdapterHolder(this, mReposData);
@@ -80,5 +82,9 @@ public class ReposDetailsActivity extends InjectableActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
+        float paddingStart = getResources().getDimension(R.dimen.repos_hot_divider_padding_start);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST, paddingStart, false));
+
     }
+
 }
