@@ -93,7 +93,6 @@ public class RankingFragment extends InjectableFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //fetchData();
         fetchUsersInfo("china", 1);
     }
 
@@ -169,7 +168,6 @@ public class RankingFragment extends InjectableFragment {
                     L.i("========onScrollStateChanged load more==========");
                     fetchUsersInfo("china", mPage);
                 }
-
             }
 
             @Override

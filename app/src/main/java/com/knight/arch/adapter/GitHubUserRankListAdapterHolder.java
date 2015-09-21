@@ -25,7 +25,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.balysv.materialripple.MaterialRippleLayout;
 import com.knight.arch.R;
 import com.knight.arch.model.User;
 import com.squareup.picasso.Picasso;
@@ -50,22 +49,13 @@ public class GitHubUserRankListAdapterHolder extends RecyclerView.Adapter<GitHub
         final LayoutInflater mInflater = LayoutInflater.from(parent.getContext());
         final View sView = mInflater.inflate(R.layout.github_user_rank_single_list_item, parent, false);
         return new ViewHolder(sView);
-
-//        return new ViewHolder(
-//                MaterialRippleLayout.on(mInflater.inflate(R.layout.github_user_rank_single_list_item, parent, false))
-//                        .rippleOverlay(true)
-//                        .rippleAlpha(0.2f)
-//                        .rippleColor(0xFF585858)
-//                        .rippleHover(true)
-//                        .create()
-//        );
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         picasso.load(mUsers.get(position).getAvatar_url()).placeholder(R.mipmap.avatar).into(holder.ivAvatar);
         holder.tvLogin.setText(mUsers.get(position).getLogin());
-        holder.tvRank.setText("rank: "+String.valueOf(position + 1));
+        holder.tvRank.setText("rank: " + String.valueOf(position + 1));
     }
 
     @Override
