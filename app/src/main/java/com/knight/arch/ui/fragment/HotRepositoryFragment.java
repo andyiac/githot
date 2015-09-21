@@ -50,7 +50,7 @@ public class HotRepositoryFragment extends InjectableFragment {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
-    private List<Repository> mRepos = new ArrayList<Repository>();
+    private List<Repository> mRepos = new ArrayList<>();
     private HotReposListAdapterHolder mAdapter;
     private String mQuery;
 

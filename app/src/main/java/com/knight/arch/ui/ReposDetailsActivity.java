@@ -52,7 +52,6 @@ public class ReposDetailsActivity extends InjectableActivity {
         }
 
         initView();
-
     }
 
     private void initData() {
@@ -69,14 +68,6 @@ public class ReposDetailsActivity extends InjectableActivity {
 
     private void initView() {
 
- /*       final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-          setSupportActionBar(toolbar);
-          getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-          CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-          collapsingToolbarLayout.setTitle(mRepository.getName());
-*/
-
-
         adapter = new HotReposDetailsListAdapterHolder(this, mReposData);
         mRecyclerView = (RecyclerView) findViewById(R.id.id_repos_details_recycler_view);
         mRecyclerView.setAdapter(adapter);
@@ -85,7 +76,6 @@ public class ReposDetailsActivity extends InjectableActivity {
 
         float paddingStart = getResources().getDimension(R.dimen.repos_hot_divider_padding_start);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST, paddingStart, false));
-
     }
 
 }
