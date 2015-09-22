@@ -26,6 +26,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+/**
+ * @author andyiac
+ * @date 15-8-4
+ * @web http://blog.andyiac.com/
+ */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     private static final int[] ATTRS = new int[]{
             android.R.attr.listDivider

@@ -7,10 +7,12 @@ import com.knight.arch.module.Injector;
 
 import dagger.ObjectGraph;
 
+
 /**
  * @author andyiac
- * @date 15-8-4
- * @web http://blog.andyiac.com/
+ * @date 15-9-16
+ * @web http://blog.andyiac.com
+ * @github https://github.com/andyiac
  */
 public abstract class InjectableActivity extends BaseActivity implements Injector {
     protected ObjectGraph objectGraph;

@@ -6,10 +6,12 @@ import com.google.gson.annotations.Expose;
 
 import java.util.List;
 
+
 /**
  * @author andyiac
- * @date 15-8-4
- * @web http://blog.andyiac.com/
+ * @date 15-9-16
+ * @web http://blog.andyiac.com
+ * @github https://github.com/andyiac
  */
 public class Users<T extends Parcelable> {
     @Expose

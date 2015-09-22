@@ -28,6 +28,11 @@ import rx.android.app.AppObservable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 
+/**
+ * @author andyiac
+ * @date 15-8-4
+ * @web http://blog.andyiac.com/
+ */
 public class UserDetailsActivity extends InjectableActivity {
 
     private RecyclerView mRecyclerView;

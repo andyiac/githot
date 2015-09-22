@@ -14,8 +14,8 @@ import java.util.List;
 import dagger.ObjectGraph;
 
 /**
- * Created by summer on 15-7-29.
- *
+ * @author andyiac
+ * @date 15-8-4
  * @web http://blog.andyiac.com/
  */
 public class ClientApplication extends Application implements Injector {
@@ -27,16 +27,9 @@ public class ClientApplication extends Application implements Injector {
         super.onCreate();
         initStetho();
         initLogger();
-
         initDagger();
-        initFresco();
     }
 
-    //not use
-    private void initFresco() {
-        //Fresco.initialize(this, ImagePipelineConfigFactory.getImagePipelineConfig(this));
-        //  use Picasso first
-    }
 
     private void initDagger() {
         objectGraph = ObjectGraph.create(getModules().toArray());

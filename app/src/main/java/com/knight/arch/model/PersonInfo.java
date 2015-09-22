@@ -5,10 +5,12 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+
 /**
- * Created by summer on 15-7-30.
- *
- * @web http://blog.andyiac.com/
+ * @author andyiac
+ * @date 15-9-16
+ * @web http://blog.andyiac.com
+ * @github https://github.com/andyiac
  */
 public class PersonInfo implements Parcelable {
 

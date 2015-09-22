@@ -19,6 +19,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author andyiac
+ * @date 15-8-4
+ * @web http://blog.andyiac.com/
+ */
 public class ReposDetailsActivity extends InjectableActivity {
     private Repository mRepository;
     private RecyclerView mRecyclerView;

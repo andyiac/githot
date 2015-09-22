@@ -5,10 +5,12 @@ import com.knight.arch.ui.fragment.SettingsFragment;
 
 import dagger.Module;
 
+
 /**
  * @author andyiac
- * @date 15-8-15
- * @web http://blog.andyiac.com/
+ * @date 15-9-16
+ * @web http://blog.andyiac.com
+ * @github https://github.com/andyiac
  */
 @Module(
         complete = false,

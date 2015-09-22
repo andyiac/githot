@@ -7,10 +7,12 @@ import android.preference.PreferenceFragment;
 import com.knight.arch.R;
 import com.knight.arch.module.Injector;
 
+
 /**
  * @author andyiac
- * @date 15-8-15
- * @web http://blog.andyiac.com/
+ * @date 15-9-16
+ * @web http://blog.andyiac.com
+ * @github https://github.com/andyiac
  */
 public class SettingsFragment extends PreferenceFragment {
 

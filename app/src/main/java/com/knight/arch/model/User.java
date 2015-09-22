@@ -1,9 +1,11 @@
 package com.knight.arch.model;
 
+
 /**
  * @author andyiac
- * @date 15-9-9
- * @web http://blog.andyiac.com/
+ * @date 15-9-16
+ * @web http://blog.andyiac.com
+ * @github https://github.com/andyiac
  */
 
 import android.os.Parcel;

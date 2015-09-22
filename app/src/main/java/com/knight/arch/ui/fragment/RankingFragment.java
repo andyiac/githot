@@ -23,7 +23,6 @@ import com.knight.arch.api.ApiService;
 import com.knight.arch.data.Users;
 import com.knight.arch.model.User;
 import com.knight.arch.ui.UserDetailsActivity;
-import com.knight.arch.ui.base.BaseFragment;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
@@ -39,9 +38,12 @@ import rx.android.app.AppObservable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 
+
 /**
  * @author andyiac
- * @web http://blog.andyiac.com/
+ * @date 15-9-16
+ * @web http://blog.andyiac.com
+ * @github https://github.com/andyiac
  */
 @SuppressLint("ValidFragment")
 public class RankingFragment extends InjectableFragment {

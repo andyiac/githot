@@ -5,10 +5,12 @@ import com.knight.arch.ui.base.InjectableActivity;
 
 import dagger.Module;
 
+
 /**
  * @author andyiac
- * @date 15-8-4
- * @web http://blog.andyiac.com/
+ * @date 15-9-16
+ * @web http://blog.andyiac.com
+ * @github https://github.com/andyiac
  */
 
 @Module(

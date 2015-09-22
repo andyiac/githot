@@ -26,10 +26,16 @@ import android.widget.TextView;
 
 import com.knight.arch.R;
 import com.knight.arch.model.Repository;
-import com.knight.arch.utils.L;
 
 import java.util.List;
 
+
+/**
+ * @author andyiac
+ * @date 15-9-16
+ * @web http://blog.andyiac.com
+ * @github https://github.com/andyiac
+ */
 public class UserDetailsListAdapterHolder extends RecyclerView.Adapter<UserDetailsListAdapterHolder.ViewHolder> {
 
     OnItemClickListener mItemClickListener;
@@ -83,8 +89,6 @@ public class UserDetailsListAdapterHolder extends RecyclerView.Adapter<UserDetai
         @Override
         public void onClick(View v) {
             if (mItemClickListener != null) {
-                L.i("==========click=====");
-//                mItemClickListener.onItemClick(v, getPosition());
                 mItemClickListener.onItemClick(v, getLayoutPosition());
             }
         }

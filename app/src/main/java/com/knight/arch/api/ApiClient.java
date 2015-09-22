@@ -16,10 +16,12 @@ import retrofit.http.GET;
 import retrofit.http.Query;
 import rx.Observable;
 
+
 /**
- * Created by summer on 15-7-30.
- *
- * @web http://blog.andyiac.com/
+ * @author andyiac
+ * @date 15-9-16
+ * @web http://blog.andyiac.com
+ * @github https://github.com/andyiac
  */
 public class ApiClient {
     static final int CONNECT_TIMEOUT_MILLIS = 15 * 1000; // 15s

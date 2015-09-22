@@ -19,7 +19,11 @@ import com.knight.arch.ui.fragment.HotUsersFragment;
 import java.util.Arrays;
 import java.util.List;
 
-
+/**
+ * @author andyiac
+ * @date 15-8-4
+ * @web http://blog.andyiac.com/
+ */
 public class MainActivity extends InjectableActivity {
 
     private HotUsersFragment hotUsersFragment;

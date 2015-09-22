@@ -19,9 +19,8 @@ import dagger.Module;
                 MainActivity.class,
                 RankReposFragment.class,
                 RankingFragment.class
-/*              HotUsersFragment.class,
-                HotReposFragment.class,
-*/
+                //HotUsersFragment.class,
+                //HotReposFragment.class,
         }
 )
 public class HomeModule {

@@ -30,6 +30,13 @@ import com.knight.arch.utils.L;
 
 import java.util.List;
 
+
+/**
+ * @author andyiac
+ * @date 15-9-16
+ * @web http://blog.andyiac.com
+ * @github https://github.com/andyiac
+ */
 public class HotReposListAdapterHolder extends RecyclerView.Adapter<HotReposListAdapterHolder.ViewHolder> {
 
     OnItemClickListener mItemClickListener;

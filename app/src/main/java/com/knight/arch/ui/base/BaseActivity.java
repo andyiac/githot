@@ -8,10 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import com.knight.arch.R;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
+
 /**
  * @author andyiac
- * @date 15-8-4
- * @web http://blog.andyiac.com/
+ * @date 15-9-16
+ * @web http://blog.andyiac.com
+ * @github https://github.com/andyiac
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
