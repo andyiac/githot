@@ -2,39 +2,35 @@ package com.knight.arch.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.knight.arch.R;
 import com.knight.arch.module.HomeModule;
 import com.knight.arch.ui.base.InjectableActivity;
-import com.knight.arch.ui.fragment.RankingFragment;
+import com.knight.arch.ui.fragment.HotReposFragment;
+import com.knight.arch.ui.fragment.HotUsersFragment;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
 public class MainActivity extends InjectableActivity {
 
+    private HotUsersFragment hotUsersFragment;
+    private HotReposFragment hotReposFragment;
     private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
+        initSubFragment();
     }
 
     @Override
@@ -44,6 +40,7 @@ public class MainActivity extends InjectableActivity {
 
 
     private void initView() {
+/*
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
@@ -53,55 +50,20 @@ public class MainActivity extends InjectableActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+*/
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
             setupDrawerContent(navigationView);
         }
+        selectFragment(R.id.nav_user_china);
 
 /*
-        RankingFragment rankingFragment = new RankingFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.id_frame_container, rankingFragment).commit();
-
+        HotUsersFragment hotUsersFragment = new HotUsersFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.id_main_view_container, hotUsersFragment).commit();
 */
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.main_activity_viewpager);
-        if (viewPager != null) {
-            setupViewPager(viewPager);
-        }
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.main_activity_tabs);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        if (viewPager != null) {
-            tabLayout.setupWithViewPager(viewPager);
-        }
-
-
-        // ====================== FAB is not use current =========================
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        fab.setVisibility(View.GONE);
-        // =======================================================================
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new RankingFragment(), "China All");
-        adapter.addFragment(new RankingFragment("language:Java"), "Java");
-        adapter.addFragment(new RankingFragment("language:C"), "C");
-        adapter.addFragment(new RankingFragment("language:Objective-C"), "Objective-C");
-        adapter.addFragment(new RankingFragment("language:csharp"), "C#");
-        adapter.addFragment(new RankingFragment("language:Python"), "Python");
-        adapter.addFragment(new RankingFragment("language:PHP"), "PHP");
-        adapter.addFragment(new RankingFragment("language:JavaScript"), "JavaScript");
-        adapter.addFragment(new RankingFragment("language:Ruby"), "Ruby");
-        viewPager.setAdapter(adapter);
     }
 
 
@@ -139,50 +101,56 @@ public class MainActivity extends InjectableActivity {
         return Arrays.<Object>asList(new HomeModule(this));
     }
 
+
+    private void initSubFragment() {
+
+    }
+
+
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         mDrawerLayout.closeDrawers();
-                        if (menuItem.getItemId() == R.id.nav_user_china) {
-                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                            startActivity(intent);
-                        } else if (menuItem.getItemId() == R.id.nav_repositories) {
-                            Intent intent = new Intent(MainActivity.this, HotReposActivity.class);
-                            startActivity(intent);
-                        }
+                        selectFragment(menuItem.getItemId());
                         return true;
                     }
                 });
     }
 
-    static class Adapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragments = new ArrayList<>();
-        private final List<String> mFragmentTitles = new ArrayList<>();
+    private void selectFragment(int fragmentId) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        hideAllFragment(transaction);
+        switch (fragmentId) {
+            case R.id.nav_user_china:
+                if (hotUsersFragment == null) {
+                    hotUsersFragment = new HotUsersFragment();
+                    transaction.add(R.id.id_main_frame_container, hotUsersFragment, "hotUser");
+                } else {
+                    transaction.show(hotUsersFragment);
+                }
+                break;
 
-        public Adapter(FragmentManager fm) {
-            super(fm);
+            case R.id.nav_repositories:
+                if (hotReposFragment == null) {
+                    hotReposFragment = new HotReposFragment();
+                    transaction.add(R.id.id_main_frame_container, hotReposFragment, "hotRepos");
+                } else {
+                    transaction.show(hotReposFragment);
+                }
+                break;
         }
+        transaction.commit();
+    }
 
-        public void addFragment(Fragment fragment, String title) {
-            mFragments.add(fragment);
-            mFragmentTitles.add(title);
+    private void hideAllFragment(FragmentTransaction transaction) {
+        if (hotUsersFragment != null) {
+            transaction.hide(hotUsersFragment);
         }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragments.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitles.get(position);
+        if (hotReposFragment != null) {
+            transaction.hide(hotReposFragment);
         }
     }
 

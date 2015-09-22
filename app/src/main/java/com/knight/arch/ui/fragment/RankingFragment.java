@@ -23,6 +23,7 @@ import com.knight.arch.api.ApiService;
 import com.knight.arch.data.Users;
 import com.knight.arch.model.User;
 import com.knight.arch.ui.UserDetailsActivity;
+import com.knight.arch.ui.base.BaseFragment;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;

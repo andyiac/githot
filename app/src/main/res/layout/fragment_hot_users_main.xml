@@ -4,9 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/include_main_container"/>
-    <FrameLayout
-        android:id="@+id/id_hot_repos_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+    <include layout="@layout/include_main_container" />
+
 </LinearLayout>

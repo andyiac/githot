@@ -1,3 +1,4 @@
+/*
 package com.knight.arch.module;
 
 import com.knight.arch.ui.HotReposActivity;
@@ -6,11 +7,13 @@ import com.knight.arch.ui.fragment.RankReposFragment;
 
 import dagger.Module;
 
+*/
 /**
  * @author andyiac
  * @date 15-8-4
  * @web http://blog.andyiac.com/
- */
+ *//*
+
 
 @Module(
         complete = false,
@@ -29,3 +32,4 @@ public class HotReposModule {
         this.activity = activity;
     }
 }
+*/

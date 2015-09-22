@@ -21,6 +21,7 @@ import com.knight.arch.api.ApiService;
 import com.knight.arch.data.Repositories;
 import com.knight.arch.model.Repository;
 import com.knight.arch.ui.ReposDetailsActivity;
+import com.knight.arch.ui.base.BaseFragment;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
@@ -99,7 +100,7 @@ public class RankReposFragment extends InjectableFragment {
                     @Override
                     public Repositories<Repository> call(Repositories<Repository> repositoryRepositories) {
 
-//                        L.i(JSON.toJSONString(repositoryRepositories));
+                        L.i(JSON.toJSONString(repositoryRepositories));
 
                         return repositoryRepositories;
                     }

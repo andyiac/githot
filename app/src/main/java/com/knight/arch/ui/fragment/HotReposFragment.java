@@ -1,5 +1,4 @@
-/*
-package com.knight.arch.ui;
+package com.knight.arch.ui.fragment;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -7,61 +6,44 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.knight.arch.R;
-import com.knight.arch.module.HotReposModule;
-import com.knight.arch.ui.base.InjectableActivity;
-import com.knight.arch.ui.fragment.RankReposFragment;
+import com.knight.arch.ui.base.BaseFragment;
+import com.knight.arch.ui.base.InjectableFragment;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-*/
 /**
  * @author andyiac
  * @date 15-9-9
  * @web http://blog.andyiac.com
  * @github https://github.com/andyiac
- *//*
-
-public class HotReposActivity extends InjectableActivity {
-
+ */
+//public class HotReposFragment extends InjectableFragment {
+public class HotReposFragment extends BaseFragment{
     @Override
-    protected int provideContentViewId() {
-        return R.layout.activity_hot_pepos;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.fragment_hot_pepos_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_hot_repos_main2, container, false);
+        initView(view);
+        return view;
     }
 
-    @Override
-    public List<Object> getModules() {
-        return Arrays.<Object>asList(new HotReposModule(this));
-    }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-    }
+    private void initView(View view) {
 
-    private void initView() {
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-
-        final ActionBar ab = getSupportActionBar();
-        if (ab != null) {
-            ab.setHomeAsUpIndicator(R.mipmap.ic_back_arrow);
-//            ab.setHomeActionContentDescription(android.support.v7.appcompat.R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-            ab.setDisplayHomeAsUpEnabled(true);
-        }
-
-        ViewPager viewPager = (ViewPager) findViewById(R.id.main_activity_viewpager);
+//        ViewPager viewPager = (ViewPager) view.findViewById(R.id.main_activity_viewpager);
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.hot_repos_fragment_viewpager);
         if (viewPager != null) {
             setupViewPager(viewPager);
         }
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.main_activity_tabs);
+//        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.main_activity_tabs);
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.hot_repos_tabs);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         if (viewPager != null) {
             tabLayout.setupWithViewPager(viewPager);
@@ -69,7 +51,7 @@ public class HotReposActivity extends InjectableActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(getSupportFragmentManager());
+        Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
         adapter.addFragment(new RankReposFragment("language:Java"), "Java");
         adapter.addFragment(new RankReposFragment("language:C"), "C");
         adapter.addFragment(new RankReposFragment("language:Objective-C"), "Objective-C");
@@ -112,4 +94,3 @@ public class HotReposActivity extends InjectableActivity {
         }
     }
 }
-*/

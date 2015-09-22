@@ -40,7 +40,7 @@
                 android:value=".ui.MainActivity" />
         </activity>
 
-        <activity
+      <!--  <activity
             android:name=".ui.HotReposActivity"
             android:label="@string/title_activity_repos"
             android:launchMode="singleTop"
@@ -48,7 +48,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
-        </activity>
+        </activity>-->
 
         <activity
             android:name=".ui.ReposDetailsActivity"
