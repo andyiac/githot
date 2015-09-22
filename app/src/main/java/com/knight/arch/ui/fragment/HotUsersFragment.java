@@ -30,6 +30,7 @@ public class HotUsersFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setStatusColor(android.R.color.transparent);
         View view = inflater.inflate(R.layout.fragment_hot_users_main2, container, false);
         initView(view);
         return view;
