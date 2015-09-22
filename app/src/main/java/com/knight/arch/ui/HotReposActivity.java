@@ -12,7 +12,7 @@ import android.support.v7.widget.Toolbar;
 import com.knight.arch.R;
 import com.knight.arch.module.HotReposModule;
 import com.knight.arch.ui.base.InjectableActivity;
-import com.knight.arch.ui.fragment.HotRepositoryFragment;
+import com.knight.arch.ui.fragment.RankReposFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,14 +67,14 @@ public class HotReposActivity extends InjectableActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new HotRepositoryFragment("language:Java"), "Java");
-        adapter.addFragment(new HotRepositoryFragment("language:C"), "C");
-        adapter.addFragment(new HotRepositoryFragment("language:Objective-C"), "Objective-C");
-        adapter.addFragment(new HotRepositoryFragment("language:csharp"), "C#");
-        adapter.addFragment(new HotRepositoryFragment("language:Python"), "Python");
-        adapter.addFragment(new HotRepositoryFragment("language:PHP"), "PHP");
-        adapter.addFragment(new HotRepositoryFragment("language:JavaScript"), "JavaScript");
-        adapter.addFragment(new HotRepositoryFragment("language:Ruby"), "Ruby");
+        adapter.addFragment(new RankReposFragment("language:Java"), "Java");
+        adapter.addFragment(new RankReposFragment("language:C"), "C");
+        adapter.addFragment(new RankReposFragment("language:Objective-C"), "Objective-C");
+        adapter.addFragment(new RankReposFragment("language:csharp"), "C#");
+        adapter.addFragment(new RankReposFragment("language:Python"), "Python");
+        adapter.addFragment(new RankReposFragment("language:PHP"), "PHP");
+        adapter.addFragment(new RankReposFragment("language:JavaScript"), "JavaScript");
+        adapter.addFragment(new RankReposFragment("language:Ruby"), "Ruby");
         viewPager.setAdapter(adapter);
     }
 

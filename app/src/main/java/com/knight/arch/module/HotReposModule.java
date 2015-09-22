@@ -1,9 +1,8 @@
 package com.knight.arch.module;
 
 import com.knight.arch.ui.HotReposActivity;
-import com.knight.arch.ui.UserDetailsActivity;
 import com.knight.arch.ui.base.InjectableActivity;
-import com.knight.arch.ui.fragment.HotRepositoryFragment;
+import com.knight.arch.ui.fragment.RankReposFragment;
 
 import dagger.Module;
 
@@ -17,7 +16,7 @@ import dagger.Module;
         complete = false,
         injects = {
                 HotReposActivity.class,
-                HotRepositoryFragment.class
+                RankReposFragment.class
         }
 )
 public class HotReposModule {
