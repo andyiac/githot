@@ -1,61 +1,50 @@
 package com.knight.arch.ui.fragment;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.knight.arch.R;
-import com.knight.arch.module.Injector;
 import com.knight.arch.ui.base.BaseFragment;
-import com.knight.arch.ui.base.InjectableFragment;
-import com.knight.arch.ui.fragment.RankingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-//public class HotUsersFragment extends InjectableFragment {
-public class HotUsersFragment extends BaseFragment{
+public class HotUsersFragment extends BaseFragment {
 
+    private AppCompatActivity context;
+
+    public HotUsersFragment(AppCompatActivity activity) {
+        this.context = activity;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_hot_users_main2, container,false);
+        View view = inflater.inflate(R.layout.fragment_hot_users_main2, container, false);
         initView(view);
         return view;
     }
 
     private void initView(View view) {
-/*
-        Toolbar mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        Toolbar mToolbar = (Toolbar) view.findViewById(R.id.hot_users_toolbar);
+        context.setSupportActionBar(mToolbar);
 
-        final ActionBar ab = getSupportActionBar();
+
+        final ActionBar ab = context.getSupportActionBar();
         if (ab != null) {
             ab.setHomeAsUpIndicator(R.mipmap.ic_menu);
             ab.setDisplayHomeAsUpEnabled(true);
         }
-
-        mDrawerLayout = (DrawerLayout) view.findViewById(R.id.drawer_layout);
-
-        NavigationView navigationView = (NavigationView) view.findViewById(R.id.nav_view);
-        if (navigationView != null) {
-            setupDrawerContent(navigationView);
-        }
-*/
-
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.hot_user_fragment_viewpager);
         if (viewPager != null) {

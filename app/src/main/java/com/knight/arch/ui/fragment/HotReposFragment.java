@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +25,14 @@ import java.util.List;
  * @web http://blog.andyiac.com
  * @github https://github.com/andyiac
  */
-public class HotReposFragment extends BaseFragment{
+public class HotReposFragment extends BaseFragment {
+
+    private AppCompatActivity context;
+
+    public HotReposFragment(AppCompatActivity activity) {
+        this.context = activity;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hot_repos_main2, container, false);
@@ -30,8 +40,16 @@ public class HotReposFragment extends BaseFragment{
         return view;
     }
 
-
     private void initView(View view) {
+        Toolbar mToolbar = (Toolbar) view.findViewById(R.id.hot_repos_toolbar);
+        context.setSupportActionBar(mToolbar);
+
+
+        final ActionBar ab = context.getSupportActionBar();
+        if (ab != null) {
+            ab.setHomeAsUpIndicator(R.mipmap.ic_menu);
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.hot_repos_fragment_viewpager);
         if (viewPager != null) {
@@ -57,7 +75,6 @@ public class HotReposFragment extends BaseFragment{
         adapter.addFragment(new RankReposFragment("language:Ruby"), "Ruby");
         viewPager.setAdapter(adapter);
     }
-
 
     static class Adapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragments = new ArrayList<>();

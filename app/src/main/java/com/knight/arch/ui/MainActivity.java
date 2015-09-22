@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -30,7 +31,6 @@ public class MainActivity extends InjectableActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
-        initSubFragment();
     }
 
     @Override
@@ -40,17 +40,19 @@ public class MainActivity extends InjectableActivity {
 
 
     private void initView() {
+
 /*
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+ Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
+        setSupportActionBar(mToolbar);
         final ActionBar ab = getSupportActionBar();
         if (ab != null) {
             ab.setHomeAsUpIndicator(R.mipmap.ic_menu);
             ab.setDisplayHomeAsUpEnabled(true);
         }
-
 */
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -58,11 +60,6 @@ public class MainActivity extends InjectableActivity {
             setupDrawerContent(navigationView);
         }
         selectFragment(R.id.nav_user_china);
-
-/*
-        HotUsersFragment hotUsersFragment = new HotUsersFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.id_main_view_container, hotUsersFragment).commit();
-*/
 
     }
 
@@ -102,11 +99,6 @@ public class MainActivity extends InjectableActivity {
     }
 
 
-    private void initSubFragment() {
-
-    }
-
-
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -126,7 +118,7 @@ public class MainActivity extends InjectableActivity {
         switch (fragmentId) {
             case R.id.nav_user_china:
                 if (hotUsersFragment == null) {
-                    hotUsersFragment = new HotUsersFragment();
+                    hotUsersFragment = new HotUsersFragment(this);
                     // todo diff with transaction.replace() ?
                     transaction.add(R.id.id_main_frame_container, hotUsersFragment, "hotUser");
                 } else {
@@ -136,7 +128,7 @@ public class MainActivity extends InjectableActivity {
 
             case R.id.nav_repositories:
                 if (hotReposFragment == null) {
-                    hotReposFragment = new HotReposFragment();
+                    hotReposFragment = new HotReposFragment(this);
                     transaction.add(R.id.id_main_frame_container, hotReposFragment, "hotRepos");
                 } else {
                     transaction.show(hotReposFragment);
