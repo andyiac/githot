@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.knight.arch.R;
 import com.knight.arch.ui.base.BaseFragment;
-import com.knight.arch.ui.base.InjectableFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +22,9 @@ import java.util.List;
  * @web http://blog.andyiac.com
  * @github https://github.com/andyiac
  */
-//public class HotReposFragment extends InjectableFragment {
 public class HotReposFragment extends BaseFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.fragment_hot_pepos_main, container, false);
         View view = inflater.inflate(R.layout.fragment_hot_repos_main2, container, false);
         initView(view);
         return view;
@@ -36,13 +33,11 @@ public class HotReposFragment extends BaseFragment{
 
     private void initView(View view) {
 
-//        ViewPager viewPager = (ViewPager) view.findViewById(R.id.main_activity_viewpager);
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.hot_repos_fragment_viewpager);
         if (viewPager != null) {
             setupViewPager(viewPager);
         }
 
-//        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.main_activity_tabs);
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.hot_repos_tabs);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         if (viewPager != null) {

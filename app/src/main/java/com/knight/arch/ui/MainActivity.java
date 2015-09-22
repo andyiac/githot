@@ -127,6 +127,7 @@ public class MainActivity extends InjectableActivity {
             case R.id.nav_user_china:
                 if (hotUsersFragment == null) {
                     hotUsersFragment = new HotUsersFragment();
+                    // todo diff with transaction.replace() ?
                     transaction.add(R.id.id_main_frame_container, hotUsersFragment, "hotUser");
                 } else {
                     transaction.show(hotUsersFragment);
