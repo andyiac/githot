@@ -44,7 +44,6 @@ public class HotReposFragment extends BaseFragment {
         Toolbar mToolbar = (Toolbar) view.findViewById(R.id.hot_repos_toolbar);
         context.setSupportActionBar(mToolbar);
 
-
         final ActionBar ab = context.getSupportActionBar();
         if (ab != null) {
             ab.setHomeAsUpIndicator(R.mipmap.ic_menu);
