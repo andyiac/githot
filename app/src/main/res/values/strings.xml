@@ -9,6 +9,7 @@
     <string name="unexpected_error">unexpected error</string>
     <string name="pref_check_version">Check for update</string>
     <string name="pref_build_time">Build time</string>
+    <string name="open_source_licence">open source licence</string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_user_details">User details</string>
 

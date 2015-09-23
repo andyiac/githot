@@ -44,4 +44,8 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="custom_theme" parent="android:Theme.DeviceDefault.Light.Dialog">
+        <item name="android:textColor">#FF00DFFF</item>
+    </style>
+
 </resources>
