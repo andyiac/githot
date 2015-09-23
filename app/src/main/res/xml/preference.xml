@@ -18,7 +18,7 @@
             android:title="Build time" />
         <Preference
             android:key="@string/open_source_licence"
-            android:title="Build time" />
+            android:title="Open source licence" />
 
     </PreferenceCategory>
 </PreferenceScreen>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright 2013 Philip Schiffer
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+<notices>
+    <notice>
+        <name>Apache Commons IO</name>
+        <url>http://commons.apache.org/io/</url>
+        <copyright>Copyright 2002-2012 The Apache Software Foundation</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+  <!--  <notice>
+        <name>Application Crash Reporting for Android (ACRA)</name>
+        <url>http://acra.ch/</url>
+        <copyright>Copyright 2010 Emmanuel Astier &amp; Kevin Gaudin</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+
+    <notice>
+        <name>OrmLite</name>
+        <url>http://ormlite.com/</url>
+        <copyright>Copyright Gray Watson</copyright>
+        <license>ISC License</license>
+    </notice>
+
+
+    <notice>
+        <name>Apache Commons Lang</name>
+        <url>https://github.com/jgilfelt/SystemBarTint</url>
+        <copyright>Copyright 2013 readyState Software Limited</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>-->
+
+    <notice>
+        <name>PhotoView</name>
+        <url>https://github.com/chrisbanes/PhotoView</url>
+        <copyright>Copyright 2011, 2012 Chris Banes.</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <notice>
+        <name>stetho</name>
+        <url>https://github.com/facebook/stetho</url>
+        <copyright>(c) 2012 Martin van Zuilekom (http://martin.cubeactive.com)</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <notice>
+        <name>RxJava</name>
+        <url>https://github.com/ReactiveX/RxJava</url>
+        <copyright>Copyright 2013 Netflix, Inc.</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <notice>
+        <name>RxAndroid</name>
+        <url>https://github.com/ReactiveX/RxAndroid</url>
+        <copyright>Copyright 2015 The RxAndroid authors </copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>dagger</name>
+        <url>https://github.com/square/dagger</url>
+        <copyright>Copyright 2013 Square, Inc.</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>retrofit</name>
+        <url>https://github.com/square/retrofit</url>
+        <copyright>Copyright 2013 Square, Inc.</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>okhttp</name>
+        <url>https://github.com/square/okhttp</url>
+        <copyright>Copyright 2013 Square, Inc.</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>material-ripple</name>
+        <url>https://github.com/balysv/material-ripple</url>
+        <copyright>Copyright 2015 Balys Valentukevicius</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+   <!-- <notice>
+        <name>Cool Project with BSD License</name>
+        <url>http://example.com</url>
+        <copyright>Author of Cool Project with BSD License</copyright>
+        <license>BSD 3-Clause License</license>
+    </notice>-->
+
+</notices>
