@@ -1,8 +1,11 @@
 package com.knight.arch.ui;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.knight.arch.R;
 import com.knight.arch.module.SettingsModule;
@@ -32,15 +35,26 @@ public class SettingsActivity extends InjectableActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        initView();
+    }
+
+    private void initView() {
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.hot_repos_toolbar);
+        setSupportActionBar(mToolbar);
+
+        final ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setHomeAsUpIndicator(R.mipmap.ic_back_arrow);
+//            ab.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        L.e("===========back key========" + item.getItemId() + "\n" + android.R.id.home);
         if (item.getItemId() == android.R.id.home) {
             KeyBoardTools.actionKey(KeyEvent.KEYCODE_BACK);
-            L.e("===========back key========");
             return true;
         }
         return super.onOptionsItemSelected(item);

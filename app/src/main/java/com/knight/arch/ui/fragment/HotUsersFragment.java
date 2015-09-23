@@ -1,5 +1,6 @@
 package com.knight.arch.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,7 @@ import java.util.List;
  * @web http://blog.andyiac.com
  * @github https://github.com/andyiac
  */
+@SuppressLint("ValidFragment")
 public class HotUsersFragment extends BaseFragment {
 
     private AppCompatActivity context;
