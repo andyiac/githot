@@ -68,6 +68,7 @@ public class HotUsersFragment extends BaseFragment {
 
     }
 
+
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
         adapter.addFragment(new RankingFragment(), "China All");

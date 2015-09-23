@@ -38,6 +38,7 @@ public class SettingsActivity extends InjectableActivity {
 
         super.onCreate(savedInstanceState);
         initView();
+        setStatusColor(android.R.color.transparent);
     }
 
     private void initView() {
@@ -47,7 +48,7 @@ public class SettingsActivity extends InjectableActivity {
         final ActionBar ab = getSupportActionBar();
         if (ab != null) {
             ab.setHomeAsUpIndicator(R.mipmap.ic_back_arrow);
-//            ab.setDisplayHomeAsUpEnabled(true);
+            ab.setDisplayHomeAsUpEnabled(true);
         }
     }
 
