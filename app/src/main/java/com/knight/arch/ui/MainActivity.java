@@ -41,20 +41,7 @@ public class MainActivity extends InjectableActivity {
         return R.layout.activity_main;
     }
 
-
     private void initView() {
-
-/*
- Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-
-        setSupportActionBar(mToolbar);
-        final ActionBar ab = getSupportActionBar();
-        if (ab != null) {
-            ab.setHomeAsUpIndicator(R.mipmap.ic_menu);
-            ab.setDisplayHomeAsUpEnabled(true);
-        }
-*/
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -62,10 +49,9 @@ public class MainActivity extends InjectableActivity {
         if (navigationView != null) {
             setupDrawerContent(navigationView);
         }
-        selectFragment(R.id.nav_user_china);
+        selectFragment(R.id.nav_repositories);
 
     }
-
 
     //=============================================================================
     @Override
@@ -92,7 +78,6 @@ public class MainActivity extends InjectableActivity {
             startActivity(intent);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

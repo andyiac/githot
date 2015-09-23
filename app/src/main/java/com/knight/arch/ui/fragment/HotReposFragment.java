@@ -38,7 +38,6 @@ public class HotReposFragment extends BaseFragment {
         setStatusColor(android.R.color.transparent);
         View view = inflater.inflate(R.layout.fragment_hot_repos_main2, container, false);
         initView(view);
-
         return view;
     }
 
