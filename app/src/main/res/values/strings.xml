@@ -22,4 +22,6 @@
     the big cheese.</string>
     <string name="title_activity_repos">HotRepos</string>
     <string name="title_activity_repos_details">Repos Details</string>
+    <string name="pref_current_version">Current version</string>
+    <string name="pref_source_code_address">Source code address</string>
 </resources>

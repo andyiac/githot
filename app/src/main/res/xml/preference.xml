@@ -1,7 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory android:title="Links">
+        <Preference
+            android:summary="http://www.githot.cn"
+            android:title="GitHot">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.githot.cn" />
+        </Preference>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Thanks">
+        <Preference
+            android:summary="for the icon design"
+            android:title="imxhf">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.github.com/imxhf" />
+        </Preference>
+        <Preference
+            android:summary="for official web design"
+            android:title="Xing AiBin">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://328817293.lofter.com/" />
+
+        </Preference>
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="About">
+
+        <Preference
+            android:key="@string/pref_check_version"
+            android:summary="check for update form fir.im manually"
+            android:title="Check for update">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://fir.im/githot" />
+        </Preference>
+
+        <Preference
+            android:key="@string/pref_build_time"
+            android:title="Build time" />
+
         <Preference
             android:summary="andyiac"
             android:title="Author">
@@ -11,11 +53,13 @@
         </Preference>
 
         <Preference
-            android:key="@string/pref_check_version"
-            android:title="Check for update" />
-        <Preference
-            android:key="@string/pref_build_time"
-            android:title="Build time" />
+            android:key="@string/pref_source_code_address"
+            android:title="SourceCode@GitHub">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/andyiac/githot" />
+        </Preference>
+
         <Preference
             android:key="@string/open_source_licence"
             android:title="Open source licence" />
