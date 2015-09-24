@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 
 import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
@@ -15,6 +17,7 @@ import com.knight.arch.model.Repository;
 import com.knight.arch.module.ReposDetailsModule;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.misc.DividerItemDecoration;
+import com.knight.arch.utils.KeyBoardTools;
 import com.knight.arch.utils.L;
 
 import java.util.ArrayList;
@@ -80,6 +83,7 @@ public class ReposDetailsActivity extends InjectableActivity {
         if (ab != null) {
             ab.setHomeAsUpIndicator(R.mipmap.ic_back_arrow);
             ab.setDisplayHomeAsUpEnabled(true);
+            ab.setTitle(mRepository.getName());
         }
 
         adapter = new HotReposDetailsListAdapterHolder(this, mReposData);
@@ -92,6 +96,17 @@ public class ReposDetailsActivity extends InjectableActivity {
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST, paddingStart, false));
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            KeyBoardTools.actionKey(KeyEvent.KEYCODE_BACK);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

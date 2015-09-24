@@ -3,11 +3,14 @@ package com.knight.arch.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,6 +21,7 @@ import com.knight.arch.model.Repository;
 import com.knight.arch.module.UserDetailsModule;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.misc.DividerItemDecoration;
+import com.knight.arch.utils.KeyBoardTools;
 import com.knight.arch.utils.L;
 
 import java.util.ArrayList;
@@ -151,6 +155,17 @@ public class UserDetailsActivity extends InjectableActivity {
                 .subscribe(repositoryObserver);
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            KeyBoardTools.actionKey(KeyEvent.KEYCODE_BACK);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     public void setRefreshing(boolean refreshing) {
         if (mSwipeRefreshLayout == null) {
