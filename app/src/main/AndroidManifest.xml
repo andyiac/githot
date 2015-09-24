@@ -23,15 +23,10 @@
 
         <activity
             android:name=".ui.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".ui.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity" />
-        </activity>
+            android:label="@string/title_activity_settings" />
         <activity
             android:name=".ui.UserDetailsActivity"
-            android:label="@string/title_activity_user_details"/>
+            android:label="@string/title_activity_user_details" />
 
         <activity
             android:name=".ui.ReposDetailsActivity"
