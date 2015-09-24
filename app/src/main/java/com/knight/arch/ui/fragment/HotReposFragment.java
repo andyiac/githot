@@ -36,23 +36,13 @@ public class HotReposFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        setStatusColor(android.R.color.transparent);
+//        setStatusColor(android.R.color.transparent);
         View view = inflater.inflate(R.layout.fragment_hot_repos_main2, container, false);
         initView(view);
         return view;
     }
 
     private void initView(View view) {
-/*
-        Toolbar mToolbar = (Toolbar) view.findViewById(R.id.hot_repos_toolbar);
-        context.setSupportActionBar(mToolbar);
-
-        final ActionBar ab = context.getSupportActionBar();
-        if (ab != null) {
-            ab.setHomeAsUpIndicator(R.mipmap.ic_menu);
-            ab.setDisplayHomeAsUpEnabled(true);
-        }
-*/
 
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.hot_repos_fragment_viewpager);

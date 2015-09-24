@@ -3,7 +3,6 @@ package com.knight.arch.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -47,6 +46,9 @@ public class MainActivity extends InjectableActivity {
     }
 
     private void initView() {
+
+//        setStatusColor(android.R.color.transparent);
+
         Toolbar mToolbar = (Toolbar) findViewById(R.id.id_main_toolbar);
         setSupportActionBar(mToolbar);
 
