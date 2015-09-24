@@ -32,6 +32,7 @@ public class MainActivity extends InjectableActivity {
     private HotUsersFragment hotUsersFragment;
     private HotReposFragment hotReposFragment;
     private DrawerLayout mDrawerLayout;
+    private ActionBar ab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +50,8 @@ public class MainActivity extends InjectableActivity {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.id_main_toolbar);
         setSupportActionBar(mToolbar);
 
-//        mTabLayout = (TabLayout) findViewById(R.id.id_main_tabs);
 
-        final ActionBar ab = getSupportActionBar();
+        ab = getSupportActionBar();
         if (ab != null) {
             ab.setHomeAsUpIndicator(R.mipmap.ic_menu);
             ab.setDisplayHomeAsUpEnabled(true);
@@ -122,6 +122,7 @@ public class MainActivity extends InjectableActivity {
                 if (hotUsersFragment == null) {
                     hotUsersFragment = new HotUsersFragment();
                     // todo diff with transaction.replace() ?
+                    ab.setTitle("Hot users");
                     transaction.add(R.id.id_main_frame_container, hotUsersFragment, "hotUser");
                 } else {
                     transaction.show(hotUsersFragment);
@@ -131,6 +132,7 @@ public class MainActivity extends InjectableActivity {
             case R.id.nav_repositories:
                 if (hotReposFragment == null) {
                     hotReposFragment = new HotReposFragment();
+                    ab.setTitle("Hot Repositories");
                     transaction.add(R.id.id_main_frame_container, hotReposFragment, "hotRepos");
                 } else {
                     transaction.show(hotReposFragment);
