@@ -30,10 +30,9 @@ import java.util.List;
 @SuppressLint("ValidFragment")
 public class HotUsersFragment extends BaseFragment {
 
-    private AppCompatActivity context;
+    private TabLayout mTabLayout;
 
-    public HotUsersFragment(AppCompatActivity activity) {
-        this.context = activity;
+    public HotUsersFragment() {
     }
 
     @Override
@@ -45,6 +44,7 @@ public class HotUsersFragment extends BaseFragment {
     }
 
     private void initView(View view) {
+/*
         Toolbar mToolbar = (Toolbar) view.findViewById(R.id.hot_users_toolbar);
         context.setSupportActionBar(mToolbar);
 
@@ -54,16 +54,18 @@ public class HotUsersFragment extends BaseFragment {
             ab.setHomeAsUpIndicator(R.mipmap.ic_menu);
             ab.setDisplayHomeAsUpEnabled(true);
         }
+*/
+
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.hot_user_fragment_viewpager);
         if (viewPager != null) {
             setupViewPager(viewPager);
         }
 
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.hot_users_tabs);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        mTabLayout = (TabLayout) view.findViewById(R.id.hot_users_tabs);
+        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         if (viewPager != null) {
-            tabLayout.setupWithViewPager(viewPager);
+            mTabLayout.setupWithViewPager(viewPager);
         }
 
     }

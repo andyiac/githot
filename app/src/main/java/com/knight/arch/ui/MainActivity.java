@@ -3,10 +3,13 @@ package com.knight.arch.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -36,12 +39,23 @@ public class MainActivity extends InjectableActivity {
         initView();
     }
 
+
     @Override
     protected int provideContentViewId() {
         return R.layout.activity_main;
     }
 
     private void initView() {
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.id_main_toolbar);
+        setSupportActionBar(mToolbar);
+
+//        mTabLayout = (TabLayout) findViewById(R.id.id_main_tabs);
+
+        final ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setHomeAsUpIndicator(R.mipmap.ic_menu);
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -49,7 +63,7 @@ public class MainActivity extends InjectableActivity {
         if (navigationView != null) {
             setupDrawerContent(navigationView);
         }
-        selectFragment(R.id.nav_repositories);
+        selectFragment(R.id.nav_user_china);
 
     }
 
@@ -106,7 +120,7 @@ public class MainActivity extends InjectableActivity {
         switch (fragmentId) {
             case R.id.nav_user_china:
                 if (hotUsersFragment == null) {
-                    hotUsersFragment = new HotUsersFragment(this);
+                    hotUsersFragment = new HotUsersFragment();
                     // todo diff with transaction.replace() ?
                     transaction.add(R.id.id_main_frame_container, hotUsersFragment, "hotUser");
                 } else {
@@ -116,7 +130,7 @@ public class MainActivity extends InjectableActivity {
 
             case R.id.nav_repositories:
                 if (hotReposFragment == null) {
-                    hotReposFragment = new HotReposFragment(this);
+                    hotReposFragment = new HotReposFragment();
                     transaction.add(R.id.id_main_frame_container, hotReposFragment, "hotRepos");
                 } else {
                     transaction.show(hotReposFragment);

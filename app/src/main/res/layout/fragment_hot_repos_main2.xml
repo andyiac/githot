@@ -14,35 +14,41 @@
   ~ limitations under the License.
   -->
 
+<!--
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
+    <!-- <android.support.design.widget.AppBarLayout
+         android:id="@+id/appbar"
+         android:layout_width="match_parent"
+         android:fitsSystemWindows="true"
+         android:layout_height="wrap_content"
+         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+         <android.support.v7.widget.Toolbar
+             android:id="@+id/hot_repos_toolbar"
+             android:layout_width="match_parent"
+             android:layout_height="?attr/actionBarSize"
+             android:background="?attr/colorPrimary"
+             app:layout_scrollFlags="scroll|enterAlways"
+             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+
+     </android.support.design.widget.AppBarLayout>-->
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/hot_repos_tabs"
+        style="@style/MyCustomTabLayout"
         android:layout_width="match_parent"
-        android:fitsSystemWindows="true"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/hot_repos_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/hot_repos_tabs"
-            style="@style/MyCustomTabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabIndicatorHeight="4dp" />
-
-    </android.support.design.widget.AppBarLayout>
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:tabIndicatorHeight="4dp" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/hot_repos_fragment_viewpager"
@@ -51,4 +57,4 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

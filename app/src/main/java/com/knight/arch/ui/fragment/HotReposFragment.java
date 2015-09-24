@@ -29,10 +29,9 @@ import java.util.List;
 @SuppressLint("ValidFragment")
 public class HotReposFragment extends BaseFragment {
 
-    private AppCompatActivity context;
+    private TabLayout mTabLayout;
 
-    public HotReposFragment(AppCompatActivity activity) {
-        this.context = activity;
+    public HotReposFragment() {
     }
 
     @Override
@@ -44,6 +43,7 @@ public class HotReposFragment extends BaseFragment {
     }
 
     private void initView(View view) {
+/*
         Toolbar mToolbar = (Toolbar) view.findViewById(R.id.hot_repos_toolbar);
         context.setSupportActionBar(mToolbar);
 
@@ -52,16 +52,18 @@ public class HotReposFragment extends BaseFragment {
             ab.setHomeAsUpIndicator(R.mipmap.ic_menu);
             ab.setDisplayHomeAsUpEnabled(true);
         }
+*/
+
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.hot_repos_fragment_viewpager);
         if (viewPager != null) {
             setupViewPager(viewPager);
         }
 
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.hot_repos_tabs);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        mTabLayout = (TabLayout) view.findViewById(R.id.hot_repos_tabs);
+        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         if (viewPager != null) {
-            tabLayout.setupWithViewPager(viewPager);
+            mTabLayout.setupWithViewPager(viewPager);
         }
     }
 
