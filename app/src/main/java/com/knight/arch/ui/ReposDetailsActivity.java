@@ -66,6 +66,7 @@ public class ReposDetailsActivity extends InjectableActivity {
     private void initData() {
         mReposData.add(new ReposKV("repository name", mRepository.getName()));
         mReposData.add(new ReposKV("description", mRepository.getDescription()));
+        mReposData.add(new ReposKV("is fork", "" + mRepository.isFork()));
         mReposData.add(new ReposKV("stars", String.valueOf(mRepository.getStargazers_count())));
         mReposData.add(new ReposKV("language", String.valueOf(mRepository.getLanguage())));
         mReposData.add(new ReposKV("clone url", String.valueOf(mRepository.getClone_url())));
