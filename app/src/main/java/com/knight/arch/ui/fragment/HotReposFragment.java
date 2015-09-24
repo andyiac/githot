@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.knight.arch.R;
 import com.knight.arch.ui.base.BaseFragment;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,17 @@ public class HotReposFragment extends BaseFragment {
     private TabLayout mTabLayout;
 
     public HotReposFragment() {
+    }
+
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("HotReposFragment"); //统计页面
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("HotReposFragment");
     }
 
     @Override

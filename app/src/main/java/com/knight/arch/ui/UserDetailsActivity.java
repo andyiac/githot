@@ -23,6 +23,7 @@ import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.KeyBoardTools;
 import com.knight.arch.utils.L;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,6 +74,16 @@ public class UserDetailsActivity extends InjectableActivity {
             mAdapter.notifyDataSetChanged();
         }
     };
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected int provideContentViewId() {

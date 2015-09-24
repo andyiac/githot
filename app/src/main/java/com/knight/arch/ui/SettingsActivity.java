@@ -12,6 +12,7 @@ import com.knight.arch.module.SettingsModule;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.utils.KeyBoardTools;
 import com.knight.arch.utils.L;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,6 +32,16 @@ public class SettingsActivity extends InjectableActivity {
     @Override
     protected int provideContentViewId() {
         return R.layout.activity_setting;
+    }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

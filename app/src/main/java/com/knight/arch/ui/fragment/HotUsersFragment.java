@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.knight.arch.R;
 import com.knight.arch.ui.base.BaseFragment;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,12 +36,25 @@ public class HotUsersFragment extends BaseFragment {
     public HotUsersFragment() {
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hot_users_main2, container, false);
         initView(view);
         return view;
     }
+
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("HotUsersFragment"); //统计页面
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("HotUsersFragment");
+    }
+
 
     private void initView(View view) {
 

@@ -17,6 +17,7 @@ import com.knight.arch.module.HomeModule;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.fragment.HotReposFragment;
 import com.knight.arch.ui.fragment.HotUsersFragment;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,6 +40,15 @@ public class MainActivity extends InjectableActivity {
         initView();
     }
 
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected int provideContentViewId() {

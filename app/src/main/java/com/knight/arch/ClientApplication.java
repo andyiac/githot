@@ -7,6 +7,7 @@ import com.knight.arch.module.AppModule;
 import com.knight.arch.module.Injector;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +29,11 @@ public class ClientApplication extends Application implements Injector {
         initStetho();
         initLogger();
         initDagger();
+        initUmeng();
+    }
+
+    private void initUmeng() {
+        MobclickAgent.openActivityDurationTrack(false);
     }
 
 
