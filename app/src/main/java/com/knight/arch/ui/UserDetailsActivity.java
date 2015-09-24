@@ -2,9 +2,12 @@ package com.knight.arch.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -88,6 +91,18 @@ public class UserDetailsActivity extends InjectableActivity {
 
 
     private void initView() {
+
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.id_user_details_toobar);
+        setSupportActionBar(mToolbar);
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setHomeAsUpIndicator(R.mipmap.ic_back_arrow);
+            ab.setDisplayHomeAsUpEnabled(true);
+            ab.setTitle(mCurrentUser);
+
+        }
+
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.id_hot_repos_swipe_refresh_layout);
         //设置卷内的颜色
         mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,

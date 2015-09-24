@@ -2,8 +2,10 @@ package com.knight.arch.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
@@ -71,6 +73,14 @@ public class ReposDetailsActivity extends InjectableActivity {
     }
 
     private void initView() {
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.id_repos_details_toobar);
+        setSupportActionBar(mToolbar);
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setHomeAsUpIndicator(R.mipmap.ic_back_arrow);
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
 
         adapter = new HotReposDetailsListAdapterHolder(this, mReposData);
         mRecyclerView = (RecyclerView) findViewById(R.id.id_repos_details_recycler_view);
@@ -80,6 +90,8 @@ public class ReposDetailsActivity extends InjectableActivity {
 
         float paddingStart = getResources().getDimension(R.dimen.repos_hot_divider_padding_start);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST, paddingStart, false));
+
+
     }
 
 }

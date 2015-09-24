@@ -25,36 +25,17 @@
             android:name=".ui.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".ui.MainActivity">
-
-            <!--
-                        android:theme="@style/AppTheme.Design.ActionBar"
-            -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
         <activity
             android:name=".ui.UserDetailsActivity"
-            android:label="@string/title_activity_user_details"
-            android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme.Design.ActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity" />
-        </activity>
-
+            android:label="@string/title_activity_user_details"/>
 
         <activity
             android:name=".ui.ReposDetailsActivity"
-            android:label="@string/title_activity_repos_details"
-            android:theme="@style/AppTheme.Design.ActionBar">
-
-            <!--android:parentActivityName=".ui.HotReposActivity"
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity" />
-            -->
-        </activity>
+            android:label="@string/title_activity_repos_details" />
 
 
     </application>
