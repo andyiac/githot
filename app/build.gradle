@@ -5,7 +5,10 @@ def buildTime = new Date().format("yyyy-MM-dd HH:mm", TimeZone.getTimeZone("GMT+
 def versionMajor = 1
 def versionMinor = 0
 def versionPatch = 2
-def versionBuild = 0 // bump for dogfood builds, public betas, etc.
+def versionBuild = 0// bump for dogfood builds, public betas, etc.
+
+def firApplicationId = "55fd648a00fc7453bd000002"
+def firApiToken = "e9643ae1e41c57d6d829504ce8f9f90a"
 
 android {
     compileSdkVersion 22
@@ -18,6 +21,8 @@ android {
 
 
         buildConfigField "String", "BUILD_TIME", "\"${buildTime}\""
+        buildConfigField "String", "FIR_APPLICATION_ID", "\"${firApplicationId}\""
+        buildConfigField "String", "FIR_API_TOKEN", "\"${firApiToken}\""
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
     }

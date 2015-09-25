@@ -36,7 +36,7 @@
             android:name=".ui.ReposDetailsActivity"
             android:label="@string/title_activity_repos_details" />
 
-        <meta-data android:value="YOUR_APP_KEY" android:name="56039a6d67e58e15e500255d"/>
+        <meta-data android:value="56039a6d67e58e15e500255d" android:name="UMENG_APPKEY"/>
         <meta-data android:value="fir.im" android:name="UMENG_CHANNEL"/>
 
     </application>

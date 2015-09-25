@@ -9,3 +9,7 @@ https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars
 
 # user repos api
 https://api.github.com/users/elastic/repos
+
+
+# check update from fir.im
+http://api.fir.im/apps/latest/55fd648a00fc7453bd000002?api_token=e9643ae1e41c57d6d829504ce8f9f90a

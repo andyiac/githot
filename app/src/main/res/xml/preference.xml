@@ -35,9 +35,11 @@
             android:key="@string/pref_check_version"
             android:summary="check for update form fir.im manually"
             android:title="Check for update">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="http://fir.im/githot" />
+
+            <!--            <intent
+                            android:action="android.intent.action.VIEW"
+                            android:data="http://fir.im/githot" />
+             -->
         </Preference>
 
         <Preference

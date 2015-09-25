@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.knight.arch.BuildConfig;
 import com.knight.arch.R;
 import com.knight.arch.api.ApiService;
+import com.knight.arch.api.FirService;
 import com.knight.arch.utils.L;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.OkHttpClient;
@@ -113,6 +114,20 @@ public class DataModule {
 //                .setEndpoint("http://123.59.50.76")
                 .setEndpoint("https://api.github.com")
                 .build();
+    }
+
+
+    @Provides
+    @Singleton
+    FirService provideFirService(Gson gson, OkHttpClient okHttpClient, ErrorHandler errorHandler) {
+        RestAdapter restAdapter = new RestAdapter.Builder()
+                .setErrorHandler(errorHandler)
+                .setClient(new OkClient(okHttpClient))
+                .setConverter(new GsonConverter(gson))
+                .setLogLevel(RestAdapter.LogLevel.BASIC)
+                .setEndpoint("http://api.fir.im")
+                .build();
+        return restAdapter.create(FirService.class);
     }
 
 
