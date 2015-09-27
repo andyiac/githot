@@ -33,7 +33,7 @@
 
         <Preference
             android:key="@string/pref_check_version"
-            android:summary="check for update form fir.im manually"
+            android:summary="current version "
             android:title="Check for update">
 
             <!--            <intent

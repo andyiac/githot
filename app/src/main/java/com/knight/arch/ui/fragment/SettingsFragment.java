@@ -62,15 +62,17 @@ public class SettingsFragment extends PreferenceFragment {
                     }
                 });
 
-        findPreference(getString(R.string.pref_check_version))
-                .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                    @Override
-                    public boolean onPreferenceClick(Preference preference) {
-                        checkVersion();
-                        return true;
-                    }
-                });
-//                .setSummary(getString(R.string.s_check_version, BuildConfig.VERSION_NAME));
+        Preference checkVersionPref = findPreference(getString(R.string.pref_check_version));
+
+        checkVersionPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                checkVersion();
+                return true;
+            }
+        });
+
+        checkVersionPref.setSummary(getString(R.string.s_check_version, BuildConfig.VERSION_NAME));
 
     }
 

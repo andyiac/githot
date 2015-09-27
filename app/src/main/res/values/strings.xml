@@ -24,7 +24,7 @@
     <string name="title_activity_repos_details">Repos Details</string>
     <string name="pref_current_version">Current version</string>
     <string name="pref_source_code_address">Source code address</string>
-    <string name="s_check_version">current : %s ,check for update from fir.im manually</string>
+    <string name="s_check_version">current : %s ,check for update</string>
     <string name="msg_checking_version">checking version</string>
     <string name="msg_this_is_latest_version">This is the latest version</string>
     <string name="title_new_version_found">New version found</string>

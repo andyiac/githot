@@ -11,7 +11,7 @@
     <application
         android:name="com.knight.arch.ClientApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/githot_launcher"
+        android:icon="@mipmap/githot_launcher_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
@@ -36,8 +36,12 @@
             android:name=".ui.ReposDetailsActivity"
             android:label="@string/title_activity_repos_details" />
 
-        <meta-data android:value="56039a6d67e58e15e500255d" android:name="UMENG_APPKEY"/>
-        <meta-data android:value="fir.im" android:name="UMENG_CHANNEL"/>
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="56039a6d67e58e15e500255d" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="fir.im" />
 
     </application>
 
