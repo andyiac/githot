@@ -6,8 +6,10 @@ GitHot is an Android App that will help you find world most popular project and 
 Official website [http://githot.cn](http://githot.cn) ,and the web version is incoming .
 
 
-Besides, you can get iOS version [Monkey](https://github.com/coderyi/Monkey) by [coderyi](https://github.com/coderyi) from [itunes](https://itunes.apple.com/cn/app/monkey-for-github/id1003765407)
+Besides, you can get iOS version [Monkey](https://github.com/coderyi/Monkey) by [coderyi](https://github.com/coderyi) from [itunes](https://itunes.apple.com/cn/app/monkey-for-github/id1003765407) .
 
+
+Try githot from fir [link](http://fir.im/githot)
 
 
 ## Screenshots
@@ -36,6 +38,9 @@ Nowadays i am refactor GitHot architecture with dagger2，and it will coming soo
 
 thanks for linroid's [Sky31Radio](https://github.com/linroid/Sky31Radio) awesome design
 
+## Notice
+
+If you build you own version of githot please change the UMENG_KEY in the AndroidManifest.xml
 
 ## License
 
