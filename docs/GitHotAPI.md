@@ -4,7 +4,7 @@
 
 - repos 排序使用API
 	
-	按照Java,C,Objective-C,csharp,Python,PHP,JavaScript,Ruby进行分类
+	按照Java,C,Objective-C,Swift,csharp,Python,PHP,JavaScript,Ruby进行分类
 	
 	github默认按照start量进行排序，各个语言排序接口如下：
 
@@ -37,7 +37,7 @@
 ## Users
 - users 排序使用API
 
-	按照Java,C,Objective-C,csharp,Python,PHP,JavaScript,Ruby进行分类
+	按照Java,C,Objective-C,Swift,csharp,Python,PHP,JavaScript,Ruby进行分类
 
 		https://api.github.com/search/users?q=location:china&page=1
 		https://api.github.com/search/users?q=language:Java+followers:>500&page=1

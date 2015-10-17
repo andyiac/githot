@@ -75,6 +75,7 @@ public class HotUsersMainFragment extends BaseFragment {
         adapter.addFragment(new RankingUsersFragment("language:Java"), "Java");
         adapter.addFragment(new RankingUsersFragment("language:C"), "C");
         adapter.addFragment(new RankingUsersFragment("language:Objective-C"), "Objective-C");
+        adapter.addFragment(new RankingUsersFragment("language:swift"), "Swift");
         adapter.addFragment(new RankingUsersFragment("language:csharp"), "C#");
         adapter.addFragment(new RankingUsersFragment("language:Python"), "Python");
         adapter.addFragment(new RankingUsersFragment("language:PHP"), "PHP");
