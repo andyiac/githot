@@ -3,9 +3,8 @@
 # RxJava
     使用RxJava感觉比默认的方式还不简洁
 
-# Dagger
+# Dagger2!
 
-# EventBus
 
 # gradle 多渠道发布
 
@@ -25,3 +24,6 @@ https://github.com/aosp-exchange-group/share
 
 # gradle
 gradle (multi channel release)
+
+# Repos trending
+- todo

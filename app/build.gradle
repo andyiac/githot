@@ -67,5 +67,4 @@ dependencies {
 
     compile 'com.umeng.analytics:analytics:latest.integration'
 
-//    compile files('libs/litepal-1.2.0-src.jar')
 }
