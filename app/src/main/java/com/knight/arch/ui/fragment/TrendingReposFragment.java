@@ -1,105 +1,193 @@
 package com.knight.arch.ui.fragment;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
-import com.knight.arch.ui.base.BaseFragment;
-import com.umeng.analytics.MobclickAgent;
+import com.knight.arch.adapter.HotReposListAdapterHolder;
+import com.knight.arch.api.ReposTrendingApiService;
+import com.knight.arch.model.Repository;
+import com.knight.arch.ui.ReposDetailsActivity;
+import com.knight.arch.ui.base.InjectableFragment;
+import com.knight.arch.ui.misc.DividerItemDecoration;
+import com.knight.arch.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import rx.Observer;
+import rx.android.app.AppObservable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+
 /**
  * @author andyiac
- * @date 15-10-16
+ * @date 15-10-17
  * @web http://blog.andyiac.com
  * @github https://github.com/andyiac
  */
 @SuppressLint("ValidFragment")
-public class TrendingReposFragment extends BaseFragment {
+public class TrendingReposFragment extends InjectableFragment {
 
-    private TabLayout mTabLayout;
+    @Inject
+    ReposTrendingApiService apiService;
 
-    public TrendingReposFragment() {
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private RecyclerView mRecyclerView;
+    private List<Repository> mRepos = new ArrayList<>();
+    private HotReposListAdapterHolder mAdapter;
+    private String mSince = "daily";
+    private String mLanguage;
+
+    private LinearLayoutManager mLinearLayoutManager;
+    private int lastVisibleItem;
+
+    public TrendingReposFragment(String language ) {
+        this.mLanguage = language;
     }
 
 
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onPageStart("TrendingReposFragment"); //统计页面
+    Observer<List<Repository>> repositoryObserver = new Observer<List<Repository>>() {
+        @Override
+        public void onCompleted() {
+            setRefreshing(false);
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            setRefreshing(false);
+            Toast.makeText(getActivity(), "server unreachable try again later", Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void onNext(List<Repository> repositoryRepositories) {
+            setRefreshing(false);
+            mRepos.addAll(repositoryRepositories);
+            mAdapter.notifyDataSetChanged();
+
+        }
+    };
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        fetchData(mLanguage, mSince);
     }
 
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPageEnd("TrendingReposFragment");
+    private void fetchData(String query, String since) {
+        AppObservable.bindFragment(this,apiService.getTrendingRepositories(query,since))
+                .map(new Func1<List<Repository>, List<Repository>>() {
+                    @Override
+                    public List<Repository> call(List<Repository> repositories) {
+                        L.i(JSON.toJSONString(repositories));
+                        return repositories;
+                    }
+                }).subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(repositoryObserver);
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        setStatusColor(android.R.color.transparent);
-        View view = inflater.inflate(R.layout.fragment_hot_repos_main2, container, false);
+        View view = inflater.inflate(R.layout.hot_repository_fragment, container, false);
         initView(view);
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        float paddingStart = getActivity().getResources().getDimension(R.dimen.repos_hot_divider_padding_start);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST, paddingStart, safeIsRtl()));
+
+    }
+
     private void initView(View view) {
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.id_hot_repos_swipe_refresh_layout);
+        //设置卷内的颜色
+        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mRepos.clear();
+                mAdapter.notifyDataSetChanged();
+                fetchData(mLanguage, "daily");
+            }
+        });
+
+        mLinearLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.id_hot_repos_recycler_view);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mAdapter = new HotReposListAdapterHolder(getActivity(), mRepos);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount()) {
+
+                    Toast.makeText(getActivity(),"There is no more data !",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                lastVisibleItem = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
+            }
+        });
 
 
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.hot_repos_fragment_viewpager);
-        if (viewPager != null) {
-            setupViewPager(viewPager);
-        }
+        mAdapter.setOnItemClickListener(new HotReposListAdapterHolder.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), ReposDetailsActivity.class);
+                intent.putExtra("repos_data", mRepos.get(position));
+                startActivity(intent);
+            }
+        });
 
-        mTabLayout = (TabLayout) view.findViewById(R.id.hot_repos_tabs);
-        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        if (viewPager != null) {
-            mTabLayout.setupWithViewPager(viewPager);
-        }
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new RankingReposFragment("language:Java"), "Java");
-
-        viewPager.setAdapter(adapter);
+    private boolean safeIsRtl() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && isRtl();
     }
 
-    static class Adapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragments = new ArrayList<>();
-        private final List<String> mFragmentTitles = new ArrayList<>();
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private boolean isRtl() {
+        return getView().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+    }
 
-        public Adapter(FragmentManager fm) {
-            super(fm);
+    public void setRefreshing(boolean refreshing) {
+        if (mSwipeRefreshLayout == null) {
+            return;
         }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragments.add(fragment);
-            mFragmentTitles.add(title);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragments.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-
-            return mFragmentTitles.get(position);
+        if (!refreshing) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        } else {
+            mSwipeRefreshLayout.setRefreshing(true);
         }
     }
 }

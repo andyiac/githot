@@ -22,6 +22,9 @@
        <item
             android:id="@+id/nav_repositories"
             android:title="Hot Repositories" />
+        <item
+            android:id= "@+id/nav_trending_repos"
+            android:title="Trending Repositories" />
     </group>
 
     <!--  <item android:title="Sub items">

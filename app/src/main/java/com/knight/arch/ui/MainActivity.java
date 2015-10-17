@@ -15,8 +15,9 @@ import android.view.MenuItem;
 import com.knight.arch.R;
 import com.knight.arch.module.HomeModule;
 import com.knight.arch.ui.base.InjectableActivity;
-import com.knight.arch.ui.fragment.HotReposFragment;
-import com.knight.arch.ui.fragment.HotUsersFragment;
+import com.knight.arch.ui.fragment.HotReposMainFragment;
+import com.knight.arch.ui.fragment.HotUsersMainFragment;
+import com.knight.arch.ui.fragment.TrendingReposMainFragment;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.Arrays;
@@ -29,8 +30,10 @@ import java.util.List;
  */
 public class MainActivity extends InjectableActivity {
 
-    private HotUsersFragment hotUsersFragment;
-    private HotReposFragment hotReposFragment;
+    private HotUsersMainFragment hotUsersFragment;
+    private HotReposMainFragment hotReposFragment;
+    private TrendingReposMainFragment trendingReposMainFragment;
+
     private DrawerLayout mDrawerLayout;
     private ActionBar ab;
 
@@ -132,7 +135,7 @@ public class MainActivity extends InjectableActivity {
         switch (fragmentId) {
             case R.id.nav_user_china:
                 if (hotUsersFragment == null) {
-                    hotUsersFragment = new HotUsersFragment();
+                    hotUsersFragment = new HotUsersMainFragment();
                     // todo diff with transaction.replace() ?
                     ab.setTitle("Hot users");
                     transaction.add(R.id.id_main_frame_container, hotUsersFragment, "hotUser");
@@ -143,11 +146,20 @@ public class MainActivity extends InjectableActivity {
 
             case R.id.nav_repositories:
                 if (hotReposFragment == null) {
-                    hotReposFragment = new HotReposFragment();
+                    hotReposFragment = new HotReposMainFragment();
                     ab.setTitle("Hot Repositories");
                     transaction.add(R.id.id_main_frame_container, hotReposFragment, "hotRepos");
                 } else {
                     transaction.show(hotReposFragment);
+                }
+                break;
+            case R.id.nav_trending_repos:
+                if (trendingReposMainFragment == null) {
+                    trendingReposMainFragment = new TrendingReposMainFragment();
+                    ab.setTitle("Trending Repositories");
+                    transaction.add(R.id.id_main_frame_container, trendingReposMainFragment, "TrendingRepos");
+                } else {
+                    transaction.show(trendingReposMainFragment);
                 }
                 break;
         }

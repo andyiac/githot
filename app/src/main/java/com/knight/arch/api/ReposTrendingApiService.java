@@ -22,5 +22,5 @@ public interface ReposTrendingApiService {
 
     //http://trending.codehub-app.com/v2/trending?language=c&since=weekly
     @GET("/v2/trending")
-    Observable<Repositories<Repository>> getTrendingRepositories(@Query(value = "language") String language, @Query(value = "since") String since);
+    Observable<List<Repository>> getTrendingRepositories(@Query(value = "language") String language, @Query(value = "since") String since);
 }

@@ -20,27 +20,27 @@ import java.util.List;
 
 /**
  * @author andyiac
- * @date 15-9-9
+ * @date 15-10-16
  * @web http://blog.andyiac.com
  * @github https://github.com/andyiac
  */
 @SuppressLint("ValidFragment")
-public class HotReposFragment extends BaseFragment {
+public class TrendingReposMainFragment extends BaseFragment {
 
     private TabLayout mTabLayout;
 
-    public HotReposFragment() {
+    public TrendingReposMainFragment() {
     }
 
 
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart("HotReposFragment"); //统计页面
+        MobclickAgent.onPageStart("TrendingReposMainFragment"); //统计页面
     }
 
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd("HotReposFragment");
+        MobclickAgent.onPageEnd("TrendingReposMainFragment");
     }
 
     @Override
@@ -68,14 +68,14 @@ public class HotReposFragment extends BaseFragment {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new RankingReposFragment("language:Java"), "Java");
-        adapter.addFragment(new RankingReposFragment("language:C"), "C");
-        adapter.addFragment(new RankingReposFragment("language:Objective-C"), "Objective-C");
-        adapter.addFragment(new RankingReposFragment("language:csharp"), "C#");
-        adapter.addFragment(new RankingReposFragment("language:Python"), "Python");
-        adapter.addFragment(new RankingReposFragment("language:PHP"), "PHP");
-        adapter.addFragment(new RankingReposFragment("language:JavaScript"), "JavaScript");
-        adapter.addFragment(new RankingReposFragment("language:Ruby"), "Ruby");
+        adapter.addFragment(new TrendingReposFragment("java"), "Java");
+        adapter.addFragment(new TrendingReposFragment("c"), "C");
+        adapter.addFragment(new TrendingReposFragment("objective-c"), "Objective-C");
+        adapter.addFragment(new TrendingReposFragment("csharp"), "C#");
+        adapter.addFragment(new TrendingReposFragment("python"), "Python");
+        adapter.addFragment(new TrendingReposFragment("php"), "PHP");
+        adapter.addFragment(new TrendingReposFragment("javascript"), "JavaScript");
+        adapter.addFragment(new TrendingReposFragment("ruby"), "Ruby");
         viewPager.setAdapter(adapter);
     }
 

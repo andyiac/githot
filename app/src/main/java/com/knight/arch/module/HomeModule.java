@@ -4,6 +4,7 @@ import com.knight.arch.ui.MainActivity;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.fragment.RankingReposFragment;
 import com.knight.arch.ui.fragment.RankingUsersFragment;
+import com.knight.arch.ui.fragment.TrendingReposFragment;
 
 import dagger.Module;
 
@@ -18,9 +19,10 @@ import dagger.Module;
         injects = {
                 MainActivity.class,
                 RankingReposFragment.class,
-                RankingUsersFragment.class
-                //HotUsersFragment.class,
-                //HotReposFragment.class,
+                RankingUsersFragment.class,
+                TrendingReposFragment.class
+                //HotUsersMainFragment.class,
+                //HotReposMainFragment.class,
         }
 )
 public class HomeModule {
