@@ -71,6 +71,7 @@ public class HotReposMainFragment extends BaseFragment {
         adapter.addFragment(new RankingReposFragment("language:Java"), "Java");
         adapter.addFragment(new RankingReposFragment("language:C"), "C");
         adapter.addFragment(new RankingReposFragment("language:Objective-C"), "Objective-C");
+        adapter.addFragment(new RankingReposFragment("language:swift"), "Swift");
         adapter.addFragment(new RankingReposFragment("language:csharp"), "C#");
         adapter.addFragment(new RankingReposFragment("language:Python"), "Python");
         adapter.addFragment(new RankingReposFragment("language:PHP"), "PHP");

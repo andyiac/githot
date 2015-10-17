@@ -137,30 +137,31 @@ public class MainActivity extends InjectableActivity {
                 if (hotUsersFragment == null) {
                     hotUsersFragment = new HotUsersMainFragment();
                     // todo diff with transaction.replace() ?
-                    ab.setTitle("Hot users");
                     transaction.add(R.id.id_main_frame_container, hotUsersFragment, "hotUser");
                 } else {
                     transaction.show(hotUsersFragment);
                 }
+                ab.setTitle("Hot users");
                 break;
 
             case R.id.nav_repositories:
                 if (hotReposFragment == null) {
                     hotReposFragment = new HotReposMainFragment();
-                    ab.setTitle("Hot Repositories");
                     transaction.add(R.id.id_main_frame_container, hotReposFragment, "hotRepos");
                 } else {
                     transaction.show(hotReposFragment);
                 }
+                ab.setTitle("Hot Repositories");
                 break;
+
             case R.id.nav_trending_repos:
                 if (trendingReposMainFragment == null) {
                     trendingReposMainFragment = new TrendingReposMainFragment();
-                    ab.setTitle("Trending Repositories");
                     transaction.add(R.id.id_main_frame_container, trendingReposMainFragment, "TrendingRepos");
                 } else {
                     transaction.show(trendingReposMainFragment);
                 }
+                ab.setTitle("Trending Repositories");
                 break;
         }
         transaction.commit();
@@ -172,6 +173,9 @@ public class MainActivity extends InjectableActivity {
         }
         if (hotReposFragment != null) {
             transaction.hide(hotReposFragment);
+        }
+        if (trendingReposMainFragment != null) {
+            transaction.hide(trendingReposMainFragment);
         }
     }
 

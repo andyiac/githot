@@ -46,20 +46,19 @@ public class TrendingReposMainFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 //        setStatusColor(android.R.color.transparent);
-        View view = inflater.inflate(R.layout.fragment_hot_repos_main2, container, false);
+        View view = inflater.inflate(R.layout.fragment_trending_repos_main, container, false);
         initView(view);
         return view;
     }
 
     private void initView(View view) {
 
-
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.hot_repos_fragment_viewpager);
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.trending_repos_fragment_viewpager);
         if (viewPager != null) {
             setupViewPager(viewPager);
         }
 
-        mTabLayout = (TabLayout) view.findViewById(R.id.hot_repos_tabs);
+        mTabLayout = (TabLayout) view.findViewById(R.id.trending_repos_tabs);
         mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         if (viewPager != null) {
             mTabLayout.setupWithViewPager(viewPager);
@@ -71,6 +70,7 @@ public class TrendingReposMainFragment extends BaseFragment {
         adapter.addFragment(new TrendingReposFragment("java"), "Java");
         adapter.addFragment(new TrendingReposFragment("c"), "C");
         adapter.addFragment(new TrendingReposFragment("objective-c"), "Objective-C");
+        adapter.addFragment(new TrendingReposFragment("swift"), "Swift");
         adapter.addFragment(new TrendingReposFragment("csharp"), "C#");
         adapter.addFragment(new TrendingReposFragment("python"), "Python");
         adapter.addFragment(new TrendingReposFragment("php"), "PHP");

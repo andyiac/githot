@@ -96,7 +96,7 @@ public class TrendingReposFragment extends InjectableFragment {
                 .map(new Func1<List<Repository>, List<Repository>>() {
                     @Override
                     public List<Repository> call(List<Repository> repositories) {
-                        L.i(JSON.toJSONString(repositories));
+                        L.json(JSON.toJSONString(repositories));
                         return repositories;
                     }
                 }).subscribeOn(AndroidSchedulers.mainThread())
