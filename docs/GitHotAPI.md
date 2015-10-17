@@ -11,6 +11,7 @@
 		https://api.github.com/search/repositories?q=language:Java&page=1
 		https://api.github.com/search/repositories?q=language:C&page=1
 		https://api.github.com/search/repositories?q=language:Objective-C&page=1
+		https://api.github.com/search/repositories?q=language:swift&page=1
 		https://api.github.com/search/repositories?q=language:csharp&page=1
 		https://api.github.com/search/repositories?q=language:Python&page=1
 		https://api.github.com/search/repositories?q=language:PHP&page=1
