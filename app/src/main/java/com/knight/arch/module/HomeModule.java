@@ -2,8 +2,8 @@ package com.knight.arch.module;
 
 import com.knight.arch.ui.MainActivity;
 import com.knight.arch.ui.base.InjectableActivity;
-import com.knight.arch.ui.fragment.RankReposFragment;
-import com.knight.arch.ui.fragment.RankingFragment;
+import com.knight.arch.ui.fragment.RankingReposFragment;
+import com.knight.arch.ui.fragment.RankingUsersFragment;
 
 import dagger.Module;
 
@@ -17,8 +17,8 @@ import dagger.Module;
         complete = false,
         injects = {
                 MainActivity.class,
-                RankReposFragment.class,
-                RankingFragment.class
+                RankingReposFragment.class,
+                RankingUsersFragment.class
                 //HotUsersFragment.class,
                 //HotReposFragment.class,
         }

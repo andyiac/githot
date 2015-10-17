@@ -68,14 +68,8 @@ public class TrendingReposFragment extends BaseFragment {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new RankReposFragment("language:Java"), "Java");
-        adapter.addFragment(new RankReposFragment("language:C"), "C");
-        adapter.addFragment(new RankReposFragment("language:Objective-C"), "Objective-C");
-        adapter.addFragment(new RankReposFragment("language:csharp"), "C#");
-        adapter.addFragment(new RankReposFragment("language:Python"), "Python");
-        adapter.addFragment(new RankReposFragment("language:PHP"), "PHP");
-        adapter.addFragment(new RankReposFragment("language:JavaScript"), "JavaScript");
-        adapter.addFragment(new RankReposFragment("language:Ruby"), "Ruby");
+        adapter.addFragment(new RankingReposFragment("language:Java"), "Java");
+
         viewPager.setAdapter(adapter);
     }
 

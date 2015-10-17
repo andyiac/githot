@@ -46,7 +46,7 @@ import rx.functions.Func1;
  * @github https://github.com/andyiac
  */
 @SuppressLint("ValidFragment")
-public class RankingFragment extends InjectableFragment {
+public class RankingUsersFragment extends InjectableFragment {
 
     @Inject
     ApiService apiService;
@@ -86,10 +86,10 @@ public class RankingFragment extends InjectableFragment {
         }
     };
 
-    public RankingFragment() {
+    public RankingUsersFragment() {
     }
 
-    public RankingFragment(String query) {
+    public RankingUsersFragment(String query) {
         this.mQuery = query;
     }
 

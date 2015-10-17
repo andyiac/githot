@@ -7,9 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,14 +68,14 @@ public class HotReposFragment extends BaseFragment {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new RankReposFragment("language:Java"), "Java");
-        adapter.addFragment(new RankReposFragment("language:C"), "C");
-        adapter.addFragment(new RankReposFragment("language:Objective-C"), "Objective-C");
-        adapter.addFragment(new RankReposFragment("language:csharp"), "C#");
-        adapter.addFragment(new RankReposFragment("language:Python"), "Python");
-        adapter.addFragment(new RankReposFragment("language:PHP"), "PHP");
-        adapter.addFragment(new RankReposFragment("language:JavaScript"), "JavaScript");
-        adapter.addFragment(new RankReposFragment("language:Ruby"), "Ruby");
+        adapter.addFragment(new RankingReposFragment("language:Java"), "Java");
+        adapter.addFragment(new RankingReposFragment("language:C"), "C");
+        adapter.addFragment(new RankingReposFragment("language:Objective-C"), "Objective-C");
+        adapter.addFragment(new RankingReposFragment("language:csharp"), "C#");
+        adapter.addFragment(new RankingReposFragment("language:Python"), "Python");
+        adapter.addFragment(new RankingReposFragment("language:PHP"), "PHP");
+        adapter.addFragment(new RankingReposFragment("language:JavaScript"), "JavaScript");
+        adapter.addFragment(new RankingReposFragment("language:Ruby"), "Ruby");
         viewPager.setAdapter(adapter);
     }
 

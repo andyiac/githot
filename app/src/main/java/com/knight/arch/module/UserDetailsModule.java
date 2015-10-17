@@ -17,7 +17,7 @@ import dagger.Module;
         complete = false,
         injects = {
                 UserDetailsActivity.class
-//                RankingFragment.class
+//                RankingUsersFragment.class
         }
 )
 public class UserDetailsModule {

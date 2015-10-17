@@ -7,9 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,15 +71,15 @@ public class HotUsersFragment extends BaseFragment {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new RankingFragment(), "China All");
-        adapter.addFragment(new RankingFragment("language:Java"), "Java");
-        adapter.addFragment(new RankingFragment("language:C"), "C");
-        adapter.addFragment(new RankingFragment("language:Objective-C"), "Objective-C");
-        adapter.addFragment(new RankingFragment("language:csharp"), "C#");
-        adapter.addFragment(new RankingFragment("language:Python"), "Python");
-        adapter.addFragment(new RankingFragment("language:PHP"), "PHP");
-        adapter.addFragment(new RankingFragment("language:JavaScript"), "JavaScript");
-        adapter.addFragment(new RankingFragment("language:Ruby"), "Ruby");
+        adapter.addFragment(new RankingUsersFragment(), "China All");
+        adapter.addFragment(new RankingUsersFragment("language:Java"), "Java");
+        adapter.addFragment(new RankingUsersFragment("language:C"), "C");
+        adapter.addFragment(new RankingUsersFragment("language:Objective-C"), "Objective-C");
+        adapter.addFragment(new RankingUsersFragment("language:csharp"), "C#");
+        adapter.addFragment(new RankingUsersFragment("language:Python"), "Python");
+        adapter.addFragment(new RankingUsersFragment("language:PHP"), "PHP");
+        adapter.addFragment(new RankingUsersFragment("language:JavaScript"), "JavaScript");
+        adapter.addFragment(new RankingUsersFragment("language:Ruby"), "Ruby");
         viewPager.setAdapter(adapter);
     }
 
