@@ -18,13 +18,13 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_user_china"
-            android:title="Hot Users" />
+            android:title="Hot users" />
        <item
             android:id="@+id/nav_repositories"
-            android:title="Hot Repositories" />
+            android:title="Hot repositories" />
         <item
             android:id= "@+id/nav_trending_repos"
-            android:title="Trending Repositories" />
+            android:title="Trending repositories" />
     </group>
 
     <!--  <item android:title="Sub items">

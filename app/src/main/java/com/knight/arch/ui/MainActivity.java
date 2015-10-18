@@ -151,7 +151,7 @@ public class MainActivity extends InjectableActivity {
                 } else {
                     transaction.show(hotReposFragment);
                 }
-                ab.setTitle("Hot Repos");
+                ab.setTitle("Hot repos");
                 break;
 
             case R.id.nav_trending_repos:
@@ -161,7 +161,7 @@ public class MainActivity extends InjectableActivity {
                 } else {
                     transaction.show(trendingReposMainFragment);
                 }
-                ab.setTitle("Trending Repos");
+                ab.setTitle("Trending repos");
                 break;
         }
         transaction.commit();
