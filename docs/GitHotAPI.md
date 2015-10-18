@@ -23,7 +23,7 @@
 
 ## Trending repos
 
-- trending repos 使用了第三方的一个API
+- trending repos 使用了第三方的一个API(如有侵权请及时告知)
 
 		http://trending.codehub-app.com/trending
 		
@@ -57,7 +57,7 @@
 
 		https://api.github.com/users/andyiac/repos
 
-## check update 
+## Check for update 
 - 检查更新是通过使用 fir.im 提供的更新接口
 
 		http://api.fir.im/apps/latest/55fd648a00fc7453bd000002?api_token=e9643ae1e41c57d6d829504ce8f9f90a

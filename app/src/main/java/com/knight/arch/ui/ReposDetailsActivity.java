@@ -78,13 +78,15 @@ public class ReposDetailsActivity extends InjectableActivity {
         mReposData.add(new ReposKV("description", mRepository.getDescription()));
         mReposData.add(new ReposKV("is fork", "" + mRepository.isFork()));
         mReposData.add(new ReposKV("stars", String.valueOf(mRepository.getStargazers_count())));
+        mReposData.add(new ReposKV("forks",String.valueOf(mRepository.getForks_count())));
+        mReposData.add(new ReposKV("open issues",String.valueOf(mRepository.getOpen_issues_count())));
         mReposData.add(new ReposKV("language", String.valueOf(mRepository.getLanguage())));
         mReposData.add(new ReposKV("clone url", String.valueOf(mRepository.getClone_url())));
         mReposData.add(new ReposKV("owner", mRepository.getOwner().getLogin()));
         mReposData.add(new ReposKV("owner type", mRepository.getOwner().getType()));
         mReposData.add(new ReposKV("create at", mRepository.getCreated_at()));
         mReposData.add(new ReposKV("update at", mRepository.getUpdated_at()));
-    }
+   }
 
     private void initView() {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.id_repos_details_toobar);
