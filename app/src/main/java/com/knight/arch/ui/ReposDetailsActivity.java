@@ -11,7 +11,7 @@ import android.view.MenuItem;
 
 import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
-import com.knight.arch.adapter.HotReposDetailsListAdapterHolder;
+import com.knight.arch.ui.adapter.HotReposDetailsListAdapterHolder;
 import com.knight.arch.data.ReposKV;
 import com.knight.arch.model.Repository;
 import com.knight.arch.module.ReposDetailsModule;

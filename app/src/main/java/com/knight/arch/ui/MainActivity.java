@@ -18,7 +18,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import com.knight.arch.R;
-import com.knight.arch.adapter.TrendingReposTimeSpanAdapter;
+import com.knight.arch.ui.adapter.TrendingReposTimeSpanAdapter;
 import com.knight.arch.events.TrendingReposTimeSpanTextMsg;
 import com.knight.arch.module.HomeModule;
 import com.knight.arch.ui.base.InjectableActivity;
@@ -123,7 +123,9 @@ public class MainActivity extends InjectableActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
             setupDrawerContent(navigationView);
+            navigationView.setCheckedItem(R.id.nav_user_china);
         }
+
         selectFragment(R.id.nav_user_china);
     }
 

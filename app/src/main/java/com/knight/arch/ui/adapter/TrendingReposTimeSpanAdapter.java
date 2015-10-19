@@ -1,4 +1,4 @@
-package com.knight.arch.adapter;
+package com.knight.arch.ui.adapter;
 
 import android.app.Activity;
 import android.content.Context;

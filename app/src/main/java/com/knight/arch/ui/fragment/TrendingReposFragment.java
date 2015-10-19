@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.knight.arch.R;
-import com.knight.arch.adapter.HotReposListAdapterHolder;
+import com.knight.arch.ui.adapter.HotReposListAdapterHolder;
 import com.knight.arch.api.ReposTrendingApiService;
 import com.knight.arch.events.TrendingReposTimeSpanTextMsg;
 import com.knight.arch.model.Repository;

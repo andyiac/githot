@@ -2,8 +2,6 @@ package com.knight.arch.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,7 +13,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.knight.arch.R;
-import com.knight.arch.adapter.UserDetailsListAdapterHolder;
+import com.knight.arch.ui.adapter.UserDetailsListAdapterHolder;
 import com.knight.arch.api.ApiService;
 import com.knight.arch.model.Repository;
 import com.knight.arch.module.UserDetailsModule;

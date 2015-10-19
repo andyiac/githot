@@ -15,7 +15,7 @@
  *
  */
 
-package com.knight.arch.adapter;
+package com.knight.arch.ui.adapter;
 
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import com.knight.arch.R;
 import com.knight.arch.model.Repository;
+import com.knight.arch.utils.L;
 
 import java.util.List;
 
@@ -36,13 +37,13 @@ import java.util.List;
  * @web http://blog.andyiac.com
  * @github https://github.com/andyiac
  */
-public class UserDetailsListAdapterHolder extends RecyclerView.Adapter<UserDetailsListAdapterHolder.ViewHolder> {
+public class HotReposListAdapterHolder extends RecyclerView.Adapter<HotReposListAdapterHolder.ViewHolder> {
 
     OnItemClickListener mItemClickListener;
     private FragmentActivity mActivity;
     private List<Repository> mRepos;
 
-    public UserDetailsListAdapterHolder(FragmentActivity mActivity, List<Repository> repos) {
+    public HotReposListAdapterHolder(FragmentActivity mActivity, List<Repository> repos) {
         this.mActivity = mActivity;
         this.mRepos = repos;
 
@@ -89,6 +90,8 @@ public class UserDetailsListAdapterHolder extends RecyclerView.Adapter<UserDetai
         @Override
         public void onClick(View v) {
             if (mItemClickListener != null) {
+                L.i("==========click=====");
+//                mItemClickListener.onItemClick(v, getPosition());
                 mItemClickListener.onItemClick(v, getLayoutPosition());
             }
         }

@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
-import com.knight.arch.adapter.GitHubUserRankListAdapterHolder;
+import com.knight.arch.ui.adapter.GitHubUserRankListAdapterHolder;
 import com.knight.arch.api.ApiService;
 import com.knight.arch.data.Users;
 import com.knight.arch.model.User;
