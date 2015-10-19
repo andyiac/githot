@@ -1,5 +1,6 @@
 package com.knight.arch.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,30 +42,29 @@ public class TrendingReposTimeSpanAdapter extends BaseAdapter {
 
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        TextView textView;
-
-        if (convertView == null) {
-            convertView = View.inflate(mContext, R.layout.trending_repos_timespan_list_item, null);
-            textView = (TextView) convertView.findViewById(R.id.tv_id_trending_repos_time_span);
-
-            convertView.setTag(new ViewHolder(textView));
-
-        } else {
-            textView = ((ViewHolder) convertView.getTag()).textView;
+    public View getView(int position, View view, ViewGroup parent) {
+        if (view == null || !view.getTag().toString().equals("DROPDOWN")) {
+            view = ((Activity) mContext).getLayoutInflater().inflate(R.layout.trending_repos_timespan_list_item_actionbar, parent, false);
+            view.setTag("DROPDOWN");
         }
 
+        TextView textView = (TextView) view.findViewById(android.R.id.text1);
         textView.setText(getItem(position).toString());
 
-        return convertView;
+        return view;
     }
 
-    protected static class ViewHolder {
-
-        public TextView textView;
-
-        public ViewHolder(TextView textView) {
-            this.textView = textView;
+    @Override
+    public View getDropDownView(int position, View view, ViewGroup parent) {
+        if (view == null || !view.getTag().toString().equals("NON_DROPDOWN")) {
+            view = ((Activity) mContext).getLayoutInflater().inflate(R.layout.trending_repos_timespan_list_item_dropdown, parent, false);
+            view.setTag("NON_DROPDOWN");
         }
+
+        TextView textView = (TextView) view.findViewById(android.R.id.text1);
+        textView.setText(getItem(position).toString());
+
+        return view;
     }
+
 }

@@ -9,9 +9,11 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
@@ -70,49 +72,51 @@ public class MainActivity extends InjectableActivity {
 
 //        setStatusColor(android.R.color.transparent);
 
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.id_main_toolbar);
-        setSupportActionBar(mToolbar);
-
-        mTrendingSpinner = (Spinner) findViewById(R.id.trending_time_spinner);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.id_main_toolbar);
+        setSupportActionBar(toolbar);
 
         ab = getSupportActionBar();
+
         if (ab != null) {
             ab.setHomeAsUpIndicator(R.mipmap.ic_menu);
             ab.setDisplayHomeAsUpEnabled(true);
-
-            mTrendingSpinner.setAdapter(new TrendingReposTimeSpanAdapter(this));
-            mTrendingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                    String ts = "daily";
-                    switch (position) {
-                        case 0:
-                            ts = "daily";
-                            break;
-                        case 1:
-                            ts = "weekly";
-                            break;
-                        case 2:
-                            ts = "monthly";
-                            break;
-                    }
-
-                    TrendingReposTimeSpanTextMsg msg = new TrendingReposTimeSpanTextMsg();
-                    msg.setTimeSpan(ts);
-
-                    EventBus.getDefault().post(msg);
-
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-
-
         }
+
+        View spinnerContainer = LayoutInflater.from(this).inflate(R.layout.trending_repos_time_span, toolbar, false);
+        ActionBar.LayoutParams lp = new ActionBar.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        toolbar.addView(spinnerContainer, lp);
+
+        mTrendingSpinner = (Spinner) spinnerContainer.findViewById(R.id.trending_time_spinner);
+        mTrendingSpinner.setAdapter(new TrendingReposTimeSpanAdapter(this));
+        mTrendingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                String ts = "daily";
+                switch (position) {
+                    case 0:
+                        ts = "daily";
+                        break;
+                    case 1:
+                        ts = "weekly";
+                        break;
+                    case 2:
+                        ts = "monthly";
+                        break;
+                }
+
+                TrendingReposTimeSpanTextMsg msg = new TrendingReposTimeSpanTextMsg();
+                msg.setTimeSpan(ts);
+
+                EventBus.getDefault().post(msg);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -121,7 +125,6 @@ public class MainActivity extends InjectableActivity {
             setupDrawerContent(navigationView);
         }
         selectFragment(R.id.nav_user_china);
-
     }
 
     //=============================================================================

@@ -7,10 +7,9 @@
     <TextView
         android:id="@+id/tv_id_trending_repos_time_span"
         android:layout_width="match_parent"
-        android:background="@android:color/transparent"
         android:layout_height="48dp"
         android:drawablePadding="8dp"
-        android:gravity="center_vertical|end"
+        android:gravity="center_vertical|start"
         android:paddingLeft="16dp"
         android:textSize="18sp" />
 </LinearLayout>
