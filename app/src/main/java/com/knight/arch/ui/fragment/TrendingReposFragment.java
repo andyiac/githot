@@ -14,10 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
 import com.knight.arch.adapter.HotReposListAdapterHolder;
 import com.knight.arch.api.ReposTrendingApiService;
+import com.knight.arch.events.TrendingReposTimeSpanTextMsg;
 import com.knight.arch.model.Repository;
 import com.knight.arch.ui.ReposDetailsActivity;
 import com.knight.arch.ui.base.InjectableFragment;
@@ -29,6 +29,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import de.greenrobot.event.EventBus;
 import rx.Observer;
 import rx.android.app.AppObservable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -50,14 +51,15 @@ public class TrendingReposFragment extends InjectableFragment {
     private RecyclerView mRecyclerView;
     private List<Repository> mRepos = new ArrayList<>();
     private HotReposListAdapterHolder mAdapter;
-    private String mSince = "daily";
+    private String mTimeSpan = "daily";
     private String mLanguage;
 
     private LinearLayoutManager mLinearLayoutManager;
     private int lastVisibleItem;
 
-    public TrendingReposFragment(String language ) {
+    public TrendingReposFragment(String language) {
         this.mLanguage = language;
+        EventBus.getDefault().register(this);
     }
 
 
@@ -88,15 +90,17 @@ public class TrendingReposFragment extends InjectableFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fetchData(mLanguage, mSince);
+        fetchData(mLanguage, mTimeSpan);
     }
 
-    private void fetchData(String query, String since) {
-        AppObservable.bindFragment(this,apiService.getTrendingRepositories(query,since))
+    private void fetchData(String language, String since) {
+        setRefreshing(true);
+        AppObservable.bindFragment(this, apiService.getTrendingRepositories(language, since))
                 .map(new Func1<List<Repository>, List<Repository>>() {
                     @Override
                     public List<Repository> call(List<Repository> repositories) {
-                        L.json(JSON.toJSONString(repositories));
+//                        L.json(JSON.toJSONString(repositories));
+                        L.i("=====loaddata=="+mTimeSpan);
                         return repositories;
                     }
                 }).subscribeOn(AndroidSchedulers.mainThread())
@@ -131,7 +135,7 @@ public class TrendingReposFragment extends InjectableFragment {
             public void onRefresh() {
                 mRepos.clear();
                 mAdapter.notifyDataSetChanged();
-                fetchData(mLanguage, "daily");
+                fetchData(mLanguage, mTimeSpan);
             }
         });
 
@@ -147,7 +151,7 @@ public class TrendingReposFragment extends InjectableFragment {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount()) {
 
-                    Toast.makeText(getActivity(),"There is no more data !",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "There is no more data !", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -189,5 +193,20 @@ public class TrendingReposFragment extends InjectableFragment {
         } else {
             mSwipeRefreshLayout.setRefreshing(true);
         }
+    }
+
+    //EventBus
+    public void onEvent(TrendingReposTimeSpanTextMsg msg) {
+
+        mRepos.clear();
+        mAdapter.notifyDataSetChanged();
+
+        mTimeSpan = msg.getTimeSpan();
+        L.d("timeSpan======>>"+ msg.getTimeSpan());
+
+        if (this.isVisible()) {
+            fetchData(mLanguage, mTimeSpan);
+        }
+
     }
 }

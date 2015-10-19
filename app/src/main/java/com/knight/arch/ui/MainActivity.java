@@ -11,11 +11,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 
 import com.knight.arch.R;
 import com.knight.arch.adapter.TrendingReposTimeSpanAdapter;
+import com.knight.arch.events.TrendingReposTimeSpanTextMsg;
 import com.knight.arch.module.HomeModule;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.fragment.HotReposMainFragment;
@@ -25,6 +27,8 @@ import com.umeng.analytics.MobclickAgent;
 
 import java.util.Arrays;
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * @author andyiac
@@ -39,6 +43,7 @@ public class MainActivity extends InjectableActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBar ab;
+    private Spinner mTrendingSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +73,7 @@ public class MainActivity extends InjectableActivity {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.id_main_toolbar);
         setSupportActionBar(mToolbar);
 
-        Spinner mTrendingSpinner = (Spinner) findViewById(R.id.trending_time_spinner);
+        mTrendingSpinner = (Spinner) findViewById(R.id.trending_time_spinner);
 
         ab = getSupportActionBar();
         if (ab != null) {
@@ -76,7 +81,35 @@ public class MainActivity extends InjectableActivity {
             ab.setDisplayHomeAsUpEnabled(true);
 
             mTrendingSpinner.setAdapter(new TrendingReposTimeSpanAdapter(this));
+            mTrendingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                    String ts = "daily";
+                    switch (position) {
+                        case 0:
+                            ts = "daily";
+                            break;
+                        case 1:
+                            ts = "weekly";
+                            break;
+                        case 2:
+                            ts = "monthly";
+                            break;
+                    }
+
+                    TrendingReposTimeSpanTextMsg msg = new TrendingReposTimeSpanTextMsg();
+                    msg.setTimeSpan(ts);
+
+                    EventBus.getDefault().post(msg);
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
 
 
         }
@@ -164,6 +197,7 @@ public class MainActivity extends InjectableActivity {
                 break;
 
             case R.id.nav_trending_repos:
+                mTrendingSpinner.setVisibility(View.VISIBLE);
                 if (trendingReposMainFragment == null) {
                     trendingReposMainFragment = new TrendingReposMainFragment();
                     transaction.add(R.id.id_main_frame_container, trendingReposMainFragment, "TrendingRepos");
@@ -177,6 +211,11 @@ public class MainActivity extends InjectableActivity {
     }
 
     private void hideAllFragment(FragmentTransaction transaction) {
+
+        if (mTrendingSpinner != null) {
+            mTrendingSpinner.setVisibility(View.INVISIBLE);
+        }
+
         if (hotUsersFragment != null) {
             transaction.hide(hotUsersFragment);
         }
