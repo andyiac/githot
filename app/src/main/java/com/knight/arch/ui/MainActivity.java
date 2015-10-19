@@ -207,7 +207,7 @@ public class MainActivity extends InjectableActivity {
                 } else {
                     transaction.show(trendingReposMainFragment);
                 }
-                ab.setTitle("Trending repos");
+                ab.setTitle("");
                 break;
         }
         transaction.commit();

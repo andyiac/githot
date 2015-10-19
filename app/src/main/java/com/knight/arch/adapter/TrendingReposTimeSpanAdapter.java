@@ -23,7 +23,7 @@ public class TrendingReposTimeSpanAdapter extends BaseAdapter {
         this.mContext = context;
     }
 
-    final String[] mTimeSpanArray = new String[]{"daily", "weekly", "monthly"};
+    final String[] mTimeSpanArray = new String[]{"Trending today", "Trending this week", "Trending this month"};
 
     @Override
     public int getCount() {
