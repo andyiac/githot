@@ -11,8 +11,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
 import com.knight.arch.R;
+import com.knight.arch.adapter.TrendingReposTimeSpanAdapter;
 import com.knight.arch.module.HomeModule;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.fragment.HotReposMainFragment;
@@ -65,11 +68,17 @@ public class MainActivity extends InjectableActivity {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.id_main_toolbar);
         setSupportActionBar(mToolbar);
 
+        Spinner mTrendingSpinner = (Spinner) findViewById(R.id.trending_time_spinner);
 
         ab = getSupportActionBar();
         if (ab != null) {
             ab.setHomeAsUpIndicator(R.mipmap.ic_menu);
             ab.setDisplayHomeAsUpEnabled(true);
+
+            mTrendingSpinner.setAdapter(new TrendingReposTimeSpanAdapter(this));
+
+
+
         }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
