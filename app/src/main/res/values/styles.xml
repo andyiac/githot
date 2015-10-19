@@ -49,4 +49,14 @@
         <item name="android:textColor">#FF00DFFF</item>
     </style>
 
+<!--
+    <style name="TrendingReposTimeSpanStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+-->
+    <style name="TrendingReposTimeSpanStyle" parent="Widget.AppCompat.Light.Spinner.DropDown.ActionBar">
+        <item name="android:background">?android:selectableItemBackground</item>
+        <item name="android:dropDownSelector">?android:selectableItemBackground</item>
+        <item name="android:divider">@null</item>
+
+    </style>
+
 </resources>

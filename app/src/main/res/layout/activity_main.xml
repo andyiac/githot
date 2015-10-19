@@ -28,6 +28,10 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+
+                <!--
+                    style="@style/TrendingReposTimeSpanStyle"
+                -->
                 <Spinner
                     android:id="@+id/trending_time_spinner"
                     android:layout_width="wrap_content"

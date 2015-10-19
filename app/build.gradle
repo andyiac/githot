@@ -67,4 +67,7 @@ dependencies {
 
     compile 'com.umeng.analytics:analytics:latest.integration'
 
+    compile 'de.greenrobot:eventbus:2.4.0'
+
+
 }
