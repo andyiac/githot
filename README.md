@@ -11,12 +11,23 @@ Besides, you can get iOS version [Monkey](https://github.com/coderyi/Monkey) by 
 
 Try githot from fir [link](http://fir.im/githot)
 
+GitHot use api [link](https://github.com/andyiac/githot/blob/master/docs/GitHotAPI.md)
 
 ## Screenshots
+
 ![](http://firimg.fir.im/395e0b88defdf6b3c96553e57b3fda7ad00a6b1b?imageView2/0/w/426/h/240)
 ![](http://firimg.fir.im/ede5d510fbb7022c369d64846a55039b230fa655?imageView2/0/w/426/h/240)
 ![](http://firimg.fir.im/299cbb75847fbedd701c43d3b502521a2f2908ca?imageView2/0/w/426/h/240)
 ![](http://firimg.fir.im/261842daf2cd3c2df8557f5fb6024cae2a9af08c?imageView2/0/w/426/h/240)
+
+
+## Change logs
+
+v1.0.3.1
+
+- add Trending repositories model
+- modify Navigation drawer item select style
+- fix a bug
 
 ## Open source projects
 
