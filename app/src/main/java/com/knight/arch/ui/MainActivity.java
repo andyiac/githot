@@ -86,6 +86,8 @@ public class MainActivity extends InjectableActivity {
         ActionBar.LayoutParams lp = new ActionBar.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
         toolbar.addView(spinnerContainer, lp);
 
+        //the spinner use below link solution
+        //https://blog.danielbetts.net/2015/01/02/material-design-spinner-toolbar-style-fix/
         mTrendingSpinner = (Spinner) spinnerContainer.findViewById(R.id.trending_time_spinner);
         mTrendingSpinner.setAdapter(new TrendingReposTimeSpanAdapter(this));
         mTrendingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
