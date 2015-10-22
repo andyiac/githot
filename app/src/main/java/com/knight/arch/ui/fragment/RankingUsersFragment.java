@@ -64,6 +64,9 @@ public class RankingUsersFragment extends InjectableFragment {
     private String mQuery = null;
     private LinearLayoutManager mLinearLayoutManager;
 
+    // for debug
+    private boolean D = false;
+
     Observer<Users<User>> userObserver = new Observer<Users<User>>() {
         @Override
         public void onCompleted() {
@@ -194,7 +197,7 @@ public class RankingUsersFragment extends InjectableFragment {
                 .map(new Func1<Users<User>, Users<User>>() {
                     @Override
                     public Users<User> call(Users<User> userUsers) {
-                        L.json(JSON.toJSONString(userUsers));
+                        if(D)L.json(JSON.toJSONString(userUsers));
                         return userUsers;
                     }
                 }).observeOn(AndroidSchedulers.mainThread())

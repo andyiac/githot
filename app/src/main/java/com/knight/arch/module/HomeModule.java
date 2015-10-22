@@ -2,6 +2,7 @@ package com.knight.arch.module;
 
 import com.knight.arch.ui.MainActivity;
 import com.knight.arch.ui.base.InjectableActivity;
+import com.knight.arch.ui.fragment.LoginDialogFragment;
 import com.knight.arch.ui.fragment.RankingReposFragment;
 import com.knight.arch.ui.fragment.RankingUsersFragment;
 import com.knight.arch.ui.fragment.TrendingReposFragment;
@@ -20,7 +21,8 @@ import dagger.Module;
                 MainActivity.class,
                 RankingReposFragment.class,
                 RankingUsersFragment.class,
-                TrendingReposFragment.class
+                TrendingReposFragment.class,
+                LoginDialogFragment.class
                 //HotUsersMainFragment.class,
                 //HotReposMainFragment.class,
         }

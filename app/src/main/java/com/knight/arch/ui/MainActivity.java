@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.knight.arch.R;
 import com.knight.arch.ui.adapter.TrendingReposTimeSpanAdapter;
@@ -24,13 +26,17 @@ import com.knight.arch.module.HomeModule;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.fragment.HotReposMainFragment;
 import com.knight.arch.ui.fragment.HotUsersMainFragment;
+import com.knight.arch.ui.fragment.LoginDialogFragment;
 import com.knight.arch.ui.fragment.TrendingReposMainFragment;
+import com.knight.arch.utils.L;
 import com.umeng.analytics.MobclickAgent;
 
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * @author andyiac
@@ -123,12 +129,48 @@ public class MainActivity extends InjectableActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         if (navigationView != null) {
             setupDrawerContent(navigationView);
             navigationView.setCheckedItem(R.id.nav_user_china);
+
+            initLoginView(navigationView);
         }
 
         selectFragment(R.id.nav_user_china);
+    }
+
+    private void initLoginView(NavigationView navigationView) {
+
+        View headerView= navigationView.inflateHeaderView(R.layout.nav_header);
+
+        TextView tvName = (TextView) headerView.findViewById(R.id.id_nav_header_uname);
+        tvName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                L.d("=======tv click=====");
+            }
+        });
+
+        CircleImageView imageAvatar = (CircleImageView) headerView.findViewById(R.id.id_nav_header_avatar);
+
+        imageAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                L.d("=======show oauth webview click=====");
+                Toast.makeText(MainActivity.this, "----login click----", Toast.LENGTH_SHORT).show();
+                openLoginInBrowser();
+            }
+        });
+    }
+
+    private void openLoginInBrowser() {
+        // todo  to use HttpUrl.Builder
+        String initialScope = "user,public_repo,repo";
+        String url = "https://www.github.com/login/oauth/authorize?client_id=" +
+                "d23f22372a297175a100" + "&" + "scope=" + initialScope;
+        LoginDialogFragment loginDialogFragment = new LoginDialogFragment(url);
+        loginDialogFragment.show(getSupportFragmentManager(), "loginDialog");
     }
 
     //=============================================================================

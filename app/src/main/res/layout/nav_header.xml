@@ -37,23 +37,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp"
             android:gravity="bottom"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/id_nav_header_avatar"
                 android:layout_width="72.0dp"
+                android:clickable="true"
                 android:layout_height="72.0dp"
                 android:layout_marginBottom="20.0dp"
                 android:src="@mipmap/avatar_andyiac" />
 
             <TextView
+                android:id="@+id/id_nav_header_uname"
+                android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="andyiac"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             <TextView
+                android:id="@+id/id_nav_header_giturl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="https://github.com/andyiac"
