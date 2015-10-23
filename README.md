@@ -9,7 +9,7 @@ Official website [http://githot.cn](http://githot.cn) ,and the web version is in
 Besides, you can get iOS version [Monkey](https://github.com/coderyi/Monkey) by [coderyi](https://github.com/coderyi) from [itunes](https://itunes.apple.com/cn/app/monkey-for-github/id1003765407) .
 
 
-Try githot from fir [link](http://fir.im/githot)
+Try githot from [fir link](http://fir.im/githot) , [google play store](https://play.google.com/store/apps/details?id=com.knight.arch) 
 
 GitHot use api [link](https://github.com/andyiac/githot/blob/master/docs/GitHotAPI.md)
 
