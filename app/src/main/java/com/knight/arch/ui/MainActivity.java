@@ -158,7 +158,6 @@ public class MainActivity extends InjectableActivity {
             @Override
             public void onClick(View v) {
                 L.d("=======show oauth webview click=====");
-                Toast.makeText(MainActivity.this, "----login click----", Toast.LENGTH_SHORT).show();
                 openLoginInBrowser();
             }
         });
