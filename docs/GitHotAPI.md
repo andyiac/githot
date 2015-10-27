@@ -62,4 +62,6 @@
 
 		http://api.fir.im/apps/latest/55fd648a00fc7453bd000002?api_token=e9643ae1e41c57d6d829504ce8f9f90a
 
-
+## Star 
+- star 某一个项目
+	https://api.github.com/user/starred/daimajia/AndroidSwipeLayout?access_token=8025668e9f1876ed9da84b95c9f9b385fc090293

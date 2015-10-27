@@ -1,6 +1,7 @@
 package com.knight.arch.ui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -17,9 +18,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
+import com.knight.arch.api.OAuthApiService;
+import com.knight.arch.events.LoginUriMsg;
+import com.knight.arch.model.AccessTokenResponse;
 import com.knight.arch.ui.adapter.TrendingReposTimeSpanAdapter;
 import com.knight.arch.events.TrendingReposTimeSpanTextMsg;
 import com.knight.arch.module.HomeModule;
@@ -31,12 +35,18 @@ import com.knight.arch.ui.fragment.TrendingReposMainFragment;
 import com.knight.arch.utils.L;
 import com.umeng.analytics.MobclickAgent;
 
-import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import de.greenrobot.event.EventBus;
 import de.hdodenhof.circleimageview.CircleImageView;
+import rx.Observable;
+import rx.Observer;
+import rx.android.app.AppObservable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 
 /**
  * @author andyiac
@@ -53,9 +63,33 @@ public class MainActivity extends InjectableActivity {
     private ActionBar ab;
     private Spinner mTrendingSpinner;
 
+    @Inject
+    OAuthApiService oAuthApiService;
+
+
+    Observer<AccessTokenResponse> tokenObservable = new Observer<AccessTokenResponse>() {
+        @Override
+        public void onCompleted() {
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+
+        @Override
+        public void onNext(AccessTokenResponse accessTokenResponse) {
+            L.json(JSON.toJSONString(accessTokenResponse));
+
+        }
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         initView();
     }
 
@@ -142,7 +176,7 @@ public class MainActivity extends InjectableActivity {
 
     private void initLoginView(NavigationView navigationView) {
 
-        View headerView= navigationView.inflateHeaderView(R.layout.nav_header);
+        View headerView = navigationView.inflateHeaderView(R.layout.nav_header);
 
         TextView tvName = (TextView) headerView.findViewById(R.id.id_nav_header_uname);
         tvName.setOnClickListener(new View.OnClickListener() {
@@ -170,6 +204,39 @@ public class MainActivity extends InjectableActivity {
                 "d23f22372a297175a100" + "&" + "scope=" + initialScope;
         LoginDialogFragment loginDialogFragment = new LoginDialogFragment(url);
         loginDialogFragment.show(getSupportFragmentManager(), "loginDialog");
+    }
+
+    //EventBus
+    public void onEvent(LoginUriMsg msg) {
+
+        // GitHub OAuth
+        // https://developer.github.com/v3/oauth/#web-application-flow
+        Uri uri = msg.getUrl();
+        if (uri.getQueryParameter("code") != null) {
+
+            // first step
+            String code = uri.getQueryParameter("code");
+            // second step
+            getAccessToken(code);
+        }
+    }
+
+    private void getAccessToken(String code) {
+        // todo
+        String client_id = "d23f22372a297175a100";
+        String client_secret = "d0d616882a5ee2d9456a16a3c4e9f72e93ca1e4b";
+
+
+        AppObservable.bindActivity(this, oAuthApiService.getOAuthToken(client_id, client_secret, code))
+                .map(new Func1<AccessTokenResponse, AccessTokenResponse>() {
+                    @Override
+                    public AccessTokenResponse call(AccessTokenResponse accessTokenResponse) {
+                        return accessTokenResponse;
+                    }
+                }).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(tokenObservable);
+
+
     }
 
     //=============================================================================
@@ -257,6 +324,7 @@ public class MainActivity extends InjectableActivity {
         }
         transaction.commit();
     }
+
 
     private void hideAllFragment(FragmentTransaction transaction) {
 

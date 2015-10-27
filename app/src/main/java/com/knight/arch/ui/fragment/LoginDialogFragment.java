@@ -2,8 +2,10 @@ package com.knight.arch.ui.fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -11,7 +13,11 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.knight.arch.R;
+import com.knight.arch.events.LoginUriMsg;
 import com.knight.arch.utils.L;
+
+import de.greenrobot.event.EventBus;
 
 
 /**
@@ -82,9 +88,17 @@ public class LoginDialogFragment extends DialogFragment {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                L.i("url ==>>" + url);
-                view.loadUrl(url);
-                return super.shouldOverrideUrlLoading(view,url);
+                Uri uri = Uri.parse(url);
+                if (uri.getScheme().equals("http")) {
+
+                    LoginUriMsg msg = new LoginUriMsg();
+                    msg.setUrl(uri);
+
+                    EventBus.getDefault().post(msg);
+                    LoginDialogFragment.this.dismiss();
+                    return true;
+                }
+                return super.shouldOverrideUrlLoading(view, url);
             }
 
         });
