@@ -2,7 +2,6 @@ package com.knight.arch.api;
 
 import com.knight.arch.model.AccessTokenResponse;
 
-import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.Headers;
