@@ -39,6 +39,5 @@
             android:layout_margin="16.0dp"
             android:src="@mipmap/ic_done" />
 
-
     </FrameLayout>
 </LinearLayout>

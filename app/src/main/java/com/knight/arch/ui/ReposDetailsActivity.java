@@ -2,12 +2,15 @@ package com.knight.arch.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
@@ -78,15 +81,15 @@ public class ReposDetailsActivity extends InjectableActivity {
         mReposData.add(new ReposKV("description", mRepository.getDescription()));
         mReposData.add(new ReposKV("is fork", "" + mRepository.isFork()));
         mReposData.add(new ReposKV("stars", String.valueOf(mRepository.getStargazers_count())));
-        mReposData.add(new ReposKV("forks",String.valueOf(mRepository.getForks_count())));
-        mReposData.add(new ReposKV("open issues",String.valueOf(mRepository.getOpen_issues_count())));
+        mReposData.add(new ReposKV("forks", String.valueOf(mRepository.getForks_count())));
+        mReposData.add(new ReposKV("open issues", String.valueOf(mRepository.getOpen_issues_count())));
         mReposData.add(new ReposKV("language", String.valueOf(mRepository.getLanguage())));
         mReposData.add(new ReposKV("clone url", String.valueOf(mRepository.getClone_url())));
         mReposData.add(new ReposKV("owner", mRepository.getOwner().getLogin()));
         mReposData.add(new ReposKV("owner type", mRepository.getOwner().getType()));
         mReposData.add(new ReposKV("create at", mRepository.getCreated_at()));
         mReposData.add(new ReposKV("update at", mRepository.getUpdated_at()));
-   }
+    }
 
     private void initView() {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.id_repos_details_toobar);
@@ -108,6 +111,14 @@ public class ReposDetailsActivity extends InjectableActivity {
         float paddingStart = getResources().getDimension(R.dimen.repos_hot_divider_padding_start);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST, paddingStart, false));
 
+
+        FloatingActionButton fb = (FloatingActionButton) findViewById(R.id.id_repos_details_fb);
+        fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ReposDetailsActivity.this, "fb clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
