@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
+import com.knight.arch.api.OAuthApiService;
 import com.knight.arch.ui.adapter.HotReposDetailsListAdapterHolder;
 import com.knight.arch.data.ReposKV;
 import com.knight.arch.model.Repository;
@@ -27,6 +28,14 @@ import com.umeng.analytics.MobclickAgent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+
+import javax.inject.Inject;
+
+import rx.Observer;
+import rx.android.app.AppObservable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 
 /**
  * @author andyiac
@@ -39,6 +48,26 @@ public class ReposDetailsActivity extends InjectableActivity {
     private HotReposDetailsListAdapterHolder adapter;
     private LinearLayoutManager linearLayoutManager;
     private List<ReposKV> mReposData = new ArrayList<>();
+
+    @Inject
+    OAuthApiService oAuthApiService;
+
+    private Observer<Object> observable = new Observer<Object>() {
+        @Override
+        public void onCompleted() {
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+
+        @Override
+        public void onNext(Object o) {
+            L.i(JSON.toJSONString(o));
+        }
+    };
 
     @Override
     protected int provideContentViewId() {
@@ -117,6 +146,18 @@ public class ReposDetailsActivity extends InjectableActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ReposDetailsActivity.this, "fb clicked", Toast.LENGTH_SHORT).show();
+
+
+                // todo auth
+                AppObservable.bindActivity(ReposDetailsActivity.this, oAuthApiService.starRepos("drakeet", "SmsCodeHelper", "8025668e9f1876ed9da84b95c9f9b385fc090293"))
+                        .map(new Func1<Object, Object>() {
+                            @Override
+                            public Object call(Object object) {
+                                L.i("star a repos" + JSON.toJSONString(object));
+                                return null;
+                            }
+                        }).subscribeOn(AndroidSchedulers.mainThread())
+                        .subscribe(observable);
             }
         });
 

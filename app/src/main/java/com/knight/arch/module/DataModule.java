@@ -153,7 +153,7 @@ public class DataModule {
                 .setClient(new OkClient(okHttpClient))
                 .setConverter(new GsonConverter(gson))
                 .setLogLevel(RestAdapter.LogLevel.BASIC)
-                .setEndpoint("https://github.com")
+                .setEndpoint("https://api.github.com")
                 .build();
         return restAdapter.create(OAuthApiService.class);
     }
