@@ -8,7 +8,6 @@ import com.knight.arch.BuildConfig;
 import com.knight.arch.R;
 import com.knight.arch.api.ApiService;
 import com.knight.arch.api.FirService;
-import com.knight.arch.api.OAuthApiService;
 import com.knight.arch.api.OAuthGitHubWebFlow;
 import com.knight.arch.api.ReposTrendingApiService;
 import com.knight.arch.utils.L;
@@ -143,20 +142,6 @@ public class DataModule {
                 .setEndpoint("http://trending.codehub-app.com")
                 .build();
         return restAdapter.create(ReposTrendingApiService.class);
-    }
-
-
-    @Provides
-    @Singleton
-    OAuthApiService provideOAuthApiService(Gson gson, OkHttpClient okHttpClient, ErrorHandler errorHandler) {
-        RestAdapter restAdapter = new RestAdapter.Builder()
-                .setErrorHandler(errorHandler)
-                .setClient(new OkClient(okHttpClient))
-                .setConverter(new GsonConverter(gson))
-                .setLogLevel(RestAdapter.LogLevel.BASIC)
-                .setEndpoint("https://api.github.com")
-                .build();
-        return restAdapter.create(OAuthApiService.class);
     }
 
     @Provides

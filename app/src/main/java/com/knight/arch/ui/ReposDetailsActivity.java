@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
-import com.knight.arch.api.OAuthApiService;
+import com.knight.arch.api.ApiService;
 import com.knight.arch.ui.adapter.HotReposDetailsListAdapterHolder;
 import com.knight.arch.data.ReposKV;
 import com.knight.arch.model.Repository;
@@ -28,7 +28,6 @@ import com.umeng.analytics.MobclickAgent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -49,8 +48,11 @@ public class ReposDetailsActivity extends InjectableActivity {
     private LinearLayoutManager linearLayoutManager;
     private List<ReposKV> mReposData = new ArrayList<>();
 
+//    @Inject
+//    OAuthApiService oAuthApiService;
+
     @Inject
-    OAuthApiService oAuthApiService;
+    ApiService oAuthApiService;
 
     private Observer<Object> observable = new Observer<Object>() {
         @Override
