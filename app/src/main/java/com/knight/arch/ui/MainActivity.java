@@ -82,7 +82,6 @@ public class MainActivity extends InjectableActivity {
         public void onNext(AccessTokenResponse accessTokenResponse) {
             L.json(JSON.toJSONString(accessTokenResponse));
 
-
         }
     };
 
@@ -192,7 +191,6 @@ public class MainActivity extends InjectableActivity {
         imageAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                L.d("=======show oauth webview click=====");
                 openLoginInBrowser();
             }
         });
@@ -234,10 +232,9 @@ public class MainActivity extends InjectableActivity {
                     public AccessTokenResponse call(AccessTokenResponse accessTokenResponse) {
                         return accessTokenResponse;
                     }
-                }).observeOn(AndroidSchedulers.mainThread())
+                })
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(tokenObservable);
-
-
     }
 
     //=============================================================================
