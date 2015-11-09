@@ -19,6 +19,7 @@
                 android:action="android.intent.action.VIEW"
                 android:data="http://www.github.com/imxhf" />
         </Preference>
+        <!--
         <Preference
             android:summary="for official web design"
             android:title="Xing AiBin">
@@ -27,6 +28,7 @@
                 android:data="http://328817293.lofter.com/" />
 
         </Preference>
+        -->
     </PreferenceCategory>
 
     <PreferenceCategory android:title="About">
@@ -51,7 +53,7 @@
             android:title="Author">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="http://blog.andyiac.com" />
+                android:data="http://www.andyiac.com" />
         </Preference>
 
         <Preference

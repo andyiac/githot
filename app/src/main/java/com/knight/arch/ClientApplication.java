@@ -3,6 +3,7 @@ package com.knight.arch;
 import android.app.Application;
 
 import com.facebook.stetho.Stetho;
+import com.knight.arch.model.AccessTokenResponse;
 import com.knight.arch.module.AppModule;
 import com.knight.arch.module.Injector;
 import com.orhanobut.logger.LogLevel;
@@ -21,6 +22,8 @@ import dagger.ObjectGraph;
  */
 public class ClientApplication extends Application implements Injector {
     private static final String LOGGER_TAG = "<<=TAG=>>";
+
+    private AccessTokenResponse accessTokenResponse;
 
     private ObjectGraph objectGraph;
 

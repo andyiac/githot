@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
-import com.knight.arch.api.OAuthApiService;
+import com.knight.arch.api.OAuthGitHubWebFlow;
 import com.knight.arch.events.LoginUriMsg;
 import com.knight.arch.model.AccessTokenResponse;
 import com.knight.arch.ui.adapter.TrendingReposTimeSpanAdapter;
@@ -42,7 +42,6 @@ import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
 import de.hdodenhof.circleimageview.CircleImageView;
-import rx.Observable;
 import rx.Observer;
 import rx.android.app.AppObservable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -63,8 +62,9 @@ public class MainActivity extends InjectableActivity {
     private ActionBar ab;
     private Spinner mTrendingSpinner;
 
+
     @Inject
-    OAuthApiService oAuthApiService;
+    OAuthGitHubWebFlow oAuthGitHubWebFlow;
 
 
     Observer<AccessTokenResponse> tokenObservable = new Observer<AccessTokenResponse>() {
@@ -81,6 +81,7 @@ public class MainActivity extends InjectableActivity {
         @Override
         public void onNext(AccessTokenResponse accessTokenResponse) {
             L.json(JSON.toJSONString(accessTokenResponse));
+
 
         }
     };
@@ -227,7 +228,7 @@ public class MainActivity extends InjectableActivity {
         String client_secret = "d0d616882a5ee2d9456a16a3c4e9f72e93ca1e4b";
 
 
-        AppObservable.bindActivity(this, oAuthApiService.getOAuthToken(client_id, client_secret, code))
+        AppObservable.bindActivity(this, oAuthGitHubWebFlow.getOAuthToken(client_id, client_secret, code))
                 .map(new Func1<AccessTokenResponse, AccessTokenResponse>() {
                     @Override
                     public AccessTokenResponse call(AccessTokenResponse accessTokenResponse) {

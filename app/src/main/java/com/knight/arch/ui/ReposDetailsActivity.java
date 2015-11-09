@@ -149,12 +149,12 @@ public class ReposDetailsActivity extends InjectableActivity {
 
 
                 // todo auth
-                AppObservable.bindActivity(ReposDetailsActivity.this, oAuthApiService.starRepos("drakeet", "SmsCodeHelper", "8025668e9f1876ed9da84b95c9f9b385fc090293"))
+                AppObservable.bindActivity(ReposDetailsActivity.this, oAuthApiService.starRepos(mRepository.getOwner().getLogin(), mRepository.getName(), "8025668e9f1876ed9da84b95c9f9b385fc090293"))
                         .map(new Func1<Object, Object>() {
                             @Override
                             public Object call(Object object) {
                                 L.i("star a repos" + JSON.toJSONString(object));
-                                return null;
+                                return object;
                             }
                         }).subscribeOn(AndroidSchedulers.mainThread())
                         .subscribe(observable);
