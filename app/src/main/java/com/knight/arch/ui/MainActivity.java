@@ -1,6 +1,7 @@
 package com.knight.arch.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -68,6 +69,8 @@ public class MainActivity extends InjectableActivity {
     OAuthGitHubWebFlow oAuthGitHubWebFlow;
 
 
+    private SharedPreferences sharedPreferences;
+
     Observer<AccessTokenResponse> tokenObservable = new Observer<AccessTokenResponse>() {
         @Override
         public void onCompleted() {
@@ -82,7 +85,8 @@ public class MainActivity extends InjectableActivity {
         @Override
         public void onNext(AccessTokenResponse accessTokenResponse) {
             L.json(JSON.toJSONString(accessTokenResponse));
-
+            sharedPreferences = MainActivity.this.getSharedPreferences("github_oauth", MODE_PRIVATE);
+            sharedPreferences.edit().putString("token", accessTokenResponse.getAccess_token()).apply();
         }
     };
 

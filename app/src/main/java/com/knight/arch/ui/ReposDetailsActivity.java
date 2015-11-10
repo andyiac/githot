@@ -7,12 +7,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.facebook.stetho.common.StringUtil;
 import com.knight.arch.R;
 import com.knight.arch.api.ApiService;
 import com.knight.arch.ui.adapter.HotReposDetailsListAdapterHolder;
@@ -147,15 +149,19 @@ public class ReposDetailsActivity extends InjectableActivity {
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ReposDetailsActivity.this, "fb clicked", Toast.LENGTH_SHORT).show();
 
+                //判断是否登录
+                String token = ReposDetailsActivity.this.getSharedPreferences("github_oauth", MODE_PRIVATE).getString("token", "");
+                if (TextUtils.isEmpty(token)) {
+                    Toast.makeText(ReposDetailsActivity.this, "please login first", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                // todo auth
-                AppObservable.bindActivity(ReposDetailsActivity.this, oAuthApiService.starRepos(mRepository.getOwner().getLogin(), mRepository.getName(), "8025668e9f1876ed9da84b95c9f9b385fc090293"))
+                AppObservable.bindActivity(ReposDetailsActivity.this, oAuthApiService.starRepos(mRepository.getOwner().getLogin(), mRepository.getName(), token))
                         .map(new Func1<Object, Object>() {
                             @Override
                             public Object call(Object object) {
-                                L.i("star a repos" + JSON.toJSONString(object));
+                                L.i("ReposDetailsActivity star a repos" + JSON.toJSONString(object));
                                 return object;
                             }
                         }).subscribeOn(AndroidSchedulers.mainThread())

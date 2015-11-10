@@ -47,7 +47,7 @@ public class ClientApplication extends Application implements Injector {
 
     private void initLogger() {
         Logger.init(LOGGER_TAG)               // default PRETTYLOGGER or use just init()
-                .setMethodCount(3)            // default 2
+                .setMethodCount(4)            // default 2
                 .setLogLevel(LogLevel.FULL)   // default LogLevel.FULL
                 .setMethodOffset(2);          // default 0
 //              .hideThreadInfo()             // default shown
