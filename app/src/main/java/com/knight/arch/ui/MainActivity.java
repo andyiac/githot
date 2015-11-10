@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
+import com.knight.arch.api.GitHubApiConstants;
 import com.knight.arch.api.OAuthGitHubWebFlow;
 import com.knight.arch.events.LoginUriMsg;
 import com.knight.arch.model.AccessTokenResponse;
@@ -200,7 +201,7 @@ public class MainActivity extends InjectableActivity {
         // todo  to use HttpUrl.Builder
         String initialScope = "user,public_repo,repo";
         String url = "https://www.github.com/login/oauth/authorize?client_id=" +
-                "d23f22372a297175a100" + "&" + "scope=" + initialScope;
+                GitHubApiConstants.GITHUB_APP_CLIENT_ID + "&" + "scope=" + initialScope;
         LoginDialogFragment loginDialogFragment = new LoginDialogFragment(url);
         loginDialogFragment.show(getSupportFragmentManager(), "loginDialog");
     }
@@ -221,10 +222,8 @@ public class MainActivity extends InjectableActivity {
     }
 
     private void getAccessToken(String code) {
-        // todo
-        String client_id = "d23f22372a297175a100";
-        String client_secret = "d0d616882a5ee2d9456a16a3c4e9f72e93ca1e4b";
-
+        String client_id = GitHubApiConstants.GITHUB_APP_CLIENT_ID;
+        String client_secret = GitHubApiConstants.GITHUB_APP_CLIENT_SECRET;
 
         AppObservable.bindActivity(this, oAuthGitHubWebFlow.getOAuthToken(client_id, client_secret, code))
                 .map(new Func1<AccessTokenResponse, AccessTokenResponse>() {

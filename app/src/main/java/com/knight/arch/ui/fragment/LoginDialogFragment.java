@@ -1,5 +1,6 @@
 package com.knight.arch.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import de.greenrobot.event.EventBus;
  * @web http://blog.andyiac.com
  * @github https://github.com/andyiac
  */
+@SuppressLint("ValidFragment")
 public class LoginDialogFragment extends DialogFragment {
 
     private String url = "";
