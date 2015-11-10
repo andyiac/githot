@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
-import com.facebook.stetho.common.StringUtil;
 import com.knight.arch.R;
 import com.knight.arch.api.ApiService;
 import com.knight.arch.ui.adapter.HotReposDetailsListAdapterHolder;
@@ -30,9 +29,11 @@ import com.umeng.analytics.MobclickAgent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
+import retrofit.client.Response;
 import rx.Observer;
 import rx.android.app.AppObservable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -50,8 +51,7 @@ public class ReposDetailsActivity extends InjectableActivity {
     private LinearLayoutManager linearLayoutManager;
     private List<ReposKV> mReposData = new ArrayList<>();
 
-//    @Inject
-//    OAuthApiService oAuthApiService;
+    private FloatingActionButton mStarFB;
 
     @Inject
     ApiService oAuthApiService;
@@ -72,6 +72,29 @@ public class ReposDetailsActivity extends InjectableActivity {
             L.i(JSON.toJSONString(o));
         }
     };
+
+
+    // todo 这里的泛型直接使用 Response 就不行
+    private Observer<Object> checkStarObservable = new Observer<Object>() {
+        @Override
+        public void onCompleted() {
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+
+        @Override
+        public void onNext(Object response) {
+            int status = ((Response) response).getStatus();
+            if (status == 204) {
+                mStarFB.setImageResource(R.mipmap.ic_star);
+            }
+        }
+    };
+
 
     @Override
     protected int provideContentViewId() {
@@ -107,6 +130,38 @@ public class ReposDetailsActivity extends InjectableActivity {
         }
 
         initView();
+        initStarFlowButtonStatus();
+    }
+
+    private void initStarFlowButtonStatus() {
+        // 查看本人是否star过本项目
+        String reposOwner = mRepository.getOwner().getLogin();
+        String reposName = mRepository.getName();
+        String accessToken = this.getSharedPreferences("github_oauth", MODE_PRIVATE).getString("token", "");
+
+        if (TextUtils.isEmpty(accessToken)) {
+            Toast.makeText(this, "please login first", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        // 检查状态
+        AppObservable.bindActivity(ReposDetailsActivity.this, oAuthApiService.checkIfReposStarred(reposOwner, reposName, accessToken))
+                .map(new Func1<Response, Object>() {
+                    @Override
+                    public Object call(Response response) {
+                        L.json(response);
+                        return response;
+                    }
+                })
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(checkStarObservable);
+        // FB 实例
+//        mStarFB
+
+        //设置状态
+
+
     }
 
     private void initData() {
@@ -145,8 +200,8 @@ public class ReposDetailsActivity extends InjectableActivity {
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST, paddingStart, false));
 
 
-        FloatingActionButton fb = (FloatingActionButton) findViewById(R.id.id_repos_details_fb);
-        fb.setOnClickListener(new View.OnClickListener() {
+        mStarFB = (FloatingActionButton) findViewById(R.id.id_repos_details_fb);
+        mStarFB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -164,7 +219,8 @@ public class ReposDetailsActivity extends InjectableActivity {
                                 L.i("ReposDetailsActivity star a repos" + JSON.toJSONString(object));
                                 return object;
                             }
-                        }).subscribeOn(AndroidSchedulers.mainThread())
+                        })
+                        .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribe(observable);
             }
         });

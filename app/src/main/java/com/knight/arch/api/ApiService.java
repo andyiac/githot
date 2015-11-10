@@ -7,6 +7,7 @@ import com.knight.arch.model.User;
 
 import java.util.List;
 
+import retrofit.client.Response;
 import retrofit.http.GET;
 import retrofit.http.Headers;
 import retrofit.http.PUT;
@@ -18,7 +19,7 @@ import rx.Observable;
  * @author andyiac
  * @date 15-8-4
  * @web http://blog.andyiac.com/
- * <p>
+ * <p/>
  * RxJava Style
  */
 public interface ApiService {
@@ -32,12 +33,23 @@ public interface ApiService {
     @GET("/users/{user}/repos")
     Observable<List<Repository>> getUserRepositories(@Path("user") String user);
 
+    //Star a repository
     @Headers({
-            "Content-Length: 0"
+            "Content-Length: 0",
+            "Accept: application/json"
     })
     @PUT("/user/starred/{user}/{repo}")
     Observable<Object> starRepos(@Path("user") String user, @Path("repo") String repo,
                                  @Query(value = "access_token", encodeValue = true) String accessToken);
+
+    //Check if you are starring a repository
+    @GET("/user/starred/{owner}/{repo}")
+    Observable<Response> checkIfReposStarred(@Path("owner") String owner, @Path("repo") String repo,
+                                             @Query(value = "access_token", encodeValue = true) String accessToken);
+
+    //List repositories being starred
+    @GET("/users/{username}/starred")
+    void starredRepos(@Path("username") String username);
 
     @Headers({
             "Content-Length: 0"

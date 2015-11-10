@@ -1,5 +1,6 @@
 package com.knight.arch.utils;
 
+import com.alibaba.fastjson.JSON;
 import com.knight.arch.BuildConfig;
 import com.orhanobut.logger.Logger;
 
@@ -33,6 +34,12 @@ public class L {
     public static void json(String json) {
         if (isDebuggable())
             Logger.json(json);
+
+    }
+
+    public static void json(Object o) {
+        if (isDebuggable())
+            Logger.json(JSON.toJSONString(o));
     }
 
 }
