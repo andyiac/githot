@@ -29,7 +29,6 @@ import com.umeng.analytics.MobclickAgent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -69,7 +68,11 @@ public class ReposDetailsActivity extends InjectableActivity {
 
         @Override
         public void onNext(Object o) {
-            L.i(JSON.toJSONString(o));
+            int status = ((Response) o).getStatus();
+            L.json((Response) o);
+            if (status == 204) {
+                setStarFBStatus(true);
+            }
         }
     };
 
@@ -90,7 +93,7 @@ public class ReposDetailsActivity extends InjectableActivity {
         public void onNext(Object response) {
             int status = ((Response) response).getStatus();
             if (status == 204) {
-                mStarFB.setImageResource(R.mipmap.ic_star);
+                setStarFBStatus(true);
             }
         }
     };
@@ -216,7 +219,7 @@ public class ReposDetailsActivity extends InjectableActivity {
                         .map(new Func1<Object, Object>() {
                             @Override
                             public Object call(Object object) {
-                                L.i("ReposDetailsActivity star a repos" + JSON.toJSONString(object));
+                                L.i("ReposDetailsActivity star a repo ==>" + JSON.toJSONString((Response) object));
                                 return object;
                             }
                         })
@@ -236,6 +239,20 @@ public class ReposDetailsActivity extends InjectableActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //更改FloatingButton 的状态
+    private void setStarFBStatus(boolean status) {
+        if (mStarFB == null) {
+            mStarFB = (FloatingActionButton) findViewById(R.id.id_repos_details_fb);
+        }
+
+        if (status) {
+            mStarFB.setImageResource(R.mipmap.ic_star);
+        } else {
+            mStarFB.setImageResource(R.mipmap.ic_unstar);
+        }
+
     }
 
 }
