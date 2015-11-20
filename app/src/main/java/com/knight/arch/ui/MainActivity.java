@@ -11,6 +11,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,10 +23,12 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
+import com.knight.arch.api.ApiService;
 import com.knight.arch.api.GitHubApiConstants;
 import com.knight.arch.api.OAuthGitHubWebFlow;
 import com.knight.arch.events.LoginUriMsg;
 import com.knight.arch.model.AccessTokenResponse;
+import com.knight.arch.model.User;
 import com.knight.arch.ui.adapter.TrendingReposTimeSpanAdapter;
 import com.knight.arch.events.TrendingReposTimeSpanTextMsg;
 import com.knight.arch.module.HomeModule;
@@ -35,6 +38,7 @@ import com.knight.arch.ui.fragment.HotUsersMainFragment;
 import com.knight.arch.ui.fragment.LoginDialogFragment;
 import com.knight.arch.ui.fragment.TrendingReposMainFragment;
 import com.knight.arch.utils.L;
+import com.squareup.picasso.Picasso;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.Arrays;
@@ -64,12 +68,21 @@ public class MainActivity extends InjectableActivity {
     private ActionBar ab;
     private Spinner mTrendingSpinner;
 
+    private CircleImageView imageAvatar;
+    private TextView tvName;
+    private TextView tvHtmlUrl;
 
     @Inject
     OAuthGitHubWebFlow oAuthGitHubWebFlow;
 
+    @Inject
+    ApiService apiService;
+
+    @Inject
+    Picasso picasso;
 
     private SharedPreferences sharedPreferences;
+
 
     Observer<AccessTokenResponse> tokenObservable = new Observer<AccessTokenResponse>() {
         @Override
@@ -85,10 +98,58 @@ public class MainActivity extends InjectableActivity {
         @Override
         public void onNext(AccessTokenResponse accessTokenResponse) {
             L.json(JSON.toJSONString(accessTokenResponse));
-            sharedPreferences = MainActivity.this.getSharedPreferences("github_oauth", MODE_PRIVATE);
+            sharedPreferences = MainActivity.this.getSharedPreferences("githot_sp", MODE_PRIVATE);
             sharedPreferences.edit().putString("token", accessTokenResponse.getAccess_token()).apply();
+
+
+            //todo 拿到token 后就去拿 userInfo
+            getUserInfo();
         }
     };
+
+
+    Observer<Object> userInfoObservable = new Observer<Object>() {
+
+
+        @Override
+        public void onCompleted() {
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+
+        @Override
+        public void onNext(Object o) {
+            User user = (User) o;
+            L.i("MainActivity after oauth get user info ");
+            L.json(user);
+            sharedPreferences.edit().putString("username", user.getLogin()).apply();
+            sharedPreferences.edit().putString("avatar_url", user.getAvatar_url()).apply();
+            sharedPreferences.edit().putString("html_url", user.getHtml_url()).apply();
+
+            // 更新DrawerHeader user UI
+            picasso.load(user.getAvatar_url()).into(imageAvatar);
+            tvName.setText(user.getLogin());
+            tvHtmlUrl.setText(user.getHtml_url());
+        }
+    };
+
+
+    private void getUserInfo() {
+        String token = sharedPreferences.getString("token", "");
+        if (!TextUtils.isEmpty(token))
+            AppObservable.bindActivity(this, apiService.getUserInfoWithToken(token))
+                    .map(new Func1<User, Object>() {
+                        @Override
+                        public Object call(User user) {
+                            return user;
+                        }
+                    }).observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(userInfoObservable);
+    }
 
 
     @Override
@@ -183,15 +244,16 @@ public class MainActivity extends InjectableActivity {
 
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header);
 
-        TextView tvName = (TextView) headerView.findViewById(R.id.id_nav_header_uname);
+        imageAvatar = (CircleImageView) headerView.findViewById(R.id.id_nav_header_avatar);
+        tvName = (TextView) headerView.findViewById(R.id.id_nav_header_uname);
+        tvHtmlUrl = (TextView) headerView.findViewById(R.id.id_nav_header_giturl);
+
         tvName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                L.d("=======tv click=====");
             }
         });
 
-        CircleImageView imageAvatar = (CircleImageView) headerView.findViewById(R.id.id_nav_header_avatar);
 
         imageAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -206,6 +268,7 @@ public class MainActivity extends InjectableActivity {
         String initialScope = "user,public_repo,repo";
         String url = "https://www.github.com/login/oauth/authorize?client_id=" +
                 GitHubApiConstants.GITHUB_APP_CLIENT_ID + "&" + "scope=" + initialScope;
+
         LoginDialogFragment loginDialogFragment = new LoginDialogFragment(url);
         loginDialogFragment.show(getSupportFragmentManager(), "loginDialog");
     }

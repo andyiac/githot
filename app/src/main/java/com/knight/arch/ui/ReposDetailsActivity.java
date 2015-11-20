@@ -140,7 +140,7 @@ public class ReposDetailsActivity extends InjectableActivity {
         // 查看本人是否star过本项目
         String reposOwner = mRepository.getOwner().getLogin();
         String reposName = mRepository.getName();
-        String accessToken = this.getSharedPreferences("github_oauth", MODE_PRIVATE).getString("token", "");
+        String accessToken = this.getSharedPreferences("githot_sp", MODE_PRIVATE).getString("token", "");
 
         if (TextUtils.isEmpty(accessToken)) {
             Toast.makeText(this, "please login first", Toast.LENGTH_SHORT).show();

@@ -14,6 +14,7 @@ import retrofit.http.PUT;
 import retrofit.http.Path;
 import retrofit.http.Query;
 import rx.Observable;
+import rx.Observer;
 
 /**
  * @author andyiac
@@ -51,9 +52,13 @@ public interface ApiService {
     @GET("/users/{username}/starred")
     void starredRepos(@Path("username") String username);
 
-    @Headers({
-            "Content-Length: 0"
-    })
-    void getUserDataWithToken();
+    //Get user Info
+    //GET /users/:username
+//    @Headers({
+//            "Content-Length: 0",
+//            "Accept: application/json"
+//    })
+    @GET("/user")
+    Observable<User> getUserInfoWithToken(@Query(value = "access_token", encodeValue = true) String accessToken);
 
 }

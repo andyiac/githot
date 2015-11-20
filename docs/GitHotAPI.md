@@ -57,7 +57,12 @@
 
 		https://api.github.com/users/andyiac/repos
 
-## Check for update 
+- OAuth 认证后拿User本人的认证信息
+
+        GET https://api.github.com/user?access_token=...
+
+
+## Check for update
 - 检查更新是通过使用 fir.im 提供的更新接口
 
 		http://api.fir.im/apps/latest/55fd648a00fc7453bd000002?api_token=e9643ae1e41c57d6d829504ce8f9f90a
