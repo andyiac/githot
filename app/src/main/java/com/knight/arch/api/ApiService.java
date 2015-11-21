@@ -40,8 +40,8 @@ public interface ApiService {
             "Accept: application/json"
     })
     @PUT("/user/starred/{user}/{repo}")
-    Observable<Object> starRepos(@Path("user") String user, @Path("repo") String repo,
-                                 @Query(value = "access_token", encodeValue = true) String accessToken);
+    Observable<Object> starRepo(@Path("user") String user, @Path("repo") String repo,
+                                @Query(value = "access_token", encodeValue = true) String accessToken);
 
     //Check if you are starring a repository
     @GET("/user/starred/{owner}/{repo}")

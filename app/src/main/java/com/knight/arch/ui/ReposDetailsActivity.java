@@ -63,12 +63,13 @@ public class ReposDetailsActivity extends InjectableActivity {
 
         @Override
         public void onError(Throwable e) {
-
+            L.e("ReposDetailsActivity === error ====>>>" + e.toString());
         }
 
         @Override
         public void onNext(Object o) {
             int status = ((Response) o).getStatus();
+            L.e("ReposDetailsActivity====>> star repo");
             L.json((Response) o);
             if (status == 204) {
                 setStarFBStatus(true);
@@ -209,17 +210,16 @@ public class ReposDetailsActivity extends InjectableActivity {
             public void onClick(View v) {
 
                 //判断是否登录
-                String token = ReposDetailsActivity.this.getSharedPreferences("github_oauth", MODE_PRIVATE).getString("token", "");
+                String token = ReposDetailsActivity.this.getSharedPreferences("githot_sp", MODE_PRIVATE).getString("token", "");
                 if (TextUtils.isEmpty(token)) {
                     Toast.makeText(ReposDetailsActivity.this, "please login first", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                AppObservable.bindActivity(ReposDetailsActivity.this, oAuthApiService.starRepos(mRepository.getOwner().getLogin(), mRepository.getName(), token))
+                AppObservable.bindActivity(ReposDetailsActivity.this, oAuthApiService.starRepo(mRepository.getOwner().getLogin(), mRepository.getName(), token))
                         .map(new Func1<Object, Object>() {
                             @Override
                             public Object call(Object object) {
-                                L.i("ReposDetailsActivity star a repo ==>" + JSON.toJSONString((Response) object));
                                 return object;
                             }
                         })
@@ -252,6 +252,8 @@ public class ReposDetailsActivity extends InjectableActivity {
         } else {
             mStarFB.setImageResource(R.mipmap.ic_unstar);
         }
+
+        mStarFB.postInvalidate();
 
     }
 
