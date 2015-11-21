@@ -38,6 +38,7 @@ import com.knight.arch.ui.fragment.HotUsersMainFragment;
 import com.knight.arch.ui.fragment.LoginDialogFragment;
 import com.knight.arch.ui.fragment.TrendingReposMainFragment;
 import com.knight.arch.utils.L;
+import com.orhanobut.logger.Logger;
 import com.squareup.picasso.Picasso;
 import com.umeng.analytics.MobclickAgent;
 
@@ -98,7 +99,6 @@ public class MainActivity extends InjectableActivity {
         @Override
         public void onNext(AccessTokenResponse accessTokenResponse) {
             L.json(JSON.toJSONString(accessTokenResponse));
-            sharedPreferences = MainActivity.this.getSharedPreferences("githot_sp", MODE_PRIVATE);
             sharedPreferences.edit().putString("token", accessTokenResponse.getAccess_token()).apply();
 
 
@@ -157,16 +157,34 @@ public class MainActivity extends InjectableActivity {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
         initView();
+
+        sharedPreferences = MainActivity.this.getSharedPreferences("githot_sp", MODE_PRIVATE);
     }
 
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
+
+        L.i("=====on resume======");
+
+        String avatar = sharedPreferences.getString("avatar_url", "");
+        String uname = sharedPreferences.getString("username", "");
+        String html_url = sharedPreferences.getString("html_url", "");
+
+        if (!TextUtils.isEmpty(avatar) && !TextUtils.isEmpty(uname) && !TextUtils.isEmpty(html_url)) {
+            L.i("=== on resume load user info data====");
+            picasso.load(avatar).into(imageAvatar);
+            tvName.setText(uname);
+            tvHtmlUrl.setText(html_url);
+        }
+
     }
 
     public void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
+
+        L.i("===onPause====");
     }
 
     @Override
@@ -238,6 +256,8 @@ public class MainActivity extends InjectableActivity {
         }
 
         selectFragment(R.id.nav_user_china);
+
+
     }
 
     private void initLoginView(NavigationView navigationView) {
@@ -251,6 +271,7 @@ public class MainActivity extends InjectableActivity {
         tvName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                openLoginInBrowser();
             }
         });
 
@@ -261,6 +282,7 @@ public class MainActivity extends InjectableActivity {
                 openLoginInBrowser();
             }
         });
+
     }
 
     private void openLoginInBrowser() {

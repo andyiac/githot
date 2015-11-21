@@ -47,21 +47,21 @@
                 android:clickable="true"
                 android:layout_height="72.0dp"
                 android:layout_marginBottom="20.0dp"
-                android:src="@mipmap/avatar_andyiac" />
+                android:src="@mipmap/avatar" />
 
             <TextView
                 android:id="@+id/id_nav_header_uname"
                 android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="andyiac"
+                android:text="username"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             <TextView
                 android:id="@+id/id_nav_header_giturl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="https://github.com/andyiac"
+                android:text="https://github.com/username"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         </LinearLayout>
