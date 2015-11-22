@@ -4,7 +4,7 @@ apply plugin: 'com.android.application'
 def buildTime = new Date().format("yyyy-MM-dd HH:mm", TimeZone.getTimeZone("GMT+8:00"))
 def versionMajor = 1
 def versionMinor = 0
-def versionPatch = 3
+def versionPatch = 4
 def versionBuild = 0// bump for dogfood builds, public betas, etc.
 
 def firApplicationId = "55fd648a00fc7453bd000002"
@@ -74,23 +74,23 @@ dependencies {
 
 }
 
-
-File propFile = file('signing.properties');
-if (propFile.exists()) {
-
-    def Properties props = new Properties();
-    props.load(new FileInputStream(propFile))
-
-    if (props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
-            props.containsKey('KEY_ALIAS') && props.contains('KEY_PASSWORD')) {
-        android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
-        android.signingConfigs.release.storePassword = pros['STORE_PASSWORD']
-        android.signingConfigs.release.keyAlias = pros['KEY_ALIAS']
-        android.signingConfigs.release.keyPassword = props['KEY_PASSWORD']
-    } else {
-        android.buildTypes.release.signingConfig = null
-    }
-
-} else {
-    android.buildTypes.release.signingConfig = null
-}
+//
+//File propFile = file('signing.properties');
+//if (propFile.exists()) {
+//
+//    def Properties props = new Properties();
+//    props.load(new FileInputStream(propFile))
+//
+//    if (props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
+//            props.containsKey('KEY_ALIAS') && props.contains('KEY_PASSWORD')) {
+//        android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
+//        android.signingConfigs.release.storePassword = pros['STORE_PASSWORD']
+//        android.signingConfigs.release.keyAlias = pros['KEY_ALIAS']
+//        android.signingConfigs.release.keyPassword = props['KEY_PASSWORD']
+//    } else {
+//        android.buildTypes.release.signingConfig = null
+//    }
+//
+//} else {
+//    android.buildTypes.release.signingConfig = null
+//}

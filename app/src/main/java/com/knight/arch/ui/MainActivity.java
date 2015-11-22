@@ -101,8 +101,7 @@ public class MainActivity extends InjectableActivity {
             L.json(JSON.toJSONString(accessTokenResponse));
             sharedPreferences.edit().putString("token", accessTokenResponse.getAccess_token()).apply();
 
-
-            //todo 拿到token 后就去拿 userInfo
+            //拿到token 后就去拿 userInfo
             getUserInfo();
         }
     };
@@ -165,14 +164,11 @@ public class MainActivity extends InjectableActivity {
         super.onResume();
         MobclickAgent.onResume(this);
 
-        L.i("=====on resume======");
-
         String avatar = sharedPreferences.getString("avatar_url", "");
         String uname = sharedPreferences.getString("username", "");
         String html_url = sharedPreferences.getString("html_url", "");
 
         if (!TextUtils.isEmpty(avatar) && !TextUtils.isEmpty(uname) && !TextUtils.isEmpty(html_url)) {
-            L.i("=== on resume load user info data====");
             picasso.load(avatar).into(imageAvatar);
             tvName.setText(uname);
             tvHtmlUrl.setText(html_url);
@@ -184,7 +180,6 @@ public class MainActivity extends InjectableActivity {
         super.onPause();
         MobclickAgent.onPause(this);
 
-        L.i("===onPause====");
     }
 
     @Override
@@ -194,7 +189,7 @@ public class MainActivity extends InjectableActivity {
 
     private void initView() {
 
-//        setStatusColor(android.R.color.transparent);
+        setStatusColor(android.R.color.transparent);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.id_main_toolbar);
         setSupportActionBar(toolbar);
@@ -384,7 +379,7 @@ public class MainActivity extends InjectableActivity {
                 } else {
                     transaction.show(hotUsersFragment);
                 }
-                ab.setTitle("Hot users");
+                ab.setTitle("HotUsers");
                 break;
 
             case R.id.nav_repositories:
