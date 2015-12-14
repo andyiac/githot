@@ -379,7 +379,7 @@ public class MainActivity extends InjectableActivity {
                 } else {
                     transaction.show(hotUsersFragment);
                 }
-                ab.setTitle("HotUsers");
+                ab.setTitle("Hot users");
                 break;
 
             case R.id.nav_repositories:
