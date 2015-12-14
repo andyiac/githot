@@ -23,6 +23,12 @@ GitHot use api [link](https://github.com/andyiac/githot/blob/master/docs/GitHotA
 
 ## Change logs
 
+v1.0.5
+
+- 修复hotusers排序bug
+- 适配nexus4
+- 修复部分手机systembar显示问题
+
 v1.0.3.1
 
 - add Trending repositories model
