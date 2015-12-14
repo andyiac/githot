@@ -37,7 +37,7 @@
 ## Users
 - users 排序使用API
 
-	按照Java,C,Objective-C,Swift,csharp,Python,PHP,JavaScript,Ruby进行分类
+	按照Java,C,Objective-C,Swift,csharp,Python,PHP,JavaScript,Ruby进行分类 (默认一次返回30条数据)
 
 		https://api.github.com/search/users?q=location:china&page=1
 		https://api.github.com/search/users?q=language:Java+followers:>500&page=1

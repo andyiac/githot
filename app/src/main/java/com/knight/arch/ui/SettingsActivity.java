@@ -49,7 +49,7 @@ public class SettingsActivity extends InjectableActivity {
 
         super.onCreate(savedInstanceState);
         initView();
-        setStatusColor(android.R.color.transparent);
+//        setStatusColor(android.R.color.transparent);
     }
 
     private void initView() {

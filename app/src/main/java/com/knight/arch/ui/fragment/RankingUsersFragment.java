@@ -26,6 +26,7 @@ import com.knight.arch.ui.UserDetailsActivity;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
+import com.orhanobut.logger.Logger;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class RankingUsersFragment extends InjectableFragment {
     private GitHubUserRankListAdapterHolder adapter;
     private List<User> mUsers = new ArrayList<>();
     private int lastVisibleItem;
-    private int mPage = 1;
+    private static int PER_PAGE = 30;
     private String mQuery = null;
     private LinearLayoutManager mLinearLayoutManager;
 
@@ -82,7 +83,6 @@ public class RankingUsersFragment extends InjectableFragment {
 
         @Override
         public void onNext(Users<User> userUsers) {
-            mPage = mPage +1;
             setRefreshing(false);
             mUsers.addAll(userUsers.getItems());
             adapter.notifyDataSetChanged();
@@ -128,7 +128,7 @@ public class RankingUsersFragment extends InjectableFragment {
                 // do something with position
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), UserDetailsActivity.class);
-                intent.putExtra("user_name",mUsers.get(position).getLogin());
+                intent.putExtra("user_name", mUsers.get(position).getLogin());
                 startActivity(intent);
             }
         });
@@ -156,8 +156,8 @@ public class RankingUsersFragment extends InjectableFragment {
                 mUsers.clear();
                 adapter.notifyDataSetChanged();
 
-                mPage = 1;
-                fetchUsersInfo("china", mPage);
+                int firstPage = 1;
+                fetchUsersInfo("china", firstPage);
             }
         });
 
@@ -172,8 +172,10 @@ public class RankingUsersFragment extends InjectableFragment {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter.getItemCount()) {
                     setRefreshing(true);
 
-                    L.i("========onScrollStateChanged load more==========");
-                    fetchUsersInfo("china", mPage);
+                    int nextp = mUsers.size() / PER_PAGE + 1;
+                    Logger.i("===onScrollStateChanged load more====>>" + nextp);
+                    Logger.i("===onScrollStateChanged load more mUsers size====>>" + mUsers.size());
+                    fetchUsersInfo("china", mUsers.size() / PER_PAGE + 1);
                 }
             }
 
@@ -197,7 +199,7 @@ public class RankingUsersFragment extends InjectableFragment {
                 .map(new Func1<Users<User>, Users<User>>() {
                     @Override
                     public Users<User> call(Users<User> userUsers) {
-                        if(D)L.json(JSON.toJSONString(userUsers));
+                        if (D) L.json(JSON.toJSONString(userUsers));
                         return userUsers;
                     }
                 }).observeOn(AndroidSchedulers.mainThread())

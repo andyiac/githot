@@ -189,7 +189,7 @@ public class MainActivity extends InjectableActivity {
 
     private void initView() {
 
-        setStatusColor(android.R.color.transparent);
+//        setStatusColor(android.R.color.transparent);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.id_main_toolbar);
         setSupportActionBar(toolbar);

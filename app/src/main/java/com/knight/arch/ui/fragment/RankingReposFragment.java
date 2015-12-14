@@ -24,6 +24,7 @@ import com.knight.arch.ui.ReposDetailsActivity;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,13 +47,16 @@ public class RankingReposFragment extends InjectableFragment {
 
     @Inject
     ApiService apiService;
-    private int mPage = 1;
+
+    private static int PER_PAGE = 30;
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
     private List<Repository> mRepos = new ArrayList<>();
     private HotReposListAdapterHolder mAdapter;
     private String mQuery;
+
+    private boolean D = false; // for debug
 
     public RankingReposFragment(String query) {
         this.mQuery = query;
@@ -75,7 +79,6 @@ public class RankingReposFragment extends InjectableFragment {
 
         @Override
         public void onNext(Repositories<Repository> repositoryRepositories) {
-            mPage = mPage + 1;
             setRefreshing(false);
             mRepos.addAll(repositoryRepositories.getItems());
             mAdapter.notifyDataSetChanged();
@@ -152,8 +155,7 @@ public class RankingReposFragment extends InjectableFragment {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount()) {
                     setRefreshing(true);
 
-                    L.i("========onScrollStateChanged load more====l==mPage====>>" + mPage);
-                    fetchData(mQuery, mPage);
+                    fetchData(mQuery, mRepos.size() / PER_PAGE + 1);
                 }
             }
 
