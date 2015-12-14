@@ -410,7 +410,7 @@ public class MainActivity extends InjectableActivity {
     private void hideAllFragment(FragmentTransaction transaction) {
 
         if (mTrendingSpinner != null) {
-            mTrendingSpinner.setVisibility(View.INVISIBLE);
+            mTrendingSpinner.setVisibility(View.GONE);
         }
 
         if (hotUsersFragment != null) {
