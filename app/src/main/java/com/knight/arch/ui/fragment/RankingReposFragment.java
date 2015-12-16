@@ -24,7 +24,6 @@ import com.knight.arch.ui.ReposDetailsActivity;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
-import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +55,9 @@ public class RankingReposFragment extends InjectableFragment {
     private HotReposListAdapterHolder mAdapter;
     private String mQuery;
 
+
+    private boolean mIsLoadingMoreFlag = false;
+
     private boolean D = false; // for debug
 
     public RankingReposFragment(String query) {
@@ -67,12 +69,14 @@ public class RankingReposFragment extends InjectableFragment {
         @Override
         public void onCompleted() {
             setRefreshing(false);
+            mIsLoadingMoreFlag = false;
 
         }
 
         @Override
         public void onError(Throwable e) {
             setRefreshing(false);
+            mIsLoadingMoreFlag = false;
             Toast.makeText(getActivity(), "server unreachable try again later", Toast.LENGTH_SHORT).show();
 
         }
@@ -80,9 +84,9 @@ public class RankingReposFragment extends InjectableFragment {
         @Override
         public void onNext(Repositories<Repository> repositoryRepositories) {
             setRefreshing(false);
+            mIsLoadingMoreFlag = false;
             mRepos.addAll(repositoryRepositories.getItems());
             mAdapter.notifyDataSetChanged();
-
         }
     };
     private LinearLayoutManager mLinearLayoutManager;
@@ -101,9 +105,7 @@ public class RankingReposFragment extends InjectableFragment {
                 .map(new Func1<Repositories<Repository>, Repositories<Repository>>() {
                     @Override
                     public Repositories<Repository> call(Repositories<Repository> repositoryRepositories) {
-
-                        L.i(JSON.toJSONString(repositoryRepositories));
-
+                        L.json(JSON.toJSONString(repositoryRepositories));
                         return repositoryRepositories;
                     }
                 }).observeOn(AndroidSchedulers.mainThread())
@@ -154,8 +156,16 @@ public class RankingReposFragment extends InjectableFragment {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount()) {
                     setRefreshing(true);
+                    int nextPage = mRepos.size() / PER_PAGE + 1;
 
-                    fetchData(mQuery, mRepos.size() / PER_PAGE + 1);
+                    L.i("mrepos.size==========>>" + mRepos.size() + "\n" +
+                            "adapter.getItemCount==>>" + mAdapter.getItemCount() + "\n" +
+                            "next page ============>>" + nextPage);
+
+                    if (!mIsLoadingMoreFlag) {
+                        fetchData(mQuery, nextPage);
+                        mIsLoadingMoreFlag = true;
+                    }
                 }
             }
 

@@ -72,12 +72,14 @@ public class RankingUsersFragment extends InjectableFragment {
         @Override
         public void onCompleted() {
             setRefreshing(false);
+            isLoadingMoreFlag = false;
         }
 
         @Override
         public void onError(Throwable e) {
             L.e("" + e);
             setRefreshing(false);
+            isLoadingMoreFlag = false;
             Toast.makeText(getActivity(), "server unreachable try again later", Toast.LENGTH_SHORT).show();
         }
 
@@ -86,8 +88,10 @@ public class RankingUsersFragment extends InjectableFragment {
             setRefreshing(false);
             mUsers.addAll(userUsers.getItems());
             adapter.notifyDataSetChanged();
+            isLoadingMoreFlag = false;
         }
     };
+    private boolean isLoadingMoreFlag = false;
 
     public RankingUsersFragment() {
     }
@@ -175,7 +179,10 @@ public class RankingUsersFragment extends InjectableFragment {
                     int nextp = mUsers.size() / PER_PAGE + 1;
                     Logger.i("===onScrollStateChanged load more====>>" + nextp);
                     Logger.i("===onScrollStateChanged load more mUsers size====>>" + mUsers.size());
-                    fetchUsersInfo("china", mUsers.size() / PER_PAGE + 1);
+                    if (!isLoadingMoreFlag) {
+                        fetchUsersInfo("china", nextp);
+                        isLoadingMoreFlag = true;
+                    }
                 }
             }
 
