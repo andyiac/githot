@@ -11,6 +11,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -202,15 +203,32 @@ public class RankingUsersFragment extends InjectableFragment {
         if (mQuery != null) {
             query = mQuery + "+followers:%3E500";
         }
-        AppObservable.bindFragment(this, apiService.getUsersRxJava(query, page_id))
-                .map(new Func1<Users<User>, Users<User>>() {
-                    @Override
-                    public Users<User> call(Users<User> userUsers) {
-                        if (D) L.json(JSON.toJSONString(userUsers));
-                        return userUsers;
-                    }
-                }).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(userObserver);
+
+        String accessToken = this.getActivity().getSharedPreferences("githot_sp", Activity.MODE_PRIVATE).getString("token", "");
+
+        if (!TextUtils.isEmpty(accessToken)) {
+            AppObservable.bindFragment(this, apiService.getUsersRxJava(query, page_id, accessToken))
+                    .map(new Func1<Users<User>, Users<User>>() {
+                        @Override
+                        public Users<User> call(Users<User> userUsers) {
+                            if (D) L.json(JSON.toJSONString(userUsers));
+                            return userUsers;
+                        }
+                    }).observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(userObserver);
+
+        } else {
+            AppObservable.bindFragment(this, apiService.getUsersRxJava(query, page_id))
+                    .map(new Func1<Users<User>, Users<User>>() {
+                        @Override
+                        public Users<User> call(Users<User> userUsers) {
+                            if (D) L.json(JSON.toJSONString(userUsers));
+                            return userUsers;
+                        }
+                    }).observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(userObserver);
+
+        }
     }
 
 

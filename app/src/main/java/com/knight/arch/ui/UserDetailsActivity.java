@@ -1,5 +1,6 @@
 package com.knight.arch.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -7,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -154,14 +156,26 @@ public class UserDetailsActivity extends InjectableActivity {
     }
 
     private void fetchData(String userName) {
-        AppObservable.bindActivity(this, apiService.getUserRepositories(userName))
-                .map(new Func1<List<Repository>, List<Repository>>() {
-                    @Override
-                    public List<Repository> call(List<Repository> repositoryRepositories) {
-                        return repositoryRepositories;
-                    }
-                }).subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(repositoryObserver);
+        String accessToken = this.getSharedPreferences("githot_sp", MODE_PRIVATE).getString("token", "");
+        if (!TextUtils.isEmpty(accessToken)) {
+            AppObservable.bindActivity(this, apiService.getUserRepositories(userName))
+                    .map(new Func1<List<Repository>, List<Repository>>() {
+                        @Override
+                        public List<Repository> call(List<Repository> repositoryRepositories) {
+                            return repositoryRepositories;
+                        }
+                    }).subscribeOn(AndroidSchedulers.mainThread())
+                    .subscribe(repositoryObserver);
+        } else {
+            AppObservable.bindActivity(this, apiService.getUserRepositories(userName,accessToken))
+                    .map(new Func1<List<Repository>, List<Repository>>() {
+                        @Override
+                        public List<Repository> call(List<Repository> repositoryRepositories) {
+                            return repositoryRepositories;
+                        }
+                    }).subscribeOn(AndroidSchedulers.mainThread())
+                    .subscribe(repositoryObserver);
+        }
     }
 
 

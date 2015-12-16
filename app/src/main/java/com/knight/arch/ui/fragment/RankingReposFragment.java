@@ -2,6 +2,7 @@ package com.knight.arch.ui.fragment;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,8 @@ import com.knight.arch.ui.ReposDetailsActivity;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,15 +105,32 @@ public class RankingReposFragment extends InjectableFragment {
 
     private void fetchData(String query, int page) {
 
-        AppObservable.bindFragment(this, apiService.getRepositories(query, page))
-                .map(new Func1<Repositories<Repository>, Repositories<Repository>>() {
-                    @Override
-                    public Repositories<Repository> call(Repositories<Repository> repositoryRepositories) {
-                        L.json(JSON.toJSONString(repositoryRepositories));
-                        return repositoryRepositories;
-                    }
-                }).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(repositoryObserver);
+        String accessToken = this.getActivity().getSharedPreferences("githot_sp", Activity.MODE_PRIVATE).getString("token", "");
+
+
+        if (!TextUtils.isEmpty(accessToken)) {
+
+            AppObservable.bindFragment(this, apiService.getRepositories(query, page, accessToken))
+                    .map(new Func1<Repositories<Repository>, Repositories<Repository>>() {
+                        @Override
+                        public Repositories<Repository> call(Repositories<Repository> repositoryRepositories) {
+                            L.json(JSON.toJSONString(repositoryRepositories));
+                            return repositoryRepositories;
+                        }
+                    }).observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(repositoryObserver);
+        } else {
+            AppObservable.bindFragment(this, apiService.getRepositories(query, page))
+                    .map(new Func1<Repositories<Repository>, Repositories<Repository>>() {
+                        @Override
+                        public Repositories<Repository> call(Repositories<Repository> repositoryRepositories) {
+                            L.json(JSON.toJSONString(repositoryRepositories));
+                            return repositoryRepositories;
+                        }
+                    }).observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(repositoryObserver);
+        }
+
     }
 
 
@@ -157,10 +178,6 @@ public class RankingReposFragment extends InjectableFragment {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount()) {
                     setRefreshing(true);
                     int nextPage = mRepos.size() / PER_PAGE + 1;
-
-                    L.i("mrepos.size==========>>" + mRepos.size() + "\n" +
-                            "adapter.getItemCount==>>" + mAdapter.getItemCount() + "\n" +
-                            "next page ============>>" + nextPage);
 
                     if (!mIsLoadingMoreFlag) {
                         fetchData(mQuery, nextPage);

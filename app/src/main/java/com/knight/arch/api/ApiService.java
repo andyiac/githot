@@ -26,13 +26,32 @@ import rx.Observer;
 public interface ApiService {
 
     @GET("/search/users")
-    Observable<Users<User>> getUsersRxJava(@Query(value = "q", encodeValue = false) String query, @Query("page") int pageId);
+    Observable<Users<User>> getUsersRxJava(@Query(value = "q", encodeValue = false) String query,
+                                           @Query("page") int pageId);
+
+    @GET("/search/users")
+    Observable<Users<User>> getUsersRxJava(@Query(value = "q", encodeValue = false) String query,
+                                           @Query("page") int pageId,
+                                           @Query(value = "access_token", encodeValue = true) String accessToken);
+
 
     @GET("/search/repositories")
-    Observable<Repositories<Repository>> getRepositories(@Query(value = "q", encodeValue = false) String query, @Query("page") int pageId);
+    Observable<Repositories<Repository>> getRepositories(@Query(value = "q", encodeValue = false) String query,
+                                                         @Query("page") int pageId);
+
+    @GET("/search/repositories")
+    Observable<Repositories<Repository>> getRepositories(@Query(value = "q", encodeValue = false) String query,
+                                                         @Query("page") int pageId,
+                                                         @Query(value = "access_token", encodeValue = true) String accessToken);
+
 
     @GET("/users/{user}/repos")
     Observable<List<Repository>> getUserRepositories(@Path("user") String user);
+
+    @GET("/users/{user}/repos")
+    Observable<List<Repository>> getUserRepositories(@Path("user") String user,
+                                                     @Query(value = "access_token", encodeValue = true) String accessToken);
+
 
     //Star a repository
     @Headers({
@@ -53,11 +72,6 @@ public interface ApiService {
     void starredRepos(@Path("username") String username);
 
     //Get user Info
-    //GET /users/:username
-//    @Headers({
-//            "Content-Length: 0",
-//            "Accept: application/json"
-//    })
     @GET("/user")
     Observable<User> getUserInfoWithToken(@Query(value = "access_token", encodeValue = true) String accessToken);
 
