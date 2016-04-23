@@ -10,7 +10,7 @@ Besides, you can get iOS version [Monkey](https://github.com/coderyi/Monkey) by 
 
 
 Try githot from the link below   
-[github release](https://github.com/andyiac/githot/releases/download/v1.0.6/githot_v1.0.6.apk)
+[github release](https://github.com/andyiac/githot/releases/download/v1.0.6/githot_v1.0.6.apk)  
 [fir](http://fir.im/githot)  
 [google play](https://play.google.com/store/apps/details?id=com.knight.arch)  
 
