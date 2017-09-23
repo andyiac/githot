@@ -27,18 +27,17 @@ import com.knight.arch.api.ApiService;
 import com.knight.arch.api.GitHubApiConstants;
 import com.knight.arch.api.OAuthGitHubWebFlow;
 import com.knight.arch.events.LoginUriMsg;
+import com.knight.arch.events.TrendingReposTimeSpanTextMsg;
 import com.knight.arch.model.AccessTokenResponse;
 import com.knight.arch.model.User;
-import com.knight.arch.ui.adapter.TrendingReposTimeSpanAdapter;
-import com.knight.arch.events.TrendingReposTimeSpanTextMsg;
 import com.knight.arch.module.HomeModule;
+import com.knight.arch.ui.adapter.TrendingReposTimeSpanAdapter;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.fragment.HotReposMainFragment;
 import com.knight.arch.ui.fragment.HotUsersMainFragment;
 import com.knight.arch.ui.fragment.LoginDialogFragment;
 import com.knight.arch.ui.fragment.TrendingReposMainFragment;
 import com.knight.arch.utils.L;
-import com.orhanobut.logger.Logger;
 import com.squareup.picasso.Picasso;
 import com.umeng.analytics.MobclickAgent;
 
@@ -189,7 +188,7 @@ public class MainActivity extends InjectableActivity {
 
     private void initView() {
 
-//        setStatusColor(android.R.color.transparent);
+        //setStatusColor(android.R.color.transparent);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.id_main_toolbar);
         setSupportActionBar(toolbar);
