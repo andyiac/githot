@@ -8,9 +8,7 @@ package com.knight.arch.data;
  * @web http://blog.andyiac.com
  * @github https://github.com/andyiac
  */
-
-
-public class ReposKV {
+class ReposKV {
     private String key;
     private String value;
 

@@ -18,7 +18,6 @@ public class Pagination<T extends Parcelable> {
     @Expose
     private List<T> data;
 
-
     public List<T> getData() {
         return data;
     }
