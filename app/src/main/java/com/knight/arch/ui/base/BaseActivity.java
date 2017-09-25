@@ -24,7 +24,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); setContentView(provideContentViewId());
+        super.onCreate(savedInstanceState);
+        setContentView(provideContentViewId());
         if (Build.VERSION.SDK_INT <= 19) {
             tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(true);

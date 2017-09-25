@@ -1,6 +1,6 @@
 package com.knight.arch.ui.base;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -35,8 +35,8 @@ public class InjectableFragment extends BaseFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context ctx) {
+        super.onAttach(ctx);
         if (!injected) {
             injected = true;
             Injector injector = (Injector) getActivity();

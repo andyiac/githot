@@ -35,7 +35,6 @@ public class Users<T extends Parcelable> {
         this.total_count = total_count;
     }
 
-
     public List<T> getItems() {
         return items;
     }
