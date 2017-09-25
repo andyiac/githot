@@ -53,6 +53,7 @@ public class ClientApplication extends Application implements Injector {
                //.hideThreadInfo()             // default shown
     }
 
+    // Stetho debug with chrome
     private void initStetho() {
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)
