@@ -14,12 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
-import com.knight.arch.ui.adapter.HotReposListAdapterHolder;
 import com.knight.arch.api.ReposTrendingApiService;
 import com.knight.arch.events.TrendingReposTimeSpanTextMsg;
 import com.knight.arch.model.Repository;
 import com.knight.arch.ui.ReposDetailsActivity;
+import com.knight.arch.ui.adapter.HotReposListAdapterHolder;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
@@ -67,14 +68,12 @@ public class TrendingReposFragment extends InjectableFragment {
         @Override
         public void onCompleted() {
             setRefreshing(false);
-
         }
 
         @Override
         public void onError(Throwable e) {
             setRefreshing(false);
             Toast.makeText(getActivity(), "server unreachable try again later", Toast.LENGTH_SHORT).show();
-
         }
 
         @Override
@@ -82,7 +81,6 @@ public class TrendingReposFragment extends InjectableFragment {
             setRefreshing(false);
             mRepos.addAll(repositoryRepositories);
             mAdapter.notifyDataSetChanged();
-
         }
     };
 
@@ -99,8 +97,8 @@ public class TrendingReposFragment extends InjectableFragment {
                 .map(new Func1<List<Repository>, List<Repository>>() {
                     @Override
                     public List<Repository> call(List<Repository> repositories) {
-//                        L.json(JSON.toJSONString(repositories));
-                        L.i("=====loaddata=="+mTimeSpan);
+                        L.json(JSON.toJSONString(repositories));
+                        L.i("=====loaddata==" + mTimeSpan);
                         return repositories;
                     }
                 }).subscribeOn(AndroidSchedulers.mainThread())
@@ -202,7 +200,7 @@ public class TrendingReposFragment extends InjectableFragment {
         mAdapter.notifyDataSetChanged();
 
         mTimeSpan = msg.getTimeSpan();
-        L.d("timeSpan======>>"+ msg.getTimeSpan());
+        L.d("timeSpan======>>" + msg.getTimeSpan());
 
         if (this.isVisible()) {
             fetchData(mLanguage, mTimeSpan);

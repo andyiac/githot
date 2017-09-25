@@ -45,7 +45,7 @@ public class TrendingReposMainFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        setStatusColor(android.R.color.transparent);
+        // setStatusColor(android.R.color.transparent);
         View view = inflater.inflate(R.layout.fragment_trending_repos_main, container, false);
         initView(view);
         return view;
@@ -104,7 +104,6 @@ public class TrendingReposMainFragment extends BaseFragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
-
             return mFragmentTitles.get(position);
         }
     }
