@@ -35,7 +35,6 @@ public class SettingsFragment extends PreferenceFragment {
 
     private boolean injected = false;
 
-
     @Inject
     FirService firService;
 

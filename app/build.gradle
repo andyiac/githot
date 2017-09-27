@@ -19,7 +19,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 23
 
-
+        // 自定义 BuildConfig.java 字段
         buildConfigField "String", "BUILD_TIME", "\"${buildTime}\""
         buildConfigField "String", "FIR_APPLICATION_ID", "\"${firApplicationId}\""
         buildConfigField "String", "FIR_API_TOKEN", "\"${firApiToken}\""
