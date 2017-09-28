@@ -45,15 +45,13 @@ public class HotReposMainFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        setStatusColor(android.R.color.transparent);
+        // setStatusColor(android.R.color.transparent);
         View view = inflater.inflate(R.layout.fragment_hot_repos_main2, container, false);
         initView(view);
         return view;
     }
 
     private void initView(View view) {
-
-
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.hot_repos_fragment_viewpager);
         if (viewPager != null) {
             setupViewPager(viewPager);

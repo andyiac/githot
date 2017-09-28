@@ -39,7 +39,6 @@ public class ClientApplication extends Application implements Injector {
         MobclickAgent.openActivityDurationTrack(false);
     }
 
-
     private void initDagger() {
         objectGraph = ObjectGraph.create(getModules().toArray());
         objectGraph.inject(this);

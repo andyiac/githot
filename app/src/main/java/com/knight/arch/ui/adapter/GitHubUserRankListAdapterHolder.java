@@ -89,7 +89,7 @@ public class GitHubUserRankListAdapterHolder extends RecyclerView.Adapter<GitHub
         @Override
         public void onClick(View v) {
             if (mItemClickListener != null) {
-//                mItemClickListener.onItemClick(v, getPosition());
+                // mItemClickListener.onItemClick(v, getPosition());
                 mItemClickListener.onItemClick(v, getLayoutPosition());
             }
         }

@@ -1,6 +1,5 @@
 package com.knight.arch.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,10 +14,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.knight.arch.R;
-import com.knight.arch.ui.adapter.UserDetailsListAdapterHolder;
 import com.knight.arch.api.ApiService;
 import com.knight.arch.model.Repository;
 import com.knight.arch.module.UserDetailsModule;
+import com.knight.arch.ui.adapter.UserDetailsListAdapterHolder;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.KeyBoardTools;
@@ -65,7 +64,6 @@ public class UserDetailsActivity extends InjectableActivity {
             Toast.makeText(UserDetailsActivity.this, "server unreachable try again later", Toast.LENGTH_SHORT).show();
         }
 
-
         @Override
         public void onNext(List<Repository> repositories) {
             mPage = mPage + 1;
@@ -104,7 +102,6 @@ public class UserDetailsActivity extends InjectableActivity {
         fetchData(mCurrentUser);
     }
 
-
     private void initView() {
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.id_user_details_toobar);
@@ -115,7 +112,6 @@ public class UserDetailsActivity extends InjectableActivity {
             ab.setHomeAsUpIndicator(R.mipmap.ic_back_arrow);
             ab.setDisplayHomeAsUpEnabled(true);
             ab.setTitle(mCurrentUser);
-
         }
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.id_hot_repos_swipe_refresh_layout);

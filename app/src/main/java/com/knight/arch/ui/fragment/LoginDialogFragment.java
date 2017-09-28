@@ -3,7 +3,6 @@ package com.knight.arch.ui.fragment;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -14,9 +13,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.knight.arch.R;
 import com.knight.arch.events.LoginUriMsg;
-import com.knight.arch.utils.L;
 
 import de.greenrobot.event.EventBus;
 
@@ -47,7 +44,6 @@ public class LoginDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final WebView webView = new WebView(this.getActivity()) {
 
-
             boolean layoutChangedOnce = false;
 
             @Override
@@ -67,7 +63,6 @@ public class LoginDialogFragment extends DialogFragment {
             public boolean onCheckIsTextEditor() {
                 return true;
             }
-
 
         };
 
@@ -111,6 +106,5 @@ public class LoginDialogFragment extends DialogFragment {
 
         return builder.create();
     }
-
 
 }

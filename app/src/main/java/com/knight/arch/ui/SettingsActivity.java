@@ -5,13 +5,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.knight.arch.R;
 import com.knight.arch.module.SettingsModule;
 import com.knight.arch.ui.base.InjectableActivity;
 import com.knight.arch.utils.KeyBoardTools;
-import com.knight.arch.utils.L;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.Arrays;
@@ -49,7 +47,7 @@ public class SettingsActivity extends InjectableActivity {
 
         super.onCreate(savedInstanceState);
         initView();
-//        setStatusColor(android.R.color.transparent);
+        // setStatusColor(android.R.color.transparent);
     }
 
     private void initView() {

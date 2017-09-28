@@ -18,16 +18,14 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
-import com.knight.arch.ui.adapter.HotReposListAdapterHolder;
 import com.knight.arch.api.ApiService;
 import com.knight.arch.data.Repositories;
 import com.knight.arch.model.Repository;
 import com.knight.arch.ui.ReposDetailsActivity;
+import com.knight.arch.ui.adapter.HotReposListAdapterHolder;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +57,6 @@ public class RankingReposFragment extends InjectableFragment {
     private HotReposListAdapterHolder mAdapter;
     private String mQuery;
 
-
     private boolean mIsLoadingMoreFlag = false;
 
     private boolean D = false; // for debug
@@ -74,7 +71,6 @@ public class RankingReposFragment extends InjectableFragment {
         public void onCompleted() {
             setRefreshing(false);
             mIsLoadingMoreFlag = false;
-
         }
 
         @Override
@@ -82,7 +78,6 @@ public class RankingReposFragment extends InjectableFragment {
             setRefreshing(false);
             mIsLoadingMoreFlag = false;
             Toast.makeText(getActivity(), "server unreachable try again later", Toast.LENGTH_SHORT).show();
-
         }
 
         @Override
@@ -96,7 +91,6 @@ public class RankingReposFragment extends InjectableFragment {
     private LinearLayoutManager mLinearLayoutManager;
     private int lastVisibleItem;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,9 +101,7 @@ public class RankingReposFragment extends InjectableFragment {
 
         String accessToken = this.getActivity().getSharedPreferences("githot_sp", Activity.MODE_PRIVATE).getString("token", "");
 
-
         if (!TextUtils.isEmpty(accessToken)) {
-
             AppObservable.bindFragment(this, apiService.getRepositories(query, page, accessToken))
                     .map(new Func1<Repositories<Repository>, Repositories<Repository>>() {
                         @Override
@@ -117,7 +109,8 @@ public class RankingReposFragment extends InjectableFragment {
                             L.json(JSON.toJSONString(repositoryRepositories));
                             return repositoryRepositories;
                         }
-                    }).observeOn(AndroidSchedulers.mainThread())
+                    })
+                    .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(repositoryObserver);
         } else {
             AppObservable.bindFragment(this, apiService.getRepositories(query, page))
@@ -127,7 +120,8 @@ public class RankingReposFragment extends InjectableFragment {
                             L.json(JSON.toJSONString(repositoryRepositories));
                             return repositoryRepositories;
                         }
-                    }).observeOn(AndroidSchedulers.mainThread())
+                    })
+                    .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(repositoryObserver);
         }
 
@@ -146,7 +140,6 @@ public class RankingReposFragment extends InjectableFragment {
         super.onViewCreated(view, savedInstanceState);
         float paddingStart = getActivity().getResources().getDimension(R.dimen.repos_hot_divider_padding_start);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST, paddingStart, safeIsRtl()));
-
     }
 
     private void initView(View view) {

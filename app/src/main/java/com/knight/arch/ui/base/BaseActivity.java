@@ -32,7 +32,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             tintManager.setNavigationBarTintEnabled(true);
             tintManager.setStatusBarTintColor(getResources().getColor(R.color.primary_dark));
         }
-
     }
 
 

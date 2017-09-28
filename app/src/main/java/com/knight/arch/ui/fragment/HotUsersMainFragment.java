@@ -41,7 +41,6 @@ public class HotUsersMainFragment extends BaseFragment {
         return view;
     }
 
-
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("HotUsersMainFragment"); //统计页面
@@ -51,7 +50,6 @@ public class HotUsersMainFragment extends BaseFragment {
         super.onPause();
         MobclickAgent.onPageEnd("HotUsersMainFragment");
     }
-
 
     private void initView(View view) {
 
@@ -68,7 +66,6 @@ public class HotUsersMainFragment extends BaseFragment {
 
     }
 
-
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
         adapter.addFragment(new RankingUsersFragment(), "China All");
@@ -82,7 +79,6 @@ public class HotUsersMainFragment extends BaseFragment {
         adapter.addFragment(new RankingUsersFragment("language:Ruby"), "Ruby");
         viewPager.setAdapter(adapter);
     }
-
 
     static class Adapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragments = new ArrayList<>();

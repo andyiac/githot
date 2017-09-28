@@ -46,7 +46,6 @@ public class HotReposListAdapterHolder extends RecyclerView.Adapter<HotReposList
     public HotReposListAdapterHolder(FragmentActivity mActivity, List<Repository> repos) {
         this.mActivity = mActivity;
         this.mRepos = repos;
-
     }
 
     @Override
@@ -91,7 +90,7 @@ public class HotReposListAdapterHolder extends RecyclerView.Adapter<HotReposList
         public void onClick(View v) {
             if (mItemClickListener != null) {
                 L.i("==========click=====");
-//                mItemClickListener.onItemClick(v, getPosition());
+                //mItemClickListener.onItemClick(v, getPosition());
                 mItemClickListener.onItemClick(v, getLayoutPosition());
             }
         }
