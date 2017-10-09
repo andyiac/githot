@@ -59,12 +59,9 @@ public class RankingReposFragment extends InjectableFragment {
 
     private boolean mIsLoadingMoreFlag = false;
 
-    private boolean D = false; // for debug
-
     public RankingReposFragment(String query) {
         this.mQuery = query;
     }
-
 
     Observer<Repositories<Repository>> repositoryObserver = new Observer<Repositories<Repository>>() {
         @Override

@@ -3,6 +3,7 @@ package com.knight.arch.ui.fragment;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,11 +20,11 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.knight.arch.R;
-import com.knight.arch.ui.adapter.GitHubUserRankListAdapterHolder;
 import com.knight.arch.api.ApiService;
 import com.knight.arch.data.Users;
 import com.knight.arch.model.User;
 import com.knight.arch.ui.UserDetailsActivity;
+import com.knight.arch.ui.adapter.GitHubUserRankListAdapterHolder;
 import com.knight.arch.ui.base.InjectableFragment;
 import com.knight.arch.ui.misc.DividerItemDecoration;
 import com.knight.arch.utils.L;
@@ -140,9 +141,9 @@ public class RankingUsersFragment extends InjectableFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        mActivity = (FragmentActivity) activity;
-        super.onAttach(activity);
+    public void onAttach(Context ctx) {
+        mActivity = (FragmentActivity) ctx;
+        super.onAttach(ctx);
     }
 
     private void initView(View view) {

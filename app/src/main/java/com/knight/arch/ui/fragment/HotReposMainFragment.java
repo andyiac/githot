@@ -32,7 +32,6 @@ public class HotReposMainFragment extends BaseFragment {
     public HotReposMainFragment() {
     }
 
-
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("HotReposMainFragment"); //统计页面
