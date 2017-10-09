@@ -12,7 +12,7 @@ def firApiToken = "e9643ae1e41c57d6d829504ce8f9f90a"
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.3'
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.knight.arch"

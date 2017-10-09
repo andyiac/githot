@@ -49,7 +49,7 @@ public class ClientApplication extends Application implements Injector {
                 .setMethodCount(4)            // default 2
                 .setLogLevel(LogLevel.FULL)   // default LogLevel.FULL
                 .setMethodOffset(2);          // default 0
-               //.hideThreadInfo()             // default shown
+        // .hideThreadInfo()             // default shown
     }
 
     // Stetho debug with chrome
