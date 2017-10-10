@@ -53,7 +53,9 @@ public class GitHubUserRankListAdapterHolder extends RecyclerView.Adapter<GitHub
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        picasso.load(mUsers.get(position).getAvatar_url()).placeholder(R.mipmap.avatar).into(holder.ivAvatar);
+        //picasso.load(mUsers.get(position).getAvatar_url()).placeholder(R.mipmap.avatar).into(holder.ivAvatar);
+        String avatar_url = "https://avatars2.githubusercontent.com/u/" + mUsers.get(position).getId() + "?s=140";
+        picasso.load(avatar_url).placeholder(R.mipmap.avatar).into(holder.ivAvatar);
         holder.tvLogin.setText(mUsers.get(position).getLogin());
         holder.tvRank.setText("rank: " + String.valueOf(position + 1));
     }
