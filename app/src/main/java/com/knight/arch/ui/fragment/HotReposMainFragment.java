@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.knight.arch.R;
-import com.knight.arch.ui.base.BaseFragment;
+import com.knight.arch.ui.base.InjectableFragment;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import java.util.List;
  * @github https://github.com/andyiac
  */
 @SuppressLint("ValidFragment")
-public class HotReposMainFragment extends BaseFragment {
+public class HotReposMainFragment extends InjectableFragment{
 
     private TabLayout mTabLayout;
 
