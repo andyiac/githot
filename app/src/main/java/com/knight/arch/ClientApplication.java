@@ -25,6 +25,7 @@ public class ClientApplication extends Application implements Injector {
 
     private AccessTokenResponse accessTokenResponse;
 
+
     private ObjectGraph objectGraph;
 
     public void onCreate() {
