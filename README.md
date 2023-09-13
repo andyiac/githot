@@ -3,7 +3,7 @@
 GitHot is an Android App that will help you find world most popular project and person .
 
 
-Official website [http://githot.cn](http://githot.cn) ,and the web version is incoming .
+Official website [http://andyiac.github.io/githot](http://andyiac.github.io/githot) ,and the web version is incoming .
 
 
 Besides, you can get iOS version [Monkey](https://github.com/coderyi/Monkey) by [coderyi](https://github.com/coderyi) from [itunes](https://itunes.apple.com/cn/app/monkey-for-github/id1003765407) .
